@@ -1,6 +1,7 @@
 // pages/submithealth/submithealth.js
 const { $Message } = require('../dist/base/index');
 const app = getApp();
+var util = require('../common/js/util.js');
 Page({
 
   /**
@@ -172,6 +173,10 @@ Page({
           url: page
         })
       },
+      fail(res) {
+
+        return;
+      },
       complete(res) {
         wx.hideLoading();
       }
@@ -224,29 +229,23 @@ Page({
   },
   //validation
   validate(type) {
+    util.handleError();
     var staffId = this.data.stafID.content;
     var mobile = this.data.mobile.content;
     var code = this.data.code.content;
     if (staffId == '' || mobile == '' || (type == 'registration' && code == '')) {
-      this.handleError();
+      util.handleError();
       return false;
     }
     if (!(/^\d{8}$/g).test(staffId) || !(/^\d{11}$/g).test(mobile)) {
-      this.handleError('请输入合法的员工编号或者电话号码！');
+      util.handleError('请输入合法的员工编号或者电话号码！');
       return false;
     }
     if (!(/^\d{6}$/g).test(code) && type == 'registration') {
-      this.handleError('请输入合法的验证码！');
+      util.handleError('请输入合法的验证码！');
       return false;
     }
     return true;
-  },
-  //show error message
-  handleError(message) {
-    $Message({
-      content: message || '请完善信息!',
-      type: 'error'
-    });
   },
   //
   handle60TimeOut() {

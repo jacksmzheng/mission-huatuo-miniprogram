@@ -7,19 +7,25 @@ function handleError(message) {
   });
 }
 
-function showErrorMessage(code, res) {
+function showErrorMessage(code, res, message) {
+  var msg = '';
+  if(message) {
+    msg = message;
+  } else if(res) {
+    msg = genErrorMsg(res);
+  }
   switch (code){
     case 400:
-      res = res.data.errorInfo.code + " : " + res.data.errorInfo.message.key
+      res = msg;
       break;
     case 500:
-      res = res.data.errorInfo.code + " : " + res.data.errorInfo.message.key
+      res = msg;
       break;
     case 404:
-      res = "网络连接失败，请稍后重试！"
+      res = "网络连接失败，请稍后重试！";
       break;
     default:
-      res = "网络请求错误，请稍后重试！"
+      res = "网络请求错误，请稍后重试！";
       break;
   }
   wx.showToast({
@@ -34,7 +40,12 @@ function genErrorMsg(res){
   if (res.statusCode == 404) {
     errorMsg = "网络连接失败，请稍后重试！"
   } else {
-    errorMsg = res.data.errorInfo.code + " : " + res.data.errorInfo.message.key
+    if (res.data && res.data.errorInfo && res.data.errorInfo.code) {
+      errorMsg += res.data.errorInfo.code + " : ";
+    }
+    if (res.data && res.data.errorInfo && res.data.errorInfo.message && res.data.errorInfo.message.key) {
+      errorMsg += res.data.errorInfo.message.key;
+    }
   }
   return errorMsg
 }

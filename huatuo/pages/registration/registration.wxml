@@ -1,0 +1,24 @@
+<!--pages/home/home.wxml-->
+<import src="/pages/common/template/commonpicker/commonpicker.wxml"/>
+<view class='page-section'>
+  <i-message id="message"/>
+  <view class='top-separate-line'></view>
+  <form bindsubmit="submitHealthForm">
+    <commoninput obj="{{stafID}}" bindinputEvent='{{stafID.bindInputName}}'/>
+    <commoninput obj="{{mobile}}" bindinputEvent='{{mobile.bindInputName}}'/>
+    <!-- <i-button size="small" inline bind:click="handleClick" type="primary">Send Code</i-button> -->
+    <view class="">
+      <rich-text class="form-input-label" style="display:block;">
+        验证码 Verification code：*
+      </rich-text>
+    </view>
+    <view class="code-view">
+     <!-- <commoninput class="code-input" obj="{{code}}" bindinputEvent='{{code.bindInputName}}'/> -->
+     <input class="code-input" bindinput='getCodeValue' maxlength="6" type="number"></input>
+     <button bindtap="sendVerifyCode" class="code-button" type="default" disabled="{{button.disabled}}">{{button.text}}</button>
+    </view>
+    <button class="primary-btn" style="width:100%;margin-bottom:48rpx;" type="primary" form-type="submit">注册</button>
+  </form>
+</view>
+
+

@@ -1,5 +1,6 @@
 // pages/submitvpn/submitvpn.js
 const { $Message } = require('../dist/base/index');
+const util = require('../common/js/util.js')
 const app = getApp();
 Page({
 
@@ -457,8 +458,7 @@ Page({
       header: {
         'content-type': 'application/json'
       },
-      success(res) {
-        wx.hideLoading();
+      success(res) { 
         console.log(res.data);
         var page = '/pages/successful/successful';
         if (res.statusCode !== 200) {
@@ -467,6 +467,13 @@ Page({
         wx.redirectTo({
           url: page
         })
+      },
+      fail(res){
+        util.showErrorMessage()
+        console.log('submit vpn fail : ',res)
+      },
+      complete(res){
+        wx.hideLoading();
       }
     })
   },

@@ -1,5 +1,6 @@
 // pages/submithealth/submithealth.js
 const { $Message } = require('../dist/base/index');
+const util = require('../common/js/util.js')
 const app = getApp();
 Page({
 
@@ -456,6 +457,10 @@ Page({
         wx.navigateTo({
           url: page
         })
+      },
+      fail(res){
+        util.showErrorMessage()
+        console.log(res)
       },
       complete(res) {
         wx.hideLoading();

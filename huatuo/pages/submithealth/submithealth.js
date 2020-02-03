@@ -167,7 +167,7 @@ Page({
         id: 8,
         name: 'Xi\'an Centre'
       }],
-      title: '6. 你或你所报告的同事14天之内去过的办公地点 Which office did the reported colleague visit on last 14 days?(多选)*',
+      title: '6. 你或你所报告的同事14天之内去过的办公地点 Which office did the reported colleague visit in last 14 days?(多选)*',
       current: [],
       position: 'left',
       checked: false,
@@ -455,9 +455,9 @@ Page({
           // util.showErrorMessage(res.statusCode, res)
           page = '/pages/errors/errors'
         }
-        
-        wx.navigateTo({
-          url: page
+        //redirect to page
+        wx.redirectTo({
+          url: page,
         })
       },
       fail(res){

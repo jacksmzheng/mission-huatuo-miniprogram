@@ -176,7 +176,7 @@ Page({
         id: 7,
           name: "某些应用程序不能访问 Some application can't access",
       }],
-      title: '9. 使用VPN时有些程序反应慢 Poor performance of some applications when using VPN: (多选)*',
+      title: '9. 使用VPN时有些程序反应慢 Poor performance of some applications when using VPN: (多选)',
       current: [],
       position: 'left',
       checked: false,
@@ -413,12 +413,12 @@ Page({
       var v = this.getFieldValue(performs[i], this.data.performs.items);
       performsArr.push(v);
     }
-    if (symptom_id == '3') {
-      if (performsArr.length == 0 || (performsArr.indexOf(6) > -1 && performs_other_content == '') || (performsArr.indexOf(7) > -1 && performs_some_content == '')) {
-        util.handleError();
-        return;
-      }
-    }
+    // if (symptom_id == '3') {
+    //   if (performsArr.length == 0 || (performsArr.indexOf(6) > -1 && performs_other_content == '') || (performsArr.indexOf(7) > -1 && performs_some_content == '')) {
+    //     util.handleError();
+    //     return;
+    //   }
+    // }
     if (!util.regStaffid(staffId)) {
       util.handleError('请输入合法的员工编号！');
       return;

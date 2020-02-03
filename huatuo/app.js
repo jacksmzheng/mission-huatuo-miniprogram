@@ -10,6 +10,14 @@ App({
     prodVersion: false,
     userInfo: null
   },
+  onLaunch: function (options) {
+    console.log("app.js ---onLaunch---" + JSON.stringify(options));
+    wx.login({
+      success: res => {
+        console.log(res)
+      }
+    })
+  },
   goNext(url) {
     wx.navigateTo({
       url: url

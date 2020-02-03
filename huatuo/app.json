@@ -1,10 +1,11 @@
 {
   "pages": [
-    "pages/registration/registration",
+   
     "pages/officestatus/officestatus",
     "pages/submithealth/submithealth",
     "pages/submitvpn/submitvpn",
     "pages/successful/successful",
+    "pages/registration/registration",
     "pages/errors/errors"
   ],
   "window": {

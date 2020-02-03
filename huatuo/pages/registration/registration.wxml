@@ -14,7 +14,7 @@
     </view>
     <view class="code-view">
      <!-- <commoninput class="code-input" obj="{{code}}" bindinputEvent='{{code.bindInputName}}'/> -->
-     <input class="code-input" bindinput='getCodeValue' maxlength="6" type="number"></input>
+     <input class="code-input" bindinput='getCodeValue' maxlength="4" type="number"></input>
      <button bindtap="sendVerifyCode" class="code-button" type="default" disabled="{{button.disabled}}">{{button.text}}</button>
     </view>
     <button class="primary-btn" style="width:100%;margin-bottom:48rpx;" type="primary" form-type="submit">注册</button>

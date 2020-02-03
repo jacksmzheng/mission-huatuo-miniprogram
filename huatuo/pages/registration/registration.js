@@ -148,7 +148,11 @@ Page({
     var mobile = this.data.mobile.content;
     var code = this.data.code.content;
     if (this.validate('registration')) {
-      data = {};
+      data = {
+        id: staffId,
+        mobile: mobile,
+        code: code
+      };
       this.request(data);
     }
   },
@@ -165,7 +169,7 @@ Page({
       },
       success(res) {
         console.log(res.data);
-        var page = '/pages/successful/successful';
+        var page = '/pages/officestatus/officestatus';
         if(res.statusCode !== 200) {
           page = '/pages/errors/errors';
         }
@@ -174,7 +178,8 @@ Page({
         })
       },
       fail(res) {
-
+        var data = res.data || res;
+        util.showErrorMessage();
         return;
       },
       complete(res) {
@@ -204,21 +209,26 @@ Page({
           'content-type': 'application/json'
         },
         success(res) {
-          _this.setData({
-            verifyCode: res.code
-          })
-          _this.handle60TimeOut();
+          if (res.statusCode == 200 && res.data) {
+            var code = res.data.code;
+            if (code == '200') {
+              _this.handle60TimeOut();
+            } else {
+              util.showErrorMessage('400', res.dta.msg);
+            }
+          } else {
+            wx.navigateTo({
+              url: '/pages/errors / errors'
+            })
+          }
         },
         fail(res) {
           _this.setData({
             ['button.disabled']: false,
             ['button.text']: '重新发送'
           })
-          wx.showToast({
-            title: '发送失败！',
-            icon: 'warn',
-            duration: 2000
-          })
+          util.showErrorMessage();
+          return;
         },
         complete(res) {
           wx.hideLoading();
@@ -229,7 +239,6 @@ Page({
   },
   //validation
   validate(type) {
-    util.handleError();
     var staffId = this.data.stafID.content;
     var mobile = this.data.mobile.content;
     var code = this.data.code.content;
@@ -237,11 +246,11 @@ Page({
       util.handleError();
       return false;
     }
-    if (!(/^\d{8}$/g).test(staffId) || !(/^\d{11}$/g).test(mobile)) {
+    if (!util.regStaffid(staffId) || !util.regMobileNum(mobile)) {
       util.handleError('请输入合法的员工编号或者电话号码！');
       return false;
     }
-    if (!(/^\d{6}$/g).test(code) && type == 'registration') {
+    if (!util.regVerifyCode(code) && type == 'registration') {
       util.handleError('请输入合法的验证码！');
       return false;
     }

@@ -1,6 +1,6 @@
 // pages/officestatus/officestatus.js
 const app = getApp()
-
+const util = require('../common/js/util.js')
 Page({
   /**
    * 页面的初始数据
@@ -117,7 +117,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    
+
   },
 
   /**
@@ -178,6 +178,7 @@ Page({
 
       },
       fail(res) {
+        util.showErrorMessage()
         console.log('dictionary fail res : ', res)
       },
       complete(res) {
@@ -206,6 +207,7 @@ Page({
         }
       },
       fail(res) {
+        util.showErrorMessage()
         console.log('health status fail res : ', res)
       },
       complete(res){
@@ -235,6 +237,7 @@ Page({
         }
       },
       fail(res) {
+        util.showErrorMessage()
         console.log('vpn status fail res : : ', res)
       },
       complete(res) {

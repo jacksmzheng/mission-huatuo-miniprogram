@@ -1,7 +1,7 @@
 //app.js
 App({
   api: {
-    isProdEnv: false,
+    isProdEnv: true,
     devUrl: '',
     prodUrl: 'https://huatuo.app77.cn'
   },

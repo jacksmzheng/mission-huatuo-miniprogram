@@ -7,23 +7,36 @@ function handleError(message) {
   });
 }
 
-function showErrorMessage(code, content) {
+function showErrorMessage(code, res) {
   switch (code){
     case 400:
-      content
+      res = res.data.errorInfo.code + " : " + res.data.errorInfo.message.key
       break;
     case 500:
-      content
+      res = res.data.errorInfo.code + " : " + res.data.errorInfo.message.key
+      break;
+    case 404:
+      res = "网络连接失败，请稍后重试！"
       break;
     default:
-      content = "网络请求错误，请稍后重试！"
+      res = "网络请求错误，请稍后重试！"
       break;
   }
   wx.showToast({
-    title: content,
+    title: res,
     icon: 'none',
-    duration: 2000,
+    duration: 3000,
   })
+}
+
+function genErrorMsg(res){
+  var errorMsg
+  if (res.statusCode == 404) {
+    errorMsg = "网络连接失败，请稍后重试！"
+  } else {
+    errorMsg = res.data.errorInfo.code + " : " + res.data.errorInfo.message.key
+  }
+  return errorMsg
 }
 
 function regStaffid(id) {
@@ -43,6 +56,7 @@ module.exports = {
   regStaffid,
   regMobileNum,
   regVerifyCode,
+  genErrorMsg
   handleError: handleError
 
 }

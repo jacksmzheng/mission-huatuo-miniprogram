@@ -149,10 +149,11 @@ Page({
     var code = this.data.code.content;
     if (this.validate('registration')) {
       data = {
-        id: staffId,
-        mobile: mobile,
-        code: code,
-        openId: app.globalData.openId
+        "appId": app.globalData.appId,
+        "openId": app.globalData.openId,
+        "staffId": staffId,
+        "mobileNum": mobile,
+        "verifyCode": code
       };
       this.request(data);
     }
@@ -170,13 +171,6 @@ Page({
       },
       success(res) {
         console.log(res.data);
-        // var page = '/pages/officestatus/officestatus';
-        // if(res.statusCode !== 200) {
-        //   page = '/pages/errors/errors';
-        // }
-        // wx.navigateTo({
-        //   url: page
-        // })
         if (res.statusCode == 200 && res.data) {
           var code = res.data.code;
           if (code == '200') {
@@ -265,7 +259,7 @@ Page({
       util.handleError('请输入合法的员工编号或者电话号码！');
       return false;
     }
-    if (!util.regVerifyCode(code) && type == 'registration') {
+    if (type == 'registration' && !util.regVerifyCode(code)) {
       util.handleError('请输入合法的验证码！');
       return false;
     }

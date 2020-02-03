@@ -142,7 +142,7 @@ Page({
     })
   },
 
-  submitHealthForm(e) {
+  submitRegistrationForm(e) {
     console.log(e.detail.value);
     var staffId = this.data.stafID.content;
     var mobile = this.data.mobile.content;
@@ -151,7 +151,8 @@ Page({
       data = {
         id: staffId,
         mobile: mobile,
-        code: code
+        code: code,
+        openId: app.globalData.openId
       };
       this.request(data);
     }
@@ -169,13 +170,27 @@ Page({
       },
       success(res) {
         console.log(res.data);
-        var page = '/pages/officestatus/officestatus';
-        if(res.statusCode !== 200) {
-          page = '/pages/errors/errors';
+        // var page = '/pages/officestatus/officestatus';
+        // if(res.statusCode !== 200) {
+        //   page = '/pages/errors/errors';
+        // }
+        // wx.navigateTo({
+        //   url: page
+        // })
+        if (res.statusCode == 200 && res.data) {
+          var code = res.data.code;
+          if (code == '200') {
+            wx.navigateTo({
+              url: '/pages/officestatus/officestatus'
+            })
+          } else {
+            util.showErrorMessage('400', res.dta.msg);
+          }
+        } else {
+          wx.navigateTo({
+            url: '/pages/errors/errors'
+          })
         }
-        wx.navigateTo({
-          url: page
-        })
       },
       fail(res) {
         var data = res.data || res;
@@ -218,7 +233,7 @@ Page({
             }
           } else {
             wx.navigateTo({
-              url: '/pages/errors / errors'
+              url: '/pages/errors/errors'
             })
           }
         },

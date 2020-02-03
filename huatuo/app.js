@@ -1,8 +1,8 @@
 //app.js
 App({
   api: {
-    isProdEnv: true,
-    devUrl: '',
+    isProdEnv: false,
+    devUrl: 'https://huatuo-test.app77.cn',
     prodUrl: 'https://huatuo.app77.cn'
   },
   globalData: {

@@ -148,7 +148,7 @@ Page({
     var mobile = this.data.mobile.content;
     var code = this.data.code.content;
     if (this.validate('registration')) {
-      data = {
+      var data = {
         "appId": app.globalData.appId,
         "openId": app.globalData.openId,
         "staffId": staffId,
@@ -163,7 +163,7 @@ Page({
     wx.showLoading({ title: '数据处理中...' });
     var host = app.api.isProdEnv ? app.api.prodUrl : app.api.devUrl;
     wx.request({
-      url: host + '/api/registration',
+      url: host + '/api/register',
       method: 'POST',
       data: data,
       header: {
@@ -178,12 +178,10 @@ Page({
               url: '/pages/officestatus/officestatus'
             })
           } else {
-            util.showErrorMessage('400', res.dta.msg);
+            util.showErrorMessage(400, res, res.data.msg);
           }
         } else {
-          wx.navigateTo({
-            url: '/pages/errors/errors'
-          })
+          util.showErrorMessage(res.statusCode, res)
         }
       },
       fail(res) {
@@ -223,19 +221,16 @@ Page({
             if (code == '200') {
               _this.handle60TimeOut();
             } else {
-              util.showErrorMessage('400', res.dta.msg);
+              _this.resetSendCode();
+              util.showErrorMessage(400, res, res.data.msg);
             }
           } else {
-            wx.navigateTo({
-              url: '/pages/errors/errors'
-            })
+            _this.resetSendCode();
+            util.showErrorMessage(res.statusCode, res);
           }
         },
         fail(res) {
-          _this.setData({
-            ['button.disabled']: false,
-            ['button.text']: '重新发送'
-          })
+          _this.resetSendCode();
           util.showErrorMessage();
           return;
         },
@@ -273,16 +268,20 @@ Page({
       num--;
       if (num <= 0) {
         clearInterval(timer);
-        _this.setData({
-          ['button.text']: '重新发送',
-          ['button.disabled']: false
-        })
-
+        _this.resetSendCode();
       } else {
         _this.setData({
           ['button.text']: num + "s"
         })
       }
     }, 1000)
+  },
+  //reset send button
+  resetSendCode() {
+    var _this = this;
+    _this.setData({
+      ['button.text']: '重新发送',
+      ['button.disabled']: false
+    })
   }
 })

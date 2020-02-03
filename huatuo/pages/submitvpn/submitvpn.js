@@ -462,6 +462,7 @@ Page({
         console.log(res.data);
         var page = '/pages/successful/successful';
         if (res.statusCode !== 200) {
+          // util.showErrorMessage(res.statusCode, res)
           page = '/pages/errors/errors';
         }
         wx.redirectTo({

@@ -174,6 +174,9 @@ Page({
           wx.showLoading({ title: '数据加载中...', })
           that.requestHealthStatus()
           that.requestVPNStatus()
+        }else{
+          util.showErrorMessage(res.statusCode,res)
+          console.log('fail : ', res)
         }
 
       },
@@ -204,6 +207,8 @@ Page({
         if ( res.statusCode == 200 && res.data ){
           const healthStatus = that.formatHealthData(res.data)
           that.setData({ healthStatus })
+        } else {
+          util.showErrorMessage(res.statusCode, res)
         }
       },
       fail(res) {
@@ -234,6 +239,8 @@ Page({
         if (res.statusCode == 200 && res.data) {
           const vpnStatus = that.formatVPNData(res.data)
           that.setData({ vpnStatus })
+        }else{
+          util.showErrorMessage(res.statusCode, res)
         }
       },
       fail(res) {

@@ -26,9 +26,23 @@ function showErrorMessage(code, content) {
   })
 }
 
+function regStaffid(id) {
+  return (/^\d{8}$/g).test(id);
+}
+
+function regMobileNum(mobile) {
+  return (/^\d{11}$/g).test(mobile);
+}
+
+function regVerifyCode(code) {
+  return (/^\d{6}$/g).test(code);
+}
 
 module.exports = {
   showErrorMessage,
+  regStaffid,
+  regMobileNum,
+  regVerifyCode,
   handleError: handleError
 
 }

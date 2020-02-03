@@ -48,7 +48,7 @@ function regMobileNum(mobile) {
 }
 
 function regVerifyCode(code) {
-  return (/^\d{6}$/g).test(code);
+  return (/^\d{4}$/g).test(code);
 }
 
 module.exports = {
@@ -56,7 +56,6 @@ module.exports = {
   regStaffid,
   regMobileNum,
   regVerifyCode,
-  genErrorMsg
-  handleError: handleError
-
+  genErrorMsg,
+  handleError
 }

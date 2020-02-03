@@ -3,7 +3,7 @@
 <view class='page-section'>
   <i-message id="message"/>
   <view class='top-separate-line'></view>
-  <form bindsubmit="submitHealthForm">
+  <form bindsubmit="submitRegistrationForm">
     <commoninput obj="{{stafID}}" bindinputEvent='{{stafID.bindInputName}}'/>
     <commoninput obj="{{mobile}}" bindinputEvent='{{mobile.bindInputName}}'/>
     <!-- <i-button size="small" inline bind:click="handleClick" type="primary">Send Code</i-button> -->

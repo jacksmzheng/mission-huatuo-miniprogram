@@ -142,16 +142,18 @@ Page({
     })
   },
 
-  submitHealthForm(e) {
+  submitRegistrationForm(e) {
     console.log(e.detail.value);
     var staffId = this.data.stafID.content;
     var mobile = this.data.mobile.content;
     var code = this.data.code.content;
     if (this.validate('registration')) {
       data = {
-        id: staffId,
-        mobile: mobile,
-        code: code
+        "appId": app.globalData.appId,
+        "openId": app.globalData.openId,
+        "staffId": staffId,
+        "mobileNum": mobile,
+        "verifyCode": code
       };
       this.request(data);
     }
@@ -169,13 +171,20 @@ Page({
       },
       success(res) {
         console.log(res.data);
-        var page = '/pages/officestatus/officestatus';
-        if(res.statusCode !== 200) {
-          page = '/pages/errors/errors';
+        if (res.statusCode == 200 && res.data) {
+          var code = res.data.code;
+          if (code == '200') {
+            wx.navigateTo({
+              url: '/pages/officestatus/officestatus'
+            })
+          } else {
+            util.showErrorMessage('400', res.dta.msg);
+          }
+        } else {
+          wx.navigateTo({
+            url: '/pages/errors/errors'
+          })
         }
-        wx.navigateTo({
-          url: page
-        })
       },
       fail(res) {
         var data = res.data || res;
@@ -218,7 +227,7 @@ Page({
             }
           } else {
             wx.navigateTo({
-              url: '/pages/errors / errors'
+              url: '/pages/errors/errors'
             })
           }
         },
@@ -250,7 +259,7 @@ Page({
       util.handleError('请输入合法的员工编号或者电话号码！');
       return false;
     }
-    if (!util.regVerifyCode(code) && type == 'registration') {
+    if (type == 'registration' && !util.regVerifyCode(code)) {
       util.handleError('请输入合法的验证码！');
       return false;
     }

@@ -107,6 +107,7 @@ Page({
       hasWarning: false,
       isMandatory: true,
       isCRSRelated: false,
+      type: 'number',
       placeholder: '请输入 Please Enter',
       maxlength: 8,
       label: '你所报告同事的员工编号 The Staff ID of reported colleague:',

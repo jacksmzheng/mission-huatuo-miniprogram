@@ -405,7 +405,7 @@ Page({
     if (staffId == '' || city == '请选择 Please Select' || isp == '-' || linkType == '-'
       || bandWidth == '-' || vpnType == 0 || vpnType == '0' || hadRebootADSL == '-'
       || symptom == '-') {
-      this.handleError();
+      util.handleError();
       return;
     }
     var performsArr = [];
@@ -415,12 +415,12 @@ Page({
     }
     if (symptom_id == '3') {
       if (performsArr.length == 0 || (performsArr.indexOf(6) > -1 && performs_other_content == '') || (performsArr.indexOf(7) > -1 && performs_some_content == '')) {
-        this.handleError();
+        util.handleError();
         return;
       }
     }
-    if (!(/^\d{8}$/g).test(staffId)) {
-      this.handleError('请输入合法的员工编号！');
+    if (!util.regStaffid(staffId)) {
+      util.handleError('请输入合法的员工编号！');
       return;
     }
     var data = {
@@ -477,13 +477,6 @@ Page({
         wx.hideLoading();
       }
     })
-  },
-  //show error message
-  handleError(message) {
-    $Message({
-      content: message || '请完善信息!',
-      type: 'error'
-    });
   },
   //
   getFieldValue(value, data) {

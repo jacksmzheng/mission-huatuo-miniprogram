@@ -39,10 +39,24 @@ function genErrorMsg(res){
   return errorMsg
 }
 
+function regStaffid(id) {
+  return (/^\d{8}$/g).test(id);
+}
+
+function regMobileNum(mobile) {
+  return (/^\d{11}$/g).test(mobile);
+}
+
+function regVerifyCode(code) {
+  return (/^\d{6}$/g).test(code);
+}
 
 module.exports = {
   showErrorMessage,
-  genErrorMsg,
+  regStaffid,
+  regMobileNum,
+  regVerifyCode,
+  genErrorMsg
   handleError: handleError
 
 }

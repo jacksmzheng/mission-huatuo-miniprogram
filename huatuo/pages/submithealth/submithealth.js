@@ -387,29 +387,29 @@ Page({
     var isInvalidDepartment = department == this.data.department.array[0] || department == '';
     if (staffId == '' || mobile == '' || others == '-' || isInvalidDepartment || status == '-' 
       || city == '0' || city == 0 || visits.length == 0) {
-      this.handleError();
+      util.handleError();
       return;
     }
     if (others == this.data.others.items[0].name) {
       if(others_id == '') {
-        this.handleError();
+        util.handleError();
         return;
-      } else if (!(/^\d{8}$/g).test(others_id)) {
-        this.handleError('请输入合法的员工编号或者电话号码！');
+      } else if (!util.regStaffid(others_id)) {
+        util.handleError('请输入合法的员工编号或者电话号码！');
         return;
       } else if (staffId == others_id) {
-        this.handleError('你所报告同事的员工编号不能重复!');
+        util.handleError('你所报告同事的员工编号不能重复!');
         return;
       }
       
     }
     if (status == this.data.status.items[4].name && status_content == '') {
-      this.handleError();
+      util.handleError();
       return;
     }
     //var reg = new RegExp('^\\d+$', 'gi');
-    if (!(/^\d{8}$/g).test(staffId) || !(/^\d{11}$/g).test(mobile)) {
-      this.handleError('请输入合法的员工编号或者电话号码！');
+    if (!util.regStaffid(staffId) || !util.regMobileNum(mobile)) {
+      util.handleError('请输入合法的员工编号或者电话号码！');
       return;
     }
     var data = this.buildHealthReportData(staffId, mobile, department, others, others_id, status, status_content, city, visits);
@@ -468,13 +468,6 @@ Page({
         wx.hideLoading();
       }
     })
-  },
-  //show error message
-  handleError(message) {
-    $Message({
-      content: message || '请完善信息!',
-      type: 'error'
-    });
   },
   //
   getFieldValue(value, data) {

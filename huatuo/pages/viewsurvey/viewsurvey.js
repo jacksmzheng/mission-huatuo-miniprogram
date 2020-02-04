@@ -157,7 +157,7 @@ Page({
   },
   //初始化数据
   initData: function () {
-    var navigateTitle = '报告病例 Report A Case';
+    var navigateTitle = '汇丰健康小调查 Reprot health survey';
     this.setData({
       navigateTitle
     })

@@ -13,7 +13,7 @@ Page({
       hasWarning: false,
       isMandatory: false,
       isCRSRelated: false,
-      label: '4. 你或你所报告同事的部门 What is the department of the reported colleague?*',
+      label: '2. 你或你所报告同事的部门 What is the department of the reported colleague?*',
       array: [
         '请选择 Please Select', 
         'Architecture IT', 
@@ -45,7 +45,7 @@ Page({
       hasWarning: false,
       isMandatory: false,
       isCRSRelated: false,
-      label: '5. 你或你所报告同事的办公城市 Where is the working city of the reported colleague:* ',
+      label: '3. 你或你所报告同事的办公城市 Where is the working city of the reported colleague:* ',
       array: [
         '请选择 Please Select',
         '广州 Guangzhou',
@@ -95,7 +95,7 @@ Page({
         id: 2,
         name: '不是 No'
       }],
-      title: '3. 你为其他同事报告吗 Are you reporting for other colleague?*',
+      title: '1. 你为其他同事报告吗 Are you reporting for other colleague?*',
       current: '-',
       position: 'left',
       checked: false,
@@ -136,7 +136,7 @@ Page({
         id: 6,
         name: '居住楼或小区被有关部门限制出入 The building or residential estate lived in is being restricted.'
         }],
-      title: '7. 你或你所报告的同事目前的情况是 What is the current circumstance of the reported colleague?*',
+      title: '5. 你或你所报告的同事目前的情况是 What is the current circumstance of the reported colleague?*',
       current: '-',
       position: 'left',
       checked: false,
@@ -168,7 +168,7 @@ Page({
         id: 8,
         name: 'Xi\'an Centre'
       }],
-      title: '6. 你或你所报告的同事14天之内去过的办公地点 Which office did the reported colleague visit in last 14 days?(多选)*',
+      title: '4. 你或你所报告的同事14天之内去过的办公地点 Which office did the reported colleague visit in last 14 days?(多选)*',
       current: [],
       position: 'left',
       checked: false,
@@ -211,7 +211,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    if(app.globalData.userInfo == null) {
+      wx.redirectTo({
+        url: '/pages/registration/registration'
+      })
+      return;
+    }
   },
 
   /**
@@ -371,8 +376,8 @@ Page({
 
   submitHealthForm(e) {
     console.log(e.detail.value);
-    var staffId = this.data.stafID.content;
-    var mobile = this.data.mobile.content;
+    var staffId = app.globalData.userInfo.staffId;//this.data.stafID.content;
+    var mobile = app.globalData.userInfo.mobileNum;//this.data.mobile.content;
     var department = this.data.department.content;
     var others = this.data.others.current;
     var others_id = this.data.othersStaffId.content;
@@ -396,10 +401,10 @@ Page({
         util.handleError();
         return;
       } else if (!util.regStaffid(others_id)) {
-        util.handleError('请输入合法的员工编号或者电话号码！');
+        util.handleError('请输入合法的员工编号！');
         return;
       } else if (staffId == others_id) {
-        util.handleError('你所报告同事的员工编号不能重复!');
+        util.handleError('你所报告同事的员工编号不能和自己的重复!');
         return;
       }
       
@@ -409,10 +414,10 @@ Page({
       return;
     }
     //var reg = new RegExp('^\\d+$', 'gi');
-    if (!util.regStaffid(staffId) || !util.regMobileNum(mobile)) {
-      util.handleError('请输入合法的员工编号或者电话号码！');
-      return;
-    }
+    // if (!util.regStaffid(staffId) || !util.regMobileNum(mobile)) {
+    //   util.handleError('请输入合法的员工编号或者电话号码！');
+    //   return;
+    // }
     var data = this.buildHealthReportData(staffId, mobile, department, others, others_id, status, status_content, city, visits);
     this.request(data);
   },

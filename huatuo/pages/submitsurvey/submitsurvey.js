@@ -98,7 +98,7 @@ Page({
         id: 3,
         name: '一般'
       }],
-      title: '3. 你对我们产品质量的满意度评价如何 How is the quality of our product?*',
+      title: '1. 你对我们产品质量的满意度评价如何 How is the quality of our product?*',
       current: '-',
       position: 'left',
       checked: false,
@@ -115,7 +115,7 @@ Page({
         id: 3,
         name: '一般'
       }],
-      title: '4. 你对我们产品的总体体验的满意度评价如何 How is the experience of our product?*',
+      title: '2. 你对我们产品的总体体验的满意度评价如何 How is the experience of our product?*',
       current: '-',
       position: 'left',
       checked: false,
@@ -129,7 +129,7 @@ Page({
         id: 2,
           name: '可能会'
       }],
-      title: '5. 你在会向你的同事和朋友推荐我们的产品吗 Will you recommend our product to your colleagues or friends?*',
+      title: '3. 你在会向你的同事和朋友推荐我们的产品吗 Will you recommend our product to your colleagues or friends?*',
       current: '-',
       position: 'left',
       checked: false,
@@ -141,7 +141,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    if (app.globalData.userInfo == null) {
+      wx.redirectTo({
+        url: 'pages/registration/registration'
+      })
+      return;
+    }
   },
 
   /**
@@ -259,8 +264,8 @@ Page({
   //
   submitSurveyForm(e) {
     console.log(e.detail.value);
-    var staffId = this.data.stafID.content;
-    var mobile = this.data.mobile.content;
+    var staffId = app.globalData.userInfo.staffId;//this.data.stafID.content;
+    var mobile = app.globalData.userInfo.mobileNum;//this.data.mobile.content;
     var quality = this.data.quality.current;
     var experience = this.data.experience.current;
     var recommend = this.data.recommend.current;
@@ -271,10 +276,10 @@ Page({
       return;
     }
     //var reg = new RegExp('^\\d+$', 'gi');
-    if (!util.regStaffid(staffId) || !util.regMobileNum(mobile)) {
-      util.handleError('请输入合法的员工编号或者电话号码！');
-      return;
-    }
+    // if (!util.regStaffid(staffId) || !util.regMobileNum(mobile)) {
+    //   util.handleError('请输入合法的员工编号或者电话号码！');
+    //   return;
+    // }
     var data = {
       
     }

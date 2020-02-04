@@ -227,20 +227,22 @@ Page({
                     url: '/pages/registration/registration',
                   })
                 } else {
-                  app.goNext(myurl);
+                  util.goNext(myurl);
                 }
               } else {
+                util.showErrorMessage(res.statusCode,res)
                 console.log('fail : ', res)
               }
             },
             fail(res) {
+              util.showErrorMessage();
               console.log('wx login fail res : ', res)
             },
           });
         }
       })
     }else{
-      app.goNext(myurl);
+      util.goNext(myurl);
     }
   },
 
@@ -407,12 +409,11 @@ Page({
         vpnStatus[0].vpn[i].count = vpnReports[i].count
       }
     }
-    
     return vpnStatus
   },
 
   submitNews: function(e) {
-    util.goNext(e.currentTarget.dataset.url)
+    this.wxLogon(e.currentTarget.dataset.url)
   },
 
   submitHealth: function(e) {
@@ -426,6 +427,6 @@ Page({
   },
 
   sbumitSurvey: function (e){
-    util.goNext(e.currentTarget.dataset.url)
+    this.wxLogon(e.currentTarget.dataset.url)
   }
 })

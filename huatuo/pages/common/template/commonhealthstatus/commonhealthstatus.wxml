@@ -20,7 +20,7 @@
             <view class="common-status-label">疑似</view>
             <view class="common-status-desc">Suspect</view>
           </view>
-          <view class="common-status-num" style="color:{{confirmed==0 ? '#36DFA5':'#FFD049'}}">{{suspect}}</view>
+          <view class="common-status-num" style="color:{{suspect==0 ? '#36DFA5':'#FFD049'}}">{{suspect}}</view>
         </view>
       </view>
       <view class="common-status-tab-view">
@@ -29,7 +29,7 @@
             <view class="common-status-label">发烧</view>
             <view class="common-status-desc">Fever</view>
           </view>
-          <view class="common-status-num" style="color:{{confirmed==0 ? '#36DFA5':'#A2BDFA'}}">{{fever}}</view>
+          <view class="common-status-num" style="color:{{fever==0 ? '#36DFA5':'#A2BDFA'}}">{{fever}}</view>
         </view>
       </view>
     </view>

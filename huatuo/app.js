@@ -11,9 +11,5 @@ App({
     openId:'',
     userInfo: null
   },
-  goNext(url) {
-    wx.navigateTo({
-      url: url
-    })
-  }
+
 })

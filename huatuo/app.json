@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/survey/survey",
     "pages/officestatus/officestatus",
     "pages/submithealth/submithealth",
     "pages/submitvpn/submitvpn",

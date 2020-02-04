@@ -12,9 +12,9 @@ Page({
       name:'新闻资讯',
       nameen:'Latest News',
       image: '/pages/common/resources/images/huotuo_latest_news.png',
-      url: '',
-      event: '',
-      count: 10,
+      url: '/pages/newslist/newslist',
+      event: 'submitNews',
+      count: 0,
     },
     btnReport:{
       name: '报告病例',
@@ -22,7 +22,7 @@ Page({
       image: '/pages/common/resources/images/huatuo_health_survey.png',
       url: '/pages/submithealth/submithealth',
       event: 'submitHealth',
-      count: 10,
+      count: 0,
     },
     btnVPN:{
       name: 'VPN问题',
@@ -30,7 +30,7 @@ Page({
       image: '/pages/common/resources/images/huatuo_vpn_problem.png',
       url: '/pages/submitvpn/submitvpn',
       event: 'submitVPN' ,
-      count: 10,
+      count: 0,
     },
     btnHelp:{
       name: '求助&捐赠',
@@ -38,15 +38,15 @@ Page({
       image: '/pages/common/resources/images/huatuo_help_donation.png',
       url: '',
       event: '' ,
-      count: 10
+      count: 0
     },
     btnSurvey:{
       name: '员工调研',
       nameen: 'Survey',
       image: '/pages/common/resources/images/huatuo_research.png',
-      url: 'pages/survey/survey',
+      url: '、pages/survey/survey',
       event: 'sbumitSurvey' ,
-      count: 10
+      count: 0
     },
 
     healthStatus:
@@ -409,18 +409,19 @@ Page({
     return vpnStatus
   },
 
+  submitNews: function(e) {
+    util.goNext(e.currentTarget.dataset.url)
+  },
+
   submitHealth: function(e) {
-    console.log(e)
-    app.goNext(e.currentTarget.dataset.url)
+    util.goNext(e.currentTarget.dataset.url)
   },
 
   submitVPN: function(e) {
-    console.log(e)
-    app.goNext(e.currentTarget.dataset.url)
+    util.goNext(e.currentTarget.dataset.url)
   },
 
   sbumitSurvey: function (e){
-    console.log(e)
-    app.goNext(e.currentTarget.dataset.url)
+    util.goNext(e.currentTarget.dataset.url)
   }
 })

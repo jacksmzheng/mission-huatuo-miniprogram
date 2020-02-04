@@ -59,11 +59,18 @@ function regVerifyCode(code) {
   return (/^\d{4}$/g).test(code);
 }
 
+function goNext(url) {
+  wx.navigateTo({
+    url: url
+  })
+}
+
 module.exports = {
   showErrorMessage,
   regStaffid,
   regMobileNum,
   regVerifyCode,
   genErrorMsg,
-  handleError
+  handleError,
+  goNext
 }

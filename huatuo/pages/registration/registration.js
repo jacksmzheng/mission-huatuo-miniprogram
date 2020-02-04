@@ -8,7 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    stafID: {
+    staffID: {
       hasLabel: true,
       hasWarning: false,
       isMandatory: false,
@@ -49,11 +49,8 @@ Page({
       num: '3',
       content: ''
     },
-    button: {
-      text: "发送",
-      disabled: false
-    },
-    verifyCode: ''
+    text60Second: '',
+    show60Second: false
   },
 
   /**
@@ -122,20 +119,29 @@ Page({
 
   },
 
-  inputEvent: function (e_) {
-    const e = e_.detail.e ? e_.detail.e : e_
-    console.log('input event : ', e)
-    var num = e.currentTarget.dataset.num;
-    var field;
-    switch(num) {
-      case '1': field = 'stafID.content'; break;
-      case '2': field = 'mobile.content'; break;
-    }
+  // inputEvent: function (e_) {
+  //   const e = e_.detail.e ? e_.detail.e : e_
+  //   console.log('input event : ', e)
+  //   var num = e.currentTarget.dataset.num;
+  //   var field;
+  //   switch(num) {
+  //     case '1': field = 'stafID.content'; break;
+  //     case '2': field = 'mobile.content'; break;
+  //   }
+  //   this.setData({
+  //     [field]: e.detail.value
+  //   })
+  // },
+  getStaffidValue: function (e) {
     this.setData({
-      [field]: e.detail.value
+      ['staffID.content']: e.detail.value
     })
   },
-
+  getMobileValue: function (e) {
+    this.setData({
+      ['mobile.content']: e.detail.value
+    })
+  },
   getCodeValue: function (e) {
     this.setData({
       ['code.content']: e.detail.value
@@ -144,7 +150,7 @@ Page({
 
   submitRegistrationForm(e) {
     console.log(e.detail.value);
-    var staffId = this.data.stafID.content;
+    var staffId = this.data.staffID.content;
     var mobile = this.data.mobile.content;
     var code = this.data.code.content;
     if (this.validate('registration')) {
@@ -200,7 +206,7 @@ Page({
     var _this = this;
     if (this.validate()) {
       this.setData({
-        ['button.disabled']: true
+        show60Second: true
       })
       wx.showLoading({ title: '数据处理中...' });
       var host = app.api.isProdEnv ? app.api.prodUrl : app.api.devUrl;
@@ -243,7 +249,7 @@ Page({
   },
   //validation
   validate(type) {
-    var staffId = this.data.stafID.content;
+    var staffId = this.data.staffID.content;
     var mobile = this.data.mobile.content;
     var code = this.data.code.content;
     if (staffId == '' || mobile == '' || (type == 'registration' && code == '')) {
@@ -271,7 +277,7 @@ Page({
         _this.resetSendCode();
       } else {
         _this.setData({
-          ['button.text']: num + "s"
+          text60Second: num + "S"
         })
       }
     }, 1000)
@@ -280,8 +286,8 @@ Page({
   resetSendCode() {
     var _this = this;
     _this.setData({
-      ['button.text']: '重新发送',
-      ['button.disabled']: false
+      text60Second: '',
+      show60Second: false
     })
   }
 })

@@ -16,7 +16,7 @@
   <view class="news-view">
     <image class="speak" src="/pages/common/resources/images/huatuo_speak.png"></image>
 
-    <swiper class="swiper_container" vertical="true" autoplay="true" circular="true" interval="1000">
+    <swiper class="swiper_container" vertical="true" autoplay="true" circular="true" interval="2000">
       <block wx:for="{{newsList}}" wx:key="index">
         <!-- <navigator url="" open-type="navigate"> -->
         <view data-url="/pages/newdetail/newdetail?id={{item.newsId}}" bindtap="goNewsList">

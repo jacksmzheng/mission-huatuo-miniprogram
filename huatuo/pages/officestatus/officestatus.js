@@ -227,7 +227,7 @@ Page({
                     url: '/pages/registration/registration',
                   })
                 } else {
-                  app.goNext(myurl);
+                  util.goNext(myurl);
                 }
               } else {
                 console.log('fail : ', res)
@@ -240,7 +240,7 @@ Page({
         }
       })
     }else{
-      app.goNext(myurl);
+      util.goNext(myurl);
     }
   },
 

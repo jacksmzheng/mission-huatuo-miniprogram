@@ -26,7 +26,7 @@
   </view> -->
   <i-panel title="{{visits.title}}">
         <i-checkbox-group current="{{visits.current}}" bindchange="handleVisitsChange">
-          <block wx:for="{{visits.items}}">
+          <block wx:for="{{visits.items}}" wx:key="{{index}}">
             <view wx:if="{{index == 0}}">
               <i-checkbox position="{{visits.position}}" wx:key="{{item.id}}" color="green" value="{{item.name}}">
               </i-checkbox>
@@ -40,7 +40,7 @@
     </i-panel>
     <i-panel title="{{status.title}}">
       <i-radio-group current="{{status.current}}" bindchange="handleStatusChange">
-          <block wx:for="{{status.items}}">
+          <block wx:for="{{status.items}}"  wx:key="{{index}}">
             <i-radio position="{{status.position}}" wx:key="{{item.id}}" color="green" value="{{item.name}}">
             </i-radio>
             <view wx:if="{{item.id == '5'}}">

@@ -1,0 +1,37 @@
+/* pages/newdetail/newdetail.wxss */
+.newdetail_page{
+  width: 100%;
+}
+.newdetail_content{
+  width: 700rpx;
+  margin: 20rpx auto 40rpx;
+}
+.newdetail_content_title{
+  font-size: 34rpx;
+  font-weight: 700;
+  color: #333333;
+  text-align: center;
+  margin: 30rpx 0;
+}
+.newdetail_content_box{
+  display: flex;
+  justify-content: space-around;
+  margin: 30rpx 0;
+  padding-bottom: 30rpx;
+  border-bottom: 1px violet dashed;
+}
+.newdetail_content_author{
+  font-size: 28rpx;
+  color: #777777;
+}
+.newdetail_content_time{
+  font-size: 26rpx;
+  color: #999999;
+}
+
+.newdetail_contain_paragraph{
+  font-size: 30rpx;
+  color: #333333;
+  text-indent:56rpx;
+  margin: 20rpx 0;
+}

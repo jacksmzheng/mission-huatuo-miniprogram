@@ -5,6 +5,9 @@
     "pages/submitvpn/submitvpn",
     "pages/successful/successful",
     "pages/registration/registration",
+    "pages/survey/survey",
+    "pages/submitsurvey/submitsurvey",
+    "pages/viewsurvey/viewsurvey",
     "pages/errors/errors"
   ],
   "window": {

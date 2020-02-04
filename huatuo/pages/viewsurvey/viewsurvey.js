@@ -14,7 +14,7 @@ Page({
       isMandatory: false,
       isCRSRelated: false,
       placeholder: '请输入 Please Enter',
-      maxlength: 8,
+      maxlength: 200,
       type: 'number',
       label: '4. 你或你所报告同事的部门 What is the department of the reported colleague?',
       bindInputName: 'inputEvent',
@@ -29,7 +29,7 @@ Page({
       isMandatory: false,
       isCRSRelated: false,
       placeholder: '请输入 Please Enter',
-      maxlength: 8,
+      maxlength: 200,
       type: 'number',
       label: '5. 你或你所报告同事的办公城市 Where is the working city of the reported colleague:',
       bindInputName: 'inputEvent',
@@ -43,7 +43,7 @@ Page({
       isMandatory: false,
       isCRSRelated: false,
       placeholder: '请输入 Please Enter',
-      maxlength: 8,
+      maxlength: 200,
       type: 'number',
       label: '1. 你的员工编号 Your Staff ID:*',
       bindInputName: 'inputEvent',
@@ -56,7 +56,7 @@ Page({
       hasWarning: false,
       isMandatory: false,
       isCRSRelated: false,
-      maxlength: 11,
+      maxlength: 200,
       placeholder: '请输入 Please Enter',
       type: 'number',
       label: '2. 你的紧急联系电话 Your cell phone for emergency call:*',
@@ -76,7 +76,7 @@ Page({
       hasWarning: false,
       isMandatory: false,
       isCRSRelated: false,
-      maxlength: 11,
+      maxlength: 200,
       placeholder: '请输入 Please Enter',
       type: 'number',
       label: '3. 你为其他同事报告吗 Are you reporting for other colleague?',
@@ -94,7 +94,7 @@ Page({
       isCRSRelated: false,
       type: 'number',
       placeholder: '请输入 Please Enter',
-      maxlength: 8,
+      maxlength: 200,
       label: '你所报告同事的员工编号 The Staff ID of reported colleague:',
       bindInputName: 'inputEvent',
       warningLabel: 'Please Enter the staff ID (请输入员工编号)',
@@ -106,7 +106,7 @@ Page({
       hasWarning: false,
       isMandatory: false,
       isCRSRelated: false,
-      maxlength: 11,
+      maxlength: 200,
       placeholder: '请输入 Please Enter',
       type: 'number',
       label: '7. 你或你所报告的同事目前的情况是 What is the current circumstance of the reported colleague?',
@@ -122,7 +122,7 @@ Page({
       hasWarning: false,
       isMandatory: false,
       isCRSRelated: false,
-      maxlength: 11,
+      maxlength: 200,
       placeholder: '请输入 Please Enter',
       type: 'number',
       label: '6. 你或你所报告的同事14天之内去过的办公地点 Which office did the reported colleague visit in last 14 days?(多选)',
@@ -157,7 +157,7 @@ Page({
   },
   //初始化数据
   initData: function () {
-    var navigateTitle = '汇丰健康小调查 Reprot health survey';
+    var navigateTitle = '员工调研 Survey';
     this.setData({
       navigateTitle
     })

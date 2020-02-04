@@ -35,7 +35,7 @@ Page({
   },
   //初始化数据
   initData: function () {
-    var navigateTitle = '调研 Survey';
+    var navigateTitle = '员工调研 Survey';
     this.setData({
       navigateTitle
     })

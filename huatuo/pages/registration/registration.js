@@ -177,11 +177,12 @@ Page({
         'content-type': 'application/json'
       },
       success(res) {
+        wx.hideLoading();
         console.log(res.data);
         if (res.statusCode == 200 && res.data) {
           var code = res.data.code;
           if (code == '200') {
-            wx.navigateTo({
+            wx.redirectTo({
               url: '/pages/officestatus/officestatus'
             })
           } else {
@@ -194,12 +195,13 @@ Page({
         }
       },
       fail(res) {
+        wx.hideLoading();
         var data = res.data || res;
         util.showErrorMessage();
         return;
       },
       complete(res) {
-        wx.hideLoading();
+        //wx.hideLoading();
       }
     })
   },
@@ -208,9 +210,9 @@ Page({
     console.log(111);
     var _this = this;
     if (this.validate()) {
-      this.setData({
-        show60Second: true
-      })
+      // this.setData({
+      //   show60Second: true
+      // })
       wx.showLoading({ title: '数据处理中...' });
       var host = app.api.isProdEnv ? app.api.prodUrl : app.api.devUrl;
       // this.handle60TimeOut();
@@ -225,9 +227,13 @@ Page({
           'content-type': 'application/json'
         },
         success(res) {
+          wx.hideLoading();
           if (res.statusCode == 200 && res.data) {
             var code = res.data.code;
             if (code == '200') {
+              _this.setData({
+                show60Second: true
+              })
               _this.handle60TimeOut();
             } else {
               _this.resetSendCode();
@@ -239,12 +245,13 @@ Page({
           }
         },
         fail(res) {
+          wx.hideLoading();
           _this.resetSendCode();
           util.showErrorMessage();
           return;
         },
         complete(res) {
-          wx.hideLoading();
+          //wx.hideLoading();
         }
       })
       

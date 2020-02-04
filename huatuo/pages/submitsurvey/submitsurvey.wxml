@@ -1,0 +1,35 @@
+<!--pages/home/home.wxml-->
+<import src="/pages/common/template/commonpicker/commonpicker.wxml"/>
+<view class='page-section'>
+  <i-message id="message"/>
+  <view class='top-separate-line'></view>
+  <form bindsubmit="submitSurveyForm">
+    <commoninput obj="{{stafID}}" bindinputEvent='{{stafID.bindInputName}}'/>
+    <commoninput obj="{{mobile}}" bindinputEvent='{{mobile.bindInputName}}'/>
+    <i-panel title="{{quality.title}}">
+      <i-radio-group current="{{quality.current}}" bindchange="handleQualityChange">
+          <i-radio wx:for="{{quality.items}}" color="green" position="{{quality.position}}" wx:key="{{item.id}}" value="{{item.name}}">
+          </i-radio>
+      </i-radio-group>
+    </i-panel>
+    <i-panel title="{{experience.title}}">
+      <i-radio-group current="{{experience.current}}" bindchange="handleExperienceChange">
+          <i-radio wx:for="{{experience.items}}" color="green" position="{{experience.position}}" wx:key="{{item.id}}" value="{{item.name}}">
+          </i-radio>
+      </i-radio-group>
+    </i-panel>
+    <i-panel title="{{recommend.title}}">
+      <i-radio-group current="{{recommend.current}}" bindchange="handleRecommendChange">
+          <i-radio wx:for="{{recommend.items}}" color="green" position="{{recommend.position}}" wx:key="{{item.id}}" value="{{item.name}}">
+          </i-radio>
+      </i-radio-group>
+    </i-panel>
+    <view class="picker-container-view">
+      <rich-text class='picker-label' nodes='6. 你的意见和建议 Please provide your suggestion:'/>
+      <textarea class="form-textarea" name="suggestion"></textarea>
+    </view>
+    <button class="primary-btn" style="width:100%;margin-bottom:48rpx;background-color:#db0011;font-weight:normal;border-radius: 0px;" type="primary" form-type="submit">提交</button>
+  </form>
+</view>
+
+

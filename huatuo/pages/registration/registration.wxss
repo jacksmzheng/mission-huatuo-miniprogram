@@ -69,7 +69,7 @@ textarea {
   flex-direction: row;
   height: 25px;
   padding: 10px 10px 10px 15px;
-  border-radius: 3px;
+  /* border-radius: 3px; */
   margin-bottom: 20px;
 }
 

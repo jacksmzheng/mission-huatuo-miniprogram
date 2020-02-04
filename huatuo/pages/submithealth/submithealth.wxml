@@ -84,7 +84,7 @@
       <textarea class="form-textarea" name="textarea"></textarea>
     </i-panel> -->
 
-    <button class="primary-btn" style="width:100%;margin-bottom:48rpx;" type="primary" form-type="submit">提交</button>
+    <button class="primary-btn" style="width:100%;margin-bottom:48rpx;background-color:#db0011;font-weight:normal;border-radius: 0px;" type="primary" form-type="submit">提交</button>
   </form>
 </view>
 

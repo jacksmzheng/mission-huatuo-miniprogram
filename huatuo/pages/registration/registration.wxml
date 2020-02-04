@@ -48,7 +48,7 @@
      <input class="code-input" bindinput='getCodeValue' maxlength="4" type="number"></input>
      <button bindtap="sendVerifyCode" class="code-button" type="default" disabled="{{button.disabled}}">{{button.text}}</button>
     </view> -->
-    <button class="primary-btn" style="width:100%;margin-top:80px;background-color:#db0011;font-weight:normal;" type="primary" form-type="submit">注册/REGISTER</button>
+    <button class="primary-btn" style="width:100%;margin-top:80px;background-color:#db0011;font-weight:normal;border-radius: 0px;" type="primary" form-type="submit">注册/REGISTER</button>
   </form>
 </view>
 

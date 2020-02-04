@@ -8,7 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    stafID: {
+    staffID: {
       hasLabel: true,
       hasWarning: false,
       isMandatory: false,
@@ -49,11 +49,8 @@ Page({
       num: '3',
       content: ''
     },
-    button: {
-      text: "发送",
-      disabled: false
-    },
-    verifyCode: ''
+    text60Second: '',
+    show60Second: false
   },
 
   /**
@@ -122,68 +119,89 @@ Page({
 
   },
 
-  inputEvent: function (e_) {
-    const e = e_.detail.e ? e_.detail.e : e_
-    console.log('input event : ', e)
-    var num = e.currentTarget.dataset.num;
-    var field;
-    switch(num) {
-      case '1': field = 'stafID.content'; break;
-      case '2': field = 'mobile.content'; break;
-    }
+  // inputEvent: function (e_) {
+  //   const e = e_.detail.e ? e_.detail.e : e_
+  //   console.log('input event : ', e)
+  //   var num = e.currentTarget.dataset.num;
+  //   var field;
+  //   switch(num) {
+  //     case '1': field = 'stafID.content'; break;
+  //     case '2': field = 'mobile.content'; break;
+  //   }
+  //   this.setData({
+  //     [field]: e.detail.value
+  //   })
+  // },
+  getStaffidValue: function (e) {
     this.setData({
-      [field]: e.detail.value
+      ['staffID.content']: e.detail.value
     })
   },
-
+  getMobileValue: function (e) {
+    this.setData({
+      ['mobile.content']: e.detail.value
+    })
+  },
   getCodeValue: function (e) {
     this.setData({
       ['code.content']: e.detail.value
     })
   },
 
-  submitHealthForm(e) {
+  submitRegistrationForm(e) {
     console.log(e.detail.value);
-    var staffId = this.data.stafID.content;
+    var staffId = this.data.staffID.content;
     var mobile = this.data.mobile.content;
     var code = this.data.code.content;
     if (this.validate('registration')) {
-      data = {
-        id: staffId,
-        mobile: mobile,
-        code: code
+      var data = {
+        "appId": app.globalData.appId,
+        "openId": app.globalData.openId,
+        "staffId": staffId,
+        "mobileNum": mobile,
+        "verifyCode": code
       };
       this.request(data);
     }
   },
   //call api
   request(data) {
+    var _this = this;
     wx.showLoading({ title: '数据处理中...' });
     var host = app.api.isProdEnv ? app.api.prodUrl : app.api.devUrl;
     wx.request({
-      url: host + '/api/registration',
+      url: host + '/api/register',
       method: 'POST',
       data: data,
       header: {
         'content-type': 'application/json'
       },
       success(res) {
+        wx.hideLoading();
         console.log(res.data);
-        var page = '/pages/officestatus/officestatus';
-        if(res.statusCode !== 200) {
-          page = '/pages/errors/errors';
+        if (res.statusCode == 200 && res.data) {
+          var code = res.data.code;
+          if (code == '200') {
+            wx.redirectTo({
+              url: '/pages/officestatus/officestatus'
+            })
+          } else {
+            _this.resetSendCode();
+            util.showErrorMessage(400, res, res.data.msg);
+          }
+        } else {
+          _this.resetSendCode();
+          util.showErrorMessage(res.statusCode, res)
         }
-        wx.navigateTo({
-          url: page
-        })
       },
       fail(res) {
+        wx.hideLoading();
         var data = res.data || res;
         util.showErrorMessage();
         return;
       },
       complete(res) {
-        wx.hideLoading();
+        //wx.hideLoading();
       }
     })
   },
@@ -192,9 +210,9 @@ Page({
     console.log(111);
     var _this = this;
     if (this.validate()) {
-      this.setData({
-        ['button.disabled']: true
-      })
+      // this.setData({
+      //   show60Second: true
+      // })
       wx.showLoading({ title: '数据处理中...' });
       var host = app.api.isProdEnv ? app.api.prodUrl : app.api.devUrl;
       // this.handle60TimeOut();
@@ -209,29 +227,31 @@ Page({
           'content-type': 'application/json'
         },
         success(res) {
+          wx.hideLoading();
           if (res.statusCode == 200 && res.data) {
             var code = res.data.code;
             if (code == '200') {
+              _this.setData({
+                show60Second: true
+              })
               _this.handle60TimeOut();
             } else {
-              util.showErrorMessage('400', res.dta.msg);
+              _this.resetSendCode();
+              util.showErrorMessage(400, res, res.data.msg);
             }
           } else {
-            wx.navigateTo({
-              url: '/pages/errors / errors'
-            })
+            _this.resetSendCode();
+            util.showErrorMessage(res.statusCode, res);
           }
         },
         fail(res) {
-          _this.setData({
-            ['button.disabled']: false,
-            ['button.text']: '重新发送'
-          })
+          wx.hideLoading();
+          _this.resetSendCode();
           util.showErrorMessage();
           return;
         },
         complete(res) {
-          wx.hideLoading();
+          //wx.hideLoading();
         }
       })
       
@@ -239,18 +259,22 @@ Page({
   },
   //validation
   validate(type) {
-    var staffId = this.data.stafID.content;
+    var staffId = this.data.staffID.content;
     var mobile = this.data.mobile.content;
     var code = this.data.code.content;
-    if (staffId == '' || mobile == '' || (type == 'registration' && code == '')) {
-      util.handleError();
+    // if (staffId == '' || mobile == '' || (type == 'registration' && code == '')) {
+    //   util.handleError();
+    //   return false;
+    // }
+    if (!util.regStaffid(staffId)) {
+      util.handleError('请输入合法的员工编号！');
       return false;
     }
-    if (!util.regStaffid(staffId) || !util.regMobileNum(mobile)) {
-      util.handleError('请输入合法的员工编号或者电话号码！');
+    if (!util.regMobileNum(mobile)) {
+      util.handleError('请输入合法的电话号码！');
       return false;
     }
-    if (!util.regVerifyCode(code) && type == 'registration') {
+    if (type == 'registration' && !util.regVerifyCode(code)) {
       util.handleError('请输入合法的验证码！');
       return false;
     }
@@ -264,16 +288,20 @@ Page({
       num--;
       if (num <= 0) {
         clearInterval(timer);
-        _this.setData({
-          ['button.text']: '重新发送',
-          ['button.disabled']: false
-        })
-
+        _this.resetSendCode();
       } else {
         _this.setData({
-          ['button.text']: num + "s"
+          text60Second: num + "S"
         })
       }
     }, 1000)
+  },
+  //reset send button
+  resetSendCode() {
+    var _this = this;
+    _this.setData({
+      text60Second: '',
+      show60Second: false
+    })
   }
 })

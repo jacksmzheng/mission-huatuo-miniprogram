@@ -4,6 +4,7 @@
     "pages/submithealth/submithealth",
     "pages/submitvpn/submitvpn",
     "pages/successful/successful",
+    "pages/registration/registration",
     "pages/errors/errors"
   ],
   "window": {

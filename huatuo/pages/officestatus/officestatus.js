@@ -201,45 +201,47 @@ Page({
 
   wxLogon:function(myurl){
     let that = this;
-    wx.login({
-      success: res => {
-        let host = app.api.isProdEnv ? app.api.prodUrl : app.api.devUrl;
-        wx.request({
-          url: host + '/api/wechat-login',
-          method: 'POST',
-          data: {
-            "appId": app.globalData.appId,
-            "code": res.code
-          },
-          header: {
-            'content-type': 'application/json',
-            'X-IS-DUMMY': false
-          },
-          success(res) {
-            console.log(res)
-            if (res.statusCode == 200) {
-              app.globalData.userInfo = res.data.userInfo;
-              app.globalData.openId = res.data.session.openid;
-              if (null == res.data.userInfo || undefined == res.data.userInfo || '' == res.data.userInfo) {
-                wx.redirectTo({
-                  url: '/pages/registration/registration',
-                })
+    if (null == app.globalData.userInfo || undefined == app.globalData.userInfo || "" == app.globalData.userInfo){
+      wx.login({
+        success: res => {
+          let host = app.api.isProdEnv ? app.api.prodUrl : app.api.devUrl;
+          wx.request({
+            url: host + '/api/wechat-login',
+            method: 'POST',
+            data: {
+              "appId": app.globalData.appId,
+              "code": res.code
+            },
+            header: {
+              'content-type': 'application/json',
+              'X-IS-DUMMY': false
+            },
+            success(res) {
+              console.log(res)
+              if (res.statusCode == 200) {
+                app.globalData.userInfo = res.data.userInfo;
+                app.globalData.openId = res.data.session.openid;
+                if (null == res.data.userInfo || undefined == res.data.userInfo || '' == res.data.userInfo) {
+                  wx.redirectTo({
+                    url: '/pages/registration/registration',
+                  })
+                } else {
+                  app.goNext(myurl);
+                }
               } else {
-                app.goNext(myurl)
+                console.log('fail : ', res)
               }
-            } else {
-              console.log('fail : ', res)
-            }
-          },
-          complete(res) {
-            
-          },
-          fail(res) {
-            console.log('dictionary fail res : ', res)
-          },
-        });
-      }
-    })
+            },
+            fail(res) {
+              console.log('dictionary fail res : ', res)
+            },
+          });
+        }
+      })
+    }else{
+      app.goNext(myurl);
+    }
+    
   },
 
   refreshData: function () {

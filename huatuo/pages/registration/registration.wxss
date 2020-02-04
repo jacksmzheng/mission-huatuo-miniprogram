@@ -85,6 +85,11 @@ textarea {
   color: #666;
 }
 
+.register-form-label-input input{
+  height: 25px;
+  vertical-align: text-bottom;
+}
+
 .register-form-label-button {
   color: #db0011;
   font-size: 10pt;

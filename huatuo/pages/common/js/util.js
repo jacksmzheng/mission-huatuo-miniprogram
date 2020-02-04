@@ -52,7 +52,7 @@ function regStaffid(id) {
 }
 
 function regMobileNum(mobile) {
-  return (/^((13[0-9])|(14[5,7,9])|(15([0-3]|[5-9]))|(166)|(17[0,1,3,5,6,7,8])|(18[0-9])|(19[8|9]))\d{8}$/g).test(mobile);
+  return (/^1\d{10}$/g).test(mobile);
 }
 
 function regVerifyCode(code) {

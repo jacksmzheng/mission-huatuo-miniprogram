@@ -12,8 +12,8 @@ Page({
       name:'新闻资讯',
       nameen:'Latest News',
       image: '/pages/common/resources/images/huotuo_latest_news.png',
-      url: '',
-      event: '',
+      url: '/pages/newslist/newslist',
+      event: 'submitNews',
       count: 0,
     },
     btnReport:{
@@ -44,8 +44,8 @@ Page({
       name: '员工调研',
       nameen: 'Survey',
       image: '/pages/common/resources/images/huatuo_research.png',
-      url: '',
-      event: '' ,
+      url: '/pages/survey/survey',
+      event: 'sbumitSurvey' ,
       count: 0
     },
 
@@ -123,19 +123,20 @@ Page({
       ],
     news: [
       { 
-        title: "汇丰内地主要机构捐助700万元支援抗击疫情",
-        url: "",
-        id: ""
+        title: "汇丰银行（中国）有限公司疫情防控期间网点营业安排调整通知",
+        id: 1
       },
       { 
-        title: "汇丰银行（中国）有限公司疫情防控期间网点营业安排调整通",
-        url: "",
-        id: ""
+        title: "疫情防控期间网点营业安排调整通知",
+        id: 2
       },
       { 
-        title: "恒生银行中国及员工捐助200万元助力抗击疫情",
-        url: "",
-        id: ""
+        title: "上海长海医院启用野战医疗帐篷避免交叉感染",
+        id: 3
+      },
+      {
+        title: "李兰娟院士发布重大成果 这两种药能抑制冠状病毒",
+        id: 4
       }
       ]
   },
@@ -161,7 +162,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.wxLogon();
+    this.refreshData();
   },
 
   /**
@@ -182,7 +183,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    this.wxLogon();
+   
   },
 
   /**
@@ -199,45 +200,48 @@ Page({
 
   },
 
-  wxLogon:function(){
+  wxLogon:function(myurl){
     let that = this;
-    wx.login({
-      success: res => {
-        let host = app.api.isProdEnv ? app.api.prodUrl : app.api.devUrl;
-        wx.request({
-          url: host + '/api/wechat-login',
-          method: 'POST',
-          data: {
-            "appId": app.globalData.appId,
-            "code": res.code
-          },
-          header: {
-            'content-type': 'application/json',
-            'X-IS-DUMMY': false
-          },
-          success(res) {
-            console.log(res)
-            if (res.statusCode == 200) {
-              app.globalData.userInfo = res.data.userInfo;
-              app.globalData.openId = res.data.session.openid;
-            } else {
-              console.log('fail : ', res)
-            }
-          },
-          complete(res) {
-            if (null == app.globalData.userInfo || undefined == app.globalData.userInfo || '' == app.globalData.userInfo) {
-              wx.redirectTo({
-                url: '/pages/registration/registration',
-              })
-            }
-            that.refreshData();
-          },
-          fail(res) {
-            console.log('dictionary fail res : ', res)
-          },
-        });
-      }
-    })
+    if (null == app.globalData.userInfo || undefined == app.globalData.userInfo || "" == app.globalData.userInfo){
+      wx.login({
+        success: res => {
+          let host = app.api.isProdEnv ? app.api.prodUrl : app.api.devUrl;
+          wx.request({
+            url: host + '/api/wechat-login',
+            method: 'POST',
+            data: {
+              "appId": app.globalData.appId,
+              "code": res.code
+            },
+            header: {
+              'content-type': 'application/json',
+              'X-IS-DUMMY': false
+            },
+            success(res) {
+              console.log(res)
+              if (res.statusCode == 200) {
+                app.globalData.userInfo = res.data.userInfo;
+                app.globalData.openId = res.data.session.openid;
+                if (null == res.data.userInfo || undefined == res.data.userInfo || '' == res.data.userInfo) {
+                  wx.redirectTo({
+                    url: '/pages/registration/registration',
+                  })
+                } else {
+                  app.goNext(myurl);
+                }
+              } else {
+                console.log('fail : ', res)
+              }
+            },
+            fail(res) {
+              console.log('wx login fail res : ', res)
+            },
+          });
+        }
+      })
+    }else{
+      app.goNext(myurl);
+    }
   },
 
   refreshData: function () {
@@ -374,7 +378,20 @@ Page({
           responseData[i].buildingReports[j].buildingName = buildingDic["8"]
         }
       }
+      if(responseData[i].buildingReports.length>1){
+        for(let j=0; j<responseData[i].buildingReports.length; j++){
+          responseData[i].buildingReports[j].num = j
+          if( j%2 == 0 && responseData[i].buildingReports[j+1]){
+            
+            responseData[i].buildingReports[j].buildingName1 = responseData[i].buildingReports[j+1].buildingName
+            responseData[i].buildingReports[j].confirmed1 = responseData[i].buildingReports[j + 1].confirmed
+            responseData[i].buildingReports[j].suspect1 = responseData[i].buildingReports[j + 1].suspect
+            responseData[i].buildingReports[j].fever1 = responseData[i].buildingReports[j + 1].fever
+          }
+        }
+      }
     }
+    console.log('generated response data : ', responseData)
     return responseData
   },
 
@@ -394,13 +411,21 @@ Page({
     return vpnStatus
   },
 
+  submitNews: function(e) {
+    util.goNext(e.currentTarget.dataset.url)
+  },
+
   submitHealth: function(e) {
     console.log(e)
-    app.goNext(e.currentTarget.dataset.url)
+    this.wxLogon(e.currentTarget.dataset.url);
   },
 
   submitVPN: function(e) {
     console.log(e)
-    app.goNext(e.currentTarget.dataset.url)
+    this.wxLogon(e.currentTarget.dataset.url);
   },
+
+  sbumitSurvey: function (e){
+    util.goNext(e.currentTarget.dataset.url)
+  }
 })

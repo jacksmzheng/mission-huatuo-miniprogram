@@ -1,5 +1,6 @@
 /* pages/officestatus/officestatus.wxss */
 @import '/pages/common/template/commonhealthstatus/commonhealthstatus.wxss';
+@import '/pages/common/template/commoncouplehealth/commoncouplehealth.wxss';
 @import '/pages/common/template/commonhomebtn/commonhomebtn.wxss';
 .image {
   width: 100%;
@@ -10,8 +11,8 @@
   flex-direction: row;
   align-items: center;
   background-color: #FFFFFF;
-  padding: 15rpx;
-  border-radius: 10rpx;
+  padding: 24rpx;
+  border-radius: 15rpx;
   width: 100%;
 }
 
@@ -113,26 +114,10 @@
 
 .button-container{
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  align-content: center;
-  align-self: center;
+  flex-direction: row;
+  align-items: baseline;
   background-color: white;
   padding: 16rpx 32rpx 32rpx 32rpx;
-}
-
-.icon-view{
-  margin: 0 12rpx;
-  display: flex;
-  flex-direction: column;
-  align-items: center; 
-}
-
-.icon-text{
-  margin-top: 16rpx;
-  font-size: 10pt;
-  font-family: 'Open Sans';
-  color: #666666;
 }
 
 .icon-desc{

@@ -8,6 +8,47 @@ Page({
    */
   data: {
     prodVersion: app.globalData.prodVersion,
+    btnNews:{
+      name:'新闻资讯',
+      nameen:'Latest News',
+      image: '/pages/common/resources/images/huotuo_latest_news.png',
+      url: '',
+      event: '',
+      count: 0,
+    },
+    btnReport:{
+      name: '报告病例',
+      nameen: 'Report a case',
+      image: '/pages/common/resources/images/huatuo_health_survey.png',
+      url: '/pages/submithealth/submithealth',
+      event: 'submitHealth',
+      count: 0,
+    },
+    btnVPN:{
+      name: 'VPN问题',
+      nameen: 'VPN Problem',
+      image: '/pages/common/resources/images/huatuo_vpn_problem.png',
+      url: '/pages/submitvpn/submitvpn',
+      event: 'submitVPN' ,
+      count: 0,
+    },
+    btnHelp:{
+      name: '求助&捐赠',
+      nameen: 'Help & Donation',
+      image: '/pages/common/resources/images/huatuo_help_donation.png',
+      url: '',
+      event: '' ,
+      count: 0
+    },
+    btnSurvey:{
+      name: '员工调研',
+      nameen: 'Survey',
+      image: '/pages/common/resources/images/huatuo_research.png',
+      url: '',
+      event: '' ,
+      count: 0
+    },
+
     healthStatus:
       [
         {
@@ -80,6 +121,23 @@ Page({
           ]
         }
       ],
+    news: [
+      { 
+        title: "汇丰内地主要机构捐助700万元支援抗击疫情",
+        url: "",
+        id: ""
+      },
+      { 
+        title: "汇丰银行（中国）有限公司疫情防控期间网点营业安排调整通",
+        url: "",
+        id: ""
+      },
+      { 
+        title: "恒生银行中国及员工捐助200万元助力抗击疫情",
+        url: "",
+        id: ""
+      }
+      ]
   },
 
   /**
@@ -87,7 +145,7 @@ Page({
    */
   onLoad: function (options) {
     const screenWidth =  wx.getSystemInfoSync().windowWidth
-    const imageWidth = (screenWidth - 100)/5
+    const imageWidth = (screenWidth - 160)/5
     const imageHeight = imageWidth
     this.setData({ imageWidth, imageHeight })
   },
@@ -344,5 +402,5 @@ Page({
   submitVPN: function(e) {
     console.log(e)
     app.goNext(e.currentTarget.dataset.url)
-  }
+  },
 })

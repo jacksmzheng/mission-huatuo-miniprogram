@@ -1,4 +1,4 @@
-<template name="common-health-status">
+<template name="common-couple-health">
   <view class='common-status-container-view'>
     <view class="common-status-label-view">
       <image class="common-status-tag" src="/pages/common/resources/images/huotuo_location.png"></image>

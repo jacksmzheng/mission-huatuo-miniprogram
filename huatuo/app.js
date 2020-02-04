@@ -9,6 +9,7 @@ App({
     appId: 'wx9812117be87d24d2',
     openId: 'zsm1243434',
     prodVersion: false,
+    openId:'',
     userInfo: null
   },
   goNext(url) {

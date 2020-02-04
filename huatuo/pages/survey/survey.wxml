@@ -1,0 +1,36 @@
+<!--pages/survey/survey.wxml-->
+<import src="/pages/common/template/commonpicker/commonpicker.wxml"/>
+<view class='page-section'>
+  <i-message id="message"/>
+  <view class='top-separate-line'></view>
+  <view class="survey-tab">
+   <view bindtap="changeTab" id="new" class="survey-tab-button {{newStyle}}">新的调查/New Survey</view>
+   <view bindtap="changeTab" id="done" class="survey-tab-button {{doneStyle}}">已完成/Done</view>
+  </view>
+  <view hidden="{{!showNewSurvey}}" class="survey-contain">
+    <view bindtap="viewSurveyNewPage" id="1" class="survey-list">
+     <view class="survey-list-left">
+      <text class="survey-list-title">华佗小程序用户调查</text>
+      <text class="survey-list-title">HUATUO APP User Survey.</text>
+      <text class="survey-list-time">2020-02-05 08:08</text>
+     </view>
+     <view class="survey-list-right">
+      <image class="survey-list-right-image" src="/pages/common/resources/images/huotuo_arrow.png"></image>
+     </view>
+    </view>
+  </view>
+  <view hidden="{{showNewSurvey}}" class="survey-contain">
+    <view bindtap="viewSurveyDonePage" id="1" class="survey-list">
+     <view class="survey-list-left">
+      <text class="survey-list-title">汇丰健康小调查</text>
+      <text class="survey-list-title">Reprot health survey.</text>
+      <text class="survey-list-time">2020-02-04 08:08</text>
+     </view>
+     <view class="survey-list-right">
+      <image class="survey-list-right-image" src="/pages/common/resources/images/huotuo_arrow.png"></image>
+     </view>
+    </view>
+  </view>
+</view>
+
+

@@ -1,10 +1,98 @@
 /* pages/officestatus/officestatus.wxss */
 @import '/pages/common/template/commonhealthstatus/commonhealthstatus.wxss';
-.office-area {
+@import '/pages/common/template/commonhomebtn/commonhomebtn.wxss';
+.image {
+  width: 100%;
+}
+
+.news-view{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: #FFFFFF;
+  padding: 15rpx;
+  border-radius: 10rpx;
+  width: 100%;
+}
+
+.news-container-view{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #F3F3F3;
+  padding: 24rpx 32rpx; 
+}
+
+.news-view .speak {
+  width: 32rpx;
+  height: 32rpx;
+}
+
+.swiper_container {
+  height: 45rpx;
+  width: 80%;
+  border-right: #F3F3F3 solid 3rpx;
+}
+.swiper_item {
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /* white-space: nowrap; */
+  font-size: 10pt;
   font-family: 'Open Sans';
-  font-size: 12pt;
-  color: black;
+  margin: 0 10rpx;
+}
+
+.news-view .more {
+  font-family: 'Open Sans';
+  font-size: 8pt;
   font-weight: bold;
+  color: #DB0011;
+  margin: 0 10rpx;
+  width: 130rpx;
+}
+
+.news-view .arrow {
+  width: 21rpx;
+  height: 30rpx;
+}
+
+.body{
+  background-color: #F3F3F3;
+}
+
+.office-view{
+  background-color: #FFFFFF;
+  margin-bottom: 24rpx;
+  padding: 32rpx;
+}
+
+.office-area-view{
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  margin-bottom: 24rpx 0;
+}
+
+.office-area-tag{
+  width: 5rpx;
+  height: 36rpx;
+  background-color: #DB0011;
+}
+
+.office-area {
+  margin-left: 20rpx;
+  font-family: 'Open Sans';
+  font-size: 14pt;
+  color: #000000;
+  font-weight: normal;
+}
+
+.office-desc{
+  font-size: 8pt;
+  margin-left: 10rpx;
+  font-family: 'Open Sans';
+  color: #AFAFAF; 
 }
 
 .status-desc{
@@ -23,18 +111,6 @@
   margin-bottom: 32rpx;
 }
 
-.office-desc{
-  font-size: 10pt;
-  font-family: 'Open Sans';
-  color: #666666; 
-  margin-bottom: 32rpx;
-}
-
-.image {
-  width: 100%;
-  justify-content: center;
-}
-
 .button-container{
   display: flex;
   flex-direction: column;
@@ -42,20 +118,18 @@
   align-content: center;
   align-self: center;
   background-color: white;
-  margin: 20rpx;
-  border-radius: 10rpx;
-  padding: 20rpx;
+  padding: 16rpx 32rpx 32rpx 32rpx;
 }
 
 .icon-view{
+  margin: 0 12rpx;
   display: flex;
   flex-direction: column;
   align-items: center; 
-  padding: 10rpx;
 }
 
 .icon-text{
-  margin-top: 24rpx;
+  margin-top: 16rpx;
   font-size: 10pt;
   font-family: 'Open Sans';
   color: #666666;
@@ -67,18 +141,23 @@
   color: #666666;
 }
 
-.body{
-  background-color: whitesmoke;
+.vpn-container-view{
+  margin-top: 24rpx;
 }
 
 .common-vpn-status-content{
   display: flex;
   flex-direction: row;
+  align-items: center;
+  margin-top: 32rpx;
 }
 
 .common-vpn-status-tab{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0 20rpx;
   width: 50%;
-  margin-right: 10rpx;
 }
 
 .common-vpn-status-sub-tab{
@@ -107,50 +186,58 @@
 }
 
 .common-vpn-status-desc{
-  font-family: 'Open Sans';
+  font-family: Helvetica;
+  font-weight: normal;
+  font-size: 11pt;
+  display: flex;
+  flex-direction: column;
+}
+
+.common-vpn-status-desc .label{
+  color: #000000;
+}
+.common-vpn-status-desc .desc{
+  color: #AFAFAF;
+  font-size: 6pt;
+}
+
+.common-vpn-status-count{
+  margin: 0 24rpx;
+  color: #DB0011;
   font-weight: bold;
-  font-size: 14pt;
-  padding: 5rpx 0;
+  font-size: 36pt;
+  line-height: 72rpx;
+}
+
+.common-vpn-status-image{
+  width: 40rpx;
+}
+
+.footer-view{
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 32rpx 0;
 }
 
-.common-vpn-status-desc .desc{
-  font-size: 7pt;
+.footer-container-view{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-family: 'Open Sans';
+  font-size: 10pt;
 }
 
-.common-status-green-num{
-  background-color:rgba(54,223,165, 0.2);
-  color:#36DFA5;
+.color-green{
+  color: #36DFA5;
 }
 
-.common-status-green-desc{
-  background-color:rgba(54,223,165, 0.6);
-  color:#36DFA5;
+.color-yellow{
+  color: #FFD049;
+}
+
+.color-red{
+  color: #DB0011;
 }
 
 
-.common-status-tab .common-status-green-desc {
-  color: #000000;
-}
-
-.common-status-blue-num{
-  background-color:rgba(106,206,252, 0.4);
-  color:#6ACEFC;
-}
-
-.common-status-blue-desc{
-  background-color:rgba(106,206,252, 0.6);
-  color: #6ACEFC;
-}
-
-.common-status-orange-num{
-  background-color:rgba(255,122,3, 0.4);
-  color:#FF7A03;
-}
-
-.common-status-orange-desc{
-  background-color:rgba(255,122,3, 0.6);
-  color: #FF7A03;
-}

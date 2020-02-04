@@ -5,6 +5,8 @@
     "pages/submitvpn/submitvpn",
     "pages/successful/successful",
     "pages/registration/registration",
+    "pages/newslist/newslist",
+    "pages/newdetail/newdetail",
     "pages/errors/errors"
   ],
   "window": {

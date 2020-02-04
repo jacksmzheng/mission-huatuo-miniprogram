@@ -44,7 +44,8 @@
 
 .common-status-label{
   font-family: Helvetica;
-  font-size: 10pt;
+  font-size: 9pt;
+  margin-left: 10rpx;
   color: #333333;
 }
 

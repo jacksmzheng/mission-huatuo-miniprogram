@@ -14,7 +14,7 @@ Page({
       image: '/pages/common/resources/images/huotuo_latest_news.png',
       url: '',
       event: '',
-      count: 0,
+      count: 10,
     },
     btnReport:{
       name: '报告病例',
@@ -22,7 +22,7 @@ Page({
       image: '/pages/common/resources/images/huatuo_health_survey.png',
       url: '/pages/submithealth/submithealth',
       event: 'submitHealth',
-      count: 0,
+      count: 10,
     },
     btnVPN:{
       name: 'VPN问题',
@@ -30,7 +30,7 @@ Page({
       image: '/pages/common/resources/images/huatuo_vpn_problem.png',
       url: '/pages/submitvpn/submitvpn',
       event: 'submitVPN' ,
-      count: 0,
+      count: 10,
     },
     btnHelp:{
       name: '求助&捐赠',
@@ -38,15 +38,15 @@ Page({
       image: '/pages/common/resources/images/huatuo_help_donation.png',
       url: '',
       event: '' ,
-      count: 0
+      count: 10
     },
     btnSurvey:{
       name: '员工调研',
       nameen: 'Survey',
       image: '/pages/common/resources/images/huatuo_research.png',
-      url: '',
-      event: '' ,
-      count: 0
+      url: 'pages/survey/survey',
+      event: 'sbumitSurvey' ,
+      count: 10
     },
 
     healthStatus:
@@ -161,7 +161,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.wxLogon();
+    // this.wxLogon();
+    this.refreshData();
   },
 
   /**
@@ -233,7 +234,8 @@ Page({
             that.refreshData();
           },
           fail(res) {
-            console.log('dictionary fail res : ', res)
+            util.showErrorMessage()
+            console.log('wxlogin fail res : ', res)
           },
         });
       }
@@ -374,7 +376,20 @@ Page({
           responseData[i].buildingReports[j].buildingName = buildingDic["8"]
         }
       }
+      if(responseData[i].buildingReports.length>1){
+        for(let j=0; j<responseData[i].buildingReports.length; j++){
+          responseData[i].buildingReports[j].num = j
+          if( j%2 == 0 && responseData[i].buildingReports[j+1]){
+            
+            responseData[i].buildingReports[j].buildingName1 = responseData[i].buildingReports[j+1].buildingName
+            responseData[i].buildingReports[j].confirmed1 = responseData[i].buildingReports[j + 1].confirmed
+            responseData[i].buildingReports[j].suspect1 = responseData[i].buildingReports[j + 1].suspect
+            responseData[i].buildingReports[j].fever1 = responseData[i].buildingReports[j + 1].fever
+          }
+        }
+      }
     }
+    console.log('generated response data : ', responseData)
     return responseData
   },
 
@@ -403,4 +418,9 @@ Page({
     console.log(e)
     app.goNext(e.currentTarget.dataset.url)
   },
+
+  sbumitSurvey: function (e){
+    console.log(e)
+    app.goNext(e.currentTarget.dataset.url)
+  }
 })

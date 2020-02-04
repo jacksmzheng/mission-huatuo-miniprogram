@@ -1,37 +1,79 @@
 <template name="common-couple-health">
-  <view class='common-status-container-view'>
-    <view class="common-status-label-view">
-      <image class="common-status-tag" src="/pages/common/resources/images/huotuo_location.png"></image>
-      <view class="common-status-label">{{buildingName}}</view>
-    </view>
-    <view class="common-status-content">
-      <view class="common-status-tab-view" style="border-right: #F3F3F3 solid 1rpx;">
-        <view class="common-status-tab">
-            <view class="common-status-text-view">
-              <view class="common-status-label">确诊</view>
-              <view class="common-status-desc">Confirm</view>
+
+  <view class='common-couple-container-view' style="{{num == 0 ? '' : 'border-top: #F3F3F3 solid 2rpx;'}}">
+    
+    <view class="common-couple-half-view" style="border-right:#F3F3F3 solid 2rpx;">
+      <view class="common-couple-label-view">
+        <image class="common-couple-tag" src="/pages/common/resources/images/huotuo_location.png"></image>
+        <view class="common-couple-label">{{buildingName}}</view>
+      </view>
+      <view class="common-couple-content">
+        <view class="common-couple-tab-view">
+          <view class="common-couple-tab">
+              <view class="common-couple-text-view">
+                <view class="common-couple-label">确诊</view>
+                <view class="common-couple-desc">Confirm</view>
+              </view>
+            <view class="common-couple-num" style="color:{{confirmed == 0 ? '#36DFA5':'#DD0011'}}">{{confirmed}}</view>
+          </view>
+        </view>
+        <view class="common-couple-tab-view">
+          <view class="common-couple-tab">
+            <view class="common-couple-text-view">
+              <view class="common-couple-label">疑似</view>
+              <view class="common-couple-desc">Suspect</view>
             </view>
-          <view class="common-status-num" style="color:{{confirmed == 0 ? '#36DFA5':'#DD0011'}}">{{confirmed}}</view>
+            <view class="common-couple-num" style="color:{{suspect==0 ? '#36DFA5':'#FFD049'}}">{{suspect}}</view>
+          </view>
+        </view>
+        <view class="common-couple-tab-view">
+          <view class="common-couple-tab">
+            <view class="common-couple-text-view">
+              <view class="common-couple-label">发烧</view>
+              <view class="common-couple-desc">Fever</view>
+            </view>
+            <view class="common-couple-num" style="color:{{fever==0 ? '#36DFA5':'#A2BDFA'}}">{{fever}}</view>
+          </view>
         </view>
       </view>
-      <view class="common-status-tab-view" style="border-right: #F3F3F3 solid 1rpx;">
-        <view class="common-status-tab">
-          <view class="common-status-text-view">
-            <view class="common-status-label">疑似</view>
-            <view class="common-status-desc">Suspect</view>
-          </view>
-          <view class="common-status-num" style="color:{{confirmed==0 ? '#36DFA5':'#FFD049'}}">{{suspect}}</view>
-        </view>
+    </view>
+
+    <view class="common-couple-half-view" style="margin-left:24rpx; display:{{num%2==0 &&buildingName1 && confirmed1 && suspect1 && fever1 ? 'flex' : 'none'}}">
+      <view class="common-couple-label-view">
+        <image class="common-couple-tag" src="/pages/common/resources/images/huotuo_location.png"></image>
+        <view class="common-couple-label">{{buildingName1}}</view>
       </view>
-      <view class="common-status-tab-view">
-        <view class="common-status-tab">
-          <view class="common-status-text-view">
-            <view class="common-status-label">发烧</view>
-            <view class="common-status-desc">Fever</view>
+      <view class="common-couple-content">
+        <view class="common-couple-tab-view">
+          <view class="common-couple-tab">
+              <view class="common-couple-text-view">
+                <view class="common-couple-label">确诊</view>
+                <view class="common-couple-desc">Confirm</view>
+              </view>
+            <view class="common-couple-num" style="color:{{confirmed1 == 0 ? '#36DFA5':'#DD0011'}}">{{confirmed1}}</view>
           </view>
-          <view class="common-status-num" style="color:{{confirmed==0 ? '#36DFA5':'#A2BDFA'}}">{{fever}}</view>
+        </view>
+        <view class="common-couple-tab-view">
+          <view class="common-couple-tab">
+            <view class="common-couple-text-view">
+              <view class="common-couple-label">疑似</view>
+              <view class="common-couple-desc">Suspect</view>
+            </view>
+            <view class="common-couple-num" style="color:{{suspect1==0 ? '#36DFA5':'#FFD049'}}">{{suspect1}}</view>
+          </view>
+        </view>
+        <view class="common-couple-tab-view">
+          <view class="common-couple-tab">
+            <view class="common-couple-text-view">
+              <view class="common-couple-label">发烧</view>
+              <view class="common-couple-desc">Fever</view>
+            </view>
+            <view class="common-couple-num" style="color:{{fever1==0 ? '#36DFA5':'#A2BDFA'}}">{{fever1}}</view>
+          </view>
         </view>
       </view>
     </view>
   </view>
+
+
 </template>

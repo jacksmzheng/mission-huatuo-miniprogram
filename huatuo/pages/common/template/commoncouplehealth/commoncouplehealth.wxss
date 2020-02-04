@@ -1,70 +1,78 @@
-.common-status-container-view{
-  width: 100%;
+.common-couple-container-view{
   display: flex;
-  flex-direction: column;
-  margin: 32rpx 0;
+  flex-direction: row;
+  align-items: baseline;
 }
 
-.common-status-label-view{
+.common-couple-half-view{
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  margin: 24rpx 0;
+}
+
+.common-couple-label-view{
   display: flex;
   flex-direction: row;
   align-items: center;
 }
 
-.common-status-tag{
+.common-couple-tag{
   width: 32rpx;
   height: 32rpx;
 }
 
-.common-status-content{
+.common-couple-content{
   display: flex;
   flex-direction: row;
   margin-top: 24rpx;
 }
 
-.common-status-tab-view{
+.common-couple-tab-view{
+  width: 33%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0 32rpx;
-  width: 33%;
+
 }
 
-.common-status-tab{
+.common-couple-tab{
   display: flex;
   flex-direction: row;
   align-items: center;
 }
 
-.common-status-text-view{
+.common-couple-text-view{
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.common-status-label{
-  font-family: Helvetica;
-  font-size: 10pt;
+.common-couple-label{
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 9pt;
+  margin-left: 10rpx;
+  color: #333333; 
+}
+
+.common-couple-text-view .common-couple-label{
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 9pt;
+  margin-left: 0;
   color: #333333;
 }
 
-.common-status-text-view .common-status-label{
-  font-family: 'Open Sans';
-  font-size: 13pt;
-  color: #333333;
-}
-
-.common-status-desc{
+.common-couple-desc{
   text-align: center;
   font-family: Helvetica;
   font-weight: normal;
-  font-size: 8pt;
+  font-size: 6pt;
   color: #AFAFAF;
 }
 
-.common-status-num{
+.common-couple-num{
   text-align: center;
   font-weight: bold;
-  font-size: 24pt;
-  margin-left: 32rpx;
+  font-size: 16pt;
+  margin: 0 16rpx;
 }

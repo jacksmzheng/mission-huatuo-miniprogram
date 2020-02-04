@@ -96,14 +96,14 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.refreshData()
+    this.wxLogon();
   },
 
   /**
@@ -124,7 +124,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    this.wxLogon();
   },
 
   /**
@@ -139,6 +139,47 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  wxLogon:function(){
+    let that = this;
+    wx.login({
+      success: res => {
+        let host = app.api.isProdEnv ? app.api.prodUrl : app.api.devUrl;
+        wx.request({
+          url: host + '/api/wechat-login',
+          method: 'POST',
+          data: {
+            "appId": app.globalData.appId,
+            "code": res.code
+          },
+          header: {
+            'content-type': 'application/json',
+            'X-IS-DUMMY': false
+          },
+          success(res) {
+            console.log(res)
+            if (res.statusCode == 200) {
+              app.globalData.userInfo = res.data.userInfo;
+              app.globalData.openId = res.data.session.openid;
+            } else {
+              console.log('fail : ', res)
+            }
+          },
+          complete(res) {
+            if (null == app.globalData.userInfo || undefined == app.globalData.userInfo || '' == app.globalData.userInfo) {
+              wx.redirectTo({
+                url: '/pages/registration/registration',
+              })
+            }
+            that.refreshData();
+          },
+          fail(res) {
+            console.log('dictionary fail res : ', res)
+          },
+        });
+      }
+    })
   },
 
   refreshData: function () {

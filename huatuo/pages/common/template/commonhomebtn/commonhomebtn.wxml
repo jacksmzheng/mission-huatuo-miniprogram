@@ -1,0 +1,14 @@
+<template name="common-home-btn">
+  <view class='common-home-btn-container-view'>
+      <view class="icon-view" data-url="{{url}}" bindtap="{{event}}">
+        <image class="icon-image" style="width: {{width}}px; height: {{height}}px;" src="{{image}}">
+          <view wx:if="{{count>0}}" class="message-count">
+            <view class="weui-badge">{{count}}</view>
+          </view>
+        </image>
+        <text class="icon-text">{{name}}</text>
+        <text class="icon-desc">{{nameen}}</text>
+      </view>
+
+  </view>
+</template>

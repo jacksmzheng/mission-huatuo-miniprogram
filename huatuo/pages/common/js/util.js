@@ -56,7 +56,7 @@ module.exports = {
   regStaffid,
   regMobileNum,
   regVerifyCode,
-  genErrorMsg
+  genErrorMsg,
   handleError: handleError
 
 }

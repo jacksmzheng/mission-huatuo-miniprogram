@@ -5,7 +5,7 @@
   <!-- <i-spin size="large" fix wx:if="{{ spinShow }}"></i-spin> -->
   <view class='top-separate-line'></view>
   <form bindsubmit="submitVPNForm">
-    <commoninput obj="{{stafID}}" bindinputEvent='{{stafID.bindInputName}}'/>
+    <!-- <commoninput obj="{{stafID}}" bindinputEvent='{{stafID.bindInputName}}'/> -->
     <!-- <template is='common-picker' data="{{...city}}"></template> -->
     <view class="picker-container-view">
       <rich-text class='picker-label' nodes='2. 你所在的城市 Your location:*'/>

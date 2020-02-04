@@ -27,7 +27,7 @@ Page({
       hasWarning: false,
       isMandatory: true,
       isCRSRelated: false,
-      label: '2. 你所在的城市 Your location',
+      label: '1. 你所在的城市 Your location',
       array: [
         '请选择 Please Select',
         '广州 Guangzhou',
@@ -59,7 +59,7 @@ Page({
         id: 5,
         name: '其它 Others',
       }],
-      title: '3. 你所使用的宽带服务 Your internet ISP:*',
+      title: '2. 你所使用的宽带服务 Your internet ISP:*',
       current: '-',
       position: 'left',
       checked: false,
@@ -77,7 +77,7 @@ Page({
         id: 3,
         name: "不知道 Don't Know",
       }],
-      title: '4. 你所使用的上网线路 Your internet link:*',
+      title: '3. 你所使用的上网线路 Your internet link:*',
       current: '-',
       position: 'left',
       checked: false,
@@ -99,7 +99,7 @@ Page({
         name: "不知道 Don't Know",
       }
       ],
-      title: '5. 你所使用的带宽 Your bandwidth:*',
+      title: '4. 你所使用的带宽 Your bandwidth:*',
       current: '-',
       position: 'left',
       checked: false,
@@ -111,7 +111,7 @@ Page({
       hasWarning: false,
       isMandatory: false,
       isCRSRelated: false,
-      label: '6. 你所用的VPN类型 Your VPN type:*',
+      label: '5. 你所用的VPN类型 Your VPN type:*',
       array: ['请选择 Please Select', '中国大陆VPN CN VPN', '香港VPN HK VPN'],
       index: 0,
       bindName: 'vpnPickerChange',
@@ -127,7 +127,7 @@ Page({
         name: '没有重启 NO',//note:Suggest to try again after reboot 建议重启再试
       }
       ],
-      title: '7. 你重启ADSL基带猫了吗 Have you rebooted your ADSL modem?*',
+      title: '6. 你重启ADSL基带猫了吗 Have you rebooted your ADSL modem?*',
       current: '-',
       position: 'left',
       checked: false,
@@ -143,10 +143,10 @@ Page({
         name: 'VPN连接经常会断开 Always disconnect',
       }, {
         id: 3,
-        name: '其他，请填写第9题 Others, please fill in Question #9',
+        name: '其他，请填写第9题 Others, please fill in Question #8',
       }
       ],
-      title: '8. 有什么症状 What is the symptom?*',
+      title: '7. 有什么症状 What is the symptom?*',
       current: '-',
       position: 'left',
       checked: false,
@@ -176,7 +176,7 @@ Page({
         id: 7,
           name: "某些应用程序不能访问 Some application can't access",
       }],
-      title: '9. 使用VPN时有些程序反应慢 Poor performance of some applications when using VPN: (多选)',
+      title: '8. 使用VPN时有些程序反应慢 Poor performance of some applications when using VPN: (多选)',
       current: [],
       position: 'left',
       checked: false,
@@ -390,7 +390,7 @@ Page({
   },
 
   submitVPNForm: function(e) {
-    var staffId = this.data.stafID.content;
+    var staffId = app.globalData.userInfo.staffId;//this.data.stafID.content;
     var city = this.data.area.region;
     var isp = this.data.internetISP.current;
     var linkType = this.data.internetLink.current;
@@ -419,10 +419,10 @@ Page({
     //     return;
     //   }
     // }
-    if (!util.regStaffid(staffId)) {
-      util.handleError('请输入合法的员工编号！');
-      return;
-    }
+    // if (!util.regStaffid(staffId)) {
+    //   util.handleError('请输入合法的员工编号！');
+    //   return;
+    // }
     var data = {
       //"openId": "xdfgdfg", // wechat open id
       "staffId": staffId, // staff id

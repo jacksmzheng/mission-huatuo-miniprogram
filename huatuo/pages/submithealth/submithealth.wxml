@@ -4,8 +4,8 @@
   <i-message id="message"/>
   <view class='top-separate-line'></view>
   <form bindsubmit="submitHealthForm">
-    <commoninput obj="{{stafID}}" bindinputEvent='{{stafID.bindInputName}}'/>
-    <commoninput obj="{{mobile}}" bindinputEvent='{{mobile.bindInputName}}'/>
+    <!-- <commoninput obj="{{stafID}}" bindinputEvent='{{stafID.bindInputName}}'/>
+    <commoninput obj="{{mobile}}" bindinputEvent='{{mobile.bindInputName}}'/> -->
     <i-panel title="{{others.title}}">
       <i-radio-group current="{{others.current}}" bindchange="handleOthersChange">
           <i-radio wx:for="{{others.items}}" color="green" position="{{others.position}}" wx:key="{{item.id}}" value="{{item.name}}">

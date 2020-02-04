@@ -17,16 +17,18 @@
     <image class="speak" src="/pages/common/resources/images/huatuo_speak.png"></image>
 
     <swiper class="swiper_container" vertical="true" autoplay="true" circular="true" interval="1000">
-      <block wx:for="{{news}}" wx:key="index">
-        <navigator url="/pages/newdetail/newdetail?id={{item.id}}" open-type="navigate">
+      <block wx:for="{{newsList}}" wx:key="index">
+        <!-- <navigator url="" open-type="navigate"> -->
+        <view data-url="/pages/newdetail/newdetail?id={{item.newsId}}" bindtap="goNewsList">
           <swiper-item>
-            <view class="swiper_item">{{item.title}}</view>
+            <view class="swiper_item">{{item.newsTitle}}</view>
           </swiper-item>
-        </navigator>
+        </view>
+        <!-- </navigator> -->
       </block>
     </swiper>
 
-    <view class="more" bindtap="submitNews" data-url="/pages/newslist/newslist">更多/More</view>
+    <view class="more" bindtap="goNewsDetail" data-url="/pages/newslist/newslist">更多/More</view>
     <image class="arrow" src="/pages/common/resources/images/huotuo_arrow.png"></image>
   </view>
 </view>
@@ -58,14 +60,14 @@
     <view class="office-area-view">
       <view class="office-area-tag"> </view>
       <view class="office-area">VPN状态</view>
-      <view class="office-desc">VPN Status</view>
+      <view class="office-desc">VPN STATUS</view>
     </view>
     <view class="common-vpn-status-content">
       <!-- VPN-HK -->
       <view class="common-vpn-status-tab" style="border-right:#F3F3F3 solid 2rpx;">
         <view class="common-vpn-status-desc">
           <view class="label">{{vpnStatus[0].vpn[0].name}}</view>
-          <view class="desc">Count of VPN Problem</view>
+          <view class="desc">COUNT OF VPN PROBLEM</view>
         </view>
         <block wx:if="{{vpnStatus[0].vpn[0].count >= 0 && vpnStatus[0].vpn[0].count < 10 }}" >
           <view class="common-vpn-status-count color-green">{{vpnStatus[0].vpn[0].count}}</view>
@@ -87,7 +89,7 @@
       <view class="common-vpn-status-tab">
         <view class="common-vpn-status-desc">
           <view class="label">{{vpnStatus[0].vpn[1].name}}</view>
-          <view class="desc">Count of VPN Problem</view>
+          <view class="desc">COUNT OF VPN PROBLEM</view>
         </view>
         <block wx:if="{{vpnStatus[0].vpn[1].count >= 0 && vpnStatus[0].vpn[1].count < 10 }}" >
           <view class="common-vpn-status-count color-green">{{vpnStatus[0].vpn[1].count}}</view>

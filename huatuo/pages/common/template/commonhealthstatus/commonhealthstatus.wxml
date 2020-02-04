@@ -9,7 +9,7 @@
         <view class="common-status-tab">
             <view class="common-status-text-view">
               <view class="common-status-label">确诊</view>
-              <view class="common-status-desc">Confirm</view>
+              <view class="common-status-desc">CONFIRM</view>
             </view>
           <view class="common-status-num" style="color:{{confirmed == 0 ? '#36DFA5':'#DD0011'}}">{{confirmed}}</view>
         </view>
@@ -18,7 +18,7 @@
         <view class="common-status-tab">
           <view class="common-status-text-view">
             <view class="common-status-label">疑似</view>
-            <view class="common-status-desc">Suspect</view>
+            <view class="common-status-desc">SUSPECT</view>
           </view>
           <view class="common-status-num" style="color:{{suspect==0 ? '#36DFA5':'#FFD049'}}">{{suspect}}</view>
         </view>
@@ -27,7 +27,7 @@
         <view class="common-status-tab">
           <view class="common-status-text-view">
             <view class="common-status-label">发烧</view>
-            <view class="common-status-desc">Fever</view>
+            <view class="common-status-desc">FEVER</view>
           </view>
           <view class="common-status-num" style="color:{{fever==0 ? '#36DFA5':'#A2BDFA'}}">{{fever}}</view>
         </view>

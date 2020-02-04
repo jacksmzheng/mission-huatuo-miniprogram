@@ -14,7 +14,7 @@
       <view class='page-notice-text'>{{notice}}</view> 
     </view> -->
     <view class='button-view'>
-      <button class="primary-btn" style="width:100%;" type="primary" bindtap='exit'>{{exit}}</button>
+      <button class="primary-btn" style="width:100%;background-color:#db0011;font-weight:normal;border-radius: 0px;" type="primary" bindtap='exit'>{{exit}}</button>
     </view> 
   </view>
 

@@ -218,10 +218,12 @@ Page({
                   util.goNext(myurl);
                 }
               } else {
+                util.showErrorMessage(res.statusCode,res)
                 console.log('fail : ', res)
               }
             },
             fail(res) {
+              util.showErrorMessage();
               console.log('wx login fail res : ', res)
             },
           });
@@ -431,7 +433,6 @@ Page({
         vpnStatus[0].vpn[i].count = vpnReports[i].count
       }
     }
-    
     return vpnStatus
   },
 

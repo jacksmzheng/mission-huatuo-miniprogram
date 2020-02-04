@@ -143,7 +143,7 @@ Page({
         name: 'VPN连接经常会断开 Always disconnect',
       }, {
         id: 3,
-        name: '其他，请填写第9题 Others, please fill in Question #8',
+        name: '其他，请填写第8题 Others, please fill in Question #8',
       }
       ],
       title: '7. 有什么症状 What is the symptom?*',

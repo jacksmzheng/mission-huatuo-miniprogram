@@ -143,7 +143,7 @@ Page({
   onLoad: function (options) {
     if (app.globalData.userInfo == null) {
       wx.redirectTo({
-        url: 'pages/registration/registration'
+        url: '/pages/registration/registration'
       })
       return;
     }

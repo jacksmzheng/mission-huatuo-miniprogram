@@ -1,0 +1,18 @@
+<!--pages/home/home.wxml-->
+<import src="/pages/common/template/commonpicker/commonpicker.wxml"/>
+<view class='page-section'>
+  <i-message id="message"/>
+  <view class='top-separate-line'></view>
+  <form class="view-survey" bindsubmit="submitHealthForm">
+    <commoninput obj="{{stafID}}" bindinputEvent='{{stafID.bindInputName}}'/>
+    <commoninput obj="{{mobile}}" bindinputEvent='{{mobile.bindInputName}}'/>
+    <commoninput obj="{{others}}" bindinputEvent='{{others.bindInputName}}'/>
+    <commoninput obj="{{department}}" bindinputEvent='{{department.bindInputName}}'/>
+    <commoninput obj="{{city}}" bindinputEvent='{{city.bindInputName}}'/>
+    <commoninput obj="{{visits}}" bindinputEvent='{{visits.bindInputName}}'/>
+    <commoninput obj="{{status}}" bindinputEvent='{{status.bindInputName}}'/>
+    <!-- <button class="primary-btn" style="width:100%;margin-bottom:48rpx;background-color:#db0011;font-weight:normal;border-radius: 0px;" type="primary" form-type="submit">提交</button> -->
+  </form>
+</view>
+
+

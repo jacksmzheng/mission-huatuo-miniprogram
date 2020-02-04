@@ -106,5 +106,20 @@ Page({
     this.setData({
       ['staffID.content']: e.detail.value
     })
+  },
+
+  viewSurveyNewPage: function(e) {
+    var id = e.target.id;
+    wx.navigateTo({
+      url: '/pages/submitsurvey/submitsurvey?id=' + id,
+    })
+  },
+  //
+  viewSurveyDonePage: function (e) {
+    var id = e.target.id;
+    wx.navigateTo({
+      url: '/pages/viewsurvey/viewsurvey?id=' + id,
+    })
   }
+
 })

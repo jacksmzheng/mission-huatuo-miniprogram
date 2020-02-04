@@ -166,6 +166,7 @@ Page({
   },
   //call api
   request(data) {
+    var _this = this;
     wx.showLoading({ title: '数据处理中...' });
     var host = app.api.isProdEnv ? app.api.prodUrl : app.api.devUrl;
     wx.request({
@@ -184,9 +185,11 @@ Page({
               url: '/pages/officestatus/officestatus'
             })
           } else {
+            _this.resetSendCode();
             util.showErrorMessage(400, res, res.data.msg);
           }
         } else {
+          _this.resetSendCode();
           util.showErrorMessage(res.statusCode, res)
         }
       },
@@ -252,12 +255,16 @@ Page({
     var staffId = this.data.staffID.content;
     var mobile = this.data.mobile.content;
     var code = this.data.code.content;
-    if (staffId == '' || mobile == '' || (type == 'registration' && code == '')) {
-      util.handleError();
+    // if (staffId == '' || mobile == '' || (type == 'registration' && code == '')) {
+    //   util.handleError();
+    //   return false;
+    // }
+    if (!util.regStaffid(staffId)) {
+      util.handleError('请输入合法的员工编号！');
       return false;
     }
-    if (!util.regStaffid(staffId) || !util.regMobileNum(mobile)) {
-      util.handleError('请输入合法的员工编号或者电话号码！');
+    if (!util.regMobileNum(mobile)) {
+      util.handleError('请输入合法的电话号码！');
       return false;
     }
     if (type == 'registration' && !util.regVerifyCode(code)) {

@@ -4,11 +4,11 @@
   <i-message id="message"/>
   <view class='top-separate-line'></view>
   <view class="register-logo-contain">
-    <view class='register-logo' style="background: url('/pages/common/resources/images/register_logo.png') center center no-repeat; background-size:80px;">
+    <view class='register-logo' style="background: url('/pages/common/resources/images/register_logo.png') center center no-repeat; background-size:120px;">
     </view>
-    <view class='register-logo-title'>
+    <!-- <view class='register-logo-title'>
       MISSON <view class="register-logo-title-bold">HUOTUO</view>
-    </view>
+    </view> -->
   </view>
   <form bindsubmit="submitRegistrationForm">
     <!-- <commoninput obj="{{stafID}}" bindinputEvent='{{stafID.bindInputName}}'/>
@@ -48,7 +48,7 @@
      <input class="code-input" bindinput='getCodeValue' maxlength="4" type="number"></input>
      <button bindtap="sendVerifyCode" class="code-button" type="default" disabled="{{button.disabled}}">{{button.text}}</button>
     </view> -->
-    <button class="primary-btn" style="width:100%;margin-top:80px;background-color:#ff0000;font-weight:normal;" type="primary" form-type="submit">注册/REGISTER</button>
+    <button class="primary-btn" style="width:100%;margin-top:80px;background-color:#db0011;font-weight:normal;" type="primary" form-type="submit">注册/REGISTER</button>
   </form>
 </view>
 

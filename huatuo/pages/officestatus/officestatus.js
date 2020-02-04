@@ -44,7 +44,7 @@ Page({
       name: '员工调研',
       nameen: 'Survey',
       image: '/pages/common/resources/images/huatuo_research.png',
-      url: '、pages/survey/survey',
+      url: '/pages/survey/survey',
       event: 'sbumitSurvey' ,
       count: 0
     },
@@ -123,19 +123,20 @@ Page({
       ],
     news: [
       { 
-        title: "汇丰内地主要机构捐助700万元支援抗击疫情",
-        url: "",
-        id: ""
+        title: "汇丰银行（中国）有限公司疫情防控期间网点营业安排调整通知",
+        id: 1
       },
       { 
-        title: "汇丰银行（中国）有限公司疫情防控期间网点营业安排调整通",
-        url: "",
-        id: ""
+        title: "疫情防控期间网点营业安排调整通知",
+        id: 2
       },
       { 
-        title: "恒生银行中国及员工捐助200万元助力抗击疫情",
-        url: "",
-        id: ""
+        title: "上海长海医院启用野战医疗帐篷避免交叉感染",
+        id: 3
+      },
+      {
+        title: "李兰娟院士发布重大成果 这两种药能抑制冠状病毒",
+        id: 4
       }
       ]
   },

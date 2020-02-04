@@ -5,13 +5,11 @@
 
 <image class="image" mode="widthFix" src="/pages/common/resources/images/huatuo_banner.jpg"/>
 <view class="button-container">
-  <!-- <view style="display: flex;flex-direction: row;align-items: baseline; width:100%;"> -->
     <template is="common-home-btn" data="{{ width: imageWidth, height: imageHeight, ...btnNews }}"/>
     <template is="common-home-btn" data="{{ width: imageWidth, height: imageHeight, ...btnReport }}"/>
     <template is="common-home-btn" data="{{ width: imageWidth, height: imageHeight, ...btnVPN }}"/>
     <template wx:if="{{!prodVersion}}" is="common-home-btn" data="{{ width: imageWidth, height: imageHeight, ...btnHelp }}"/>
     <template is="common-home-btn" data="{{ width: imageWidth, height: imageHeight, ...btnSurvey }}"/>
-  <!-- </view> -->
 </view>
 
 <view class="news-container-view">
@@ -20,7 +18,7 @@
 
     <swiper class="swiper_container" vertical="true" autoplay="true" circular="true" interval="1000">
       <block wx:for="{{news}}" wx:key="index">
-        <navigator url="/pages/index/index?title={{item.url}}" open-type="navigate">
+        <navigator url="/pages/newdetail/newdetail?id={{item.id}}" open-type="navigate">
           <swiper-item>
             <view class="swiper_item">{{item.title}}</view>
           </swiper-item>
@@ -28,7 +26,7 @@
       </block>
     </swiper>
 
-    <view class="more">更多/More</view>
+    <view class="more" bindtap="submitNews" data-url="/pages/newslist/newslist">更多/More</view>
     <image class="arrow" src="/pages/common/resources/images/huotuo_arrow.png"></image>
   </view>
 </view>

@@ -177,11 +177,12 @@ Page({
         'content-type': 'application/json'
       },
       success(res) {
+        wx.hideLoading();
         console.log(res.data);
         if (res.statusCode == 200 && res.data) {
           var code = res.data.code;
           if (code == '200') {
-            wx.navigateTo({
+            wx.redirectTo({
               url: '/pages/officestatus/officestatus'
             })
           } else {
@@ -194,12 +195,13 @@ Page({
         }
       },
       fail(res) {
+        wx.hideLoading();
         var data = res.data || res;
         util.showErrorMessage();
         return;
       },
       complete(res) {
-        wx.hideLoading();
+        //wx.hideLoading();
       }
     })
   },
@@ -225,6 +227,7 @@ Page({
           'content-type': 'application/json'
         },
         success(res) {
+          wx.hideLoading();
           if (res.statusCode == 200 && res.data) {
             var code = res.data.code;
             if (code == '200') {
@@ -242,12 +245,13 @@ Page({
           }
         },
         fail(res) {
+          wx.hideLoading();
           _this.resetSendCode();
           util.showErrorMessage();
           return;
         },
         complete(res) {
-          wx.hideLoading();
+          //wx.hideLoading();
         }
       })
       

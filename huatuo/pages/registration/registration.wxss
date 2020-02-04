@@ -50,6 +50,7 @@ textarea {
 .register-logo {
   width: 100%;
   height: 120px;
+  text-align: center;
 }
 .register-logo-title {
   text-align: center;

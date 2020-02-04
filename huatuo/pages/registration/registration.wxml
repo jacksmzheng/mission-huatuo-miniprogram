@@ -4,7 +4,8 @@
   <i-message id="message"/>
   <view class='top-separate-line'></view>
   <view class="register-logo-contain">
-    <view class='register-logo' style="background: url('/pages/common/resources/images/register_logo.png') center center no-repeat; background-size:120px;">
+    <view class='register-logo'>
+    <image class="icon-image" style="width: 120px; height: 120px;" src="/pages/common/resources/images/register_logo.png"></image>
     </view>
     <!-- <view class='register-logo-title'>
       MISSON <view class="register-logo-title-bold">HUOTUO</view>
@@ -15,19 +16,25 @@
     <commoninput obj="{{mobile}}" bindinputEvent='{{mobile.bindInputName}}'/> -->
     <!-- <i-button size="small" inline bind:click="handleClick" type="primary">Send Code</i-button> -->
     <view class="register-form-lable">
-      <view class="register-form-label-icon" style="background: url('/pages/common/resources/images/register_staffid.png') left center no-repeat; background-size:25px;"></view>
+      <view class="register-form-label-icon">
+        <image class="icon-image" style="width: 25px; height: 25px;" src="/pages/common/resources/images/register_staffid.png"></image>
+      </view>
       <view class="register-form-label-input">
         <input bindinput='getStaffidValue' maxlength="8" type="number" placeholder="请输入员工编号/Staff ID"></input>
       </view>
     </view>
     <view class="register-form-lable">
-      <view class="register-form-label-icon" style="background: url('/pages/common/resources/images/register_mobileno.png') left center no-repeat; background-size:25px;"></view>
+      <view class="register-form-label-icon">
+        <image class="icon-image" style="width: 25px; height: 25px;" src="/pages/common/resources/images/register_mobileno.png"></image>
+      </view>
       <view class="register-form-label-input">
         <input bindinput='getMobileValue' maxlength="11" type="number" placeholder="请输入手机号码/Mobile No."></input>
       </view>
     </view>
     <view class="register-form-lable">
-      <view class="register-form-label-icon" style="background: url('/pages/common/resources/images/register_code.png') center left no-repeat; background-size:25px;"></view>
+      <view class="register-form-label-icon">
+        <image class="icon-image" style="width: 25px; height: 25px;" src="/pages/common/resources/images/register_code.png"></image>
+      </view>
       <view class="register-form-label-input">
         <input bindinput='getCodeValue' maxlength="4" type="number" placeholder="验证码/Verification code"></input>
       </view>

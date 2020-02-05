@@ -11,5 +11,4 @@ App({
     openId:'',
     userInfo: null
   },
-
 })

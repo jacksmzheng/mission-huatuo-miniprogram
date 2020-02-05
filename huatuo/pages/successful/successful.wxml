@@ -2,7 +2,7 @@
 <view class='page-body'>
   <view class='top-separate-line'></view>
   <view class='page-section icon-view'>
-    <icon class="icon-box-img" type="success" size="50"></icon>
+    <icon class="icon-box-img" color="red" type="success" size="50"></icon>
     <view class='success-text'>{{successful}}</view>
     <view class='page-content-title'> </view>
     <view class='page-content'>{{alert}}</view>

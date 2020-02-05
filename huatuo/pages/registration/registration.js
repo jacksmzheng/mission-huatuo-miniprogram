@@ -209,11 +209,11 @@ Page({
   sendVerifyCode() {
     console.log(111);
     var _this = this;
-    this.setData({
-      show60Second: true
-    })
-    _this.handle60TimeOut();
-    return;
+    // this.setData({
+    //   show60Second: true
+    // })
+    // _this.handle60TimeOut();
+    // return;
     if (this.validate()) {
       
       wx.showLoading({ title: '数据处理中...' });

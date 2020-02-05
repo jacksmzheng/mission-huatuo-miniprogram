@@ -1,7 +1,7 @@
 <!--pages/newslist/newslist.wxml-->
 <view class='newslist_page'>
   <view class="newslist_content">
-    <view class="newslist_list {{item.unread ? 'unread_style' : ''}}" wx:for="{{newsList}}" wx:key="{{index}}" bindtap="getDatail" data-id="{{item.id}}">
+    <view class="newslist_list {{item.unread ? '' : 'unread_style'}}" wx:for="{{newsList}}" wx:key="{{index}}" bindtap="getDatail" data-id="{{item.id}}">
       <view class="newslist_list_box">
         <view class="newslist_list_title ">{{item.newTitle}}</view>
         <view class="newslist_list_time">{{item.newTime}}</view>

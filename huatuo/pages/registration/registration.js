@@ -209,14 +209,15 @@ Page({
   sendVerifyCode() {
     console.log(111);
     var _this = this;
+    // this.setData({
+    //   show60Second: true
+    // })
+    // _this.handle60TimeOut();
+    // return;
     if (this.validate()) {
-      // this.setData({
-      //   show60Second: true
-      // })
+      
       wx.showLoading({ title: '数据处理中...' });
       var host = app.api.isProdEnv ? app.api.prodUrl : app.api.devUrl;
-      // this.handle60TimeOut();
-      // return;
       wx.request({
         url: host + '/api/sendSMSVerifyCode',
         method: 'POST',
@@ -291,7 +292,7 @@ Page({
         _this.resetSendCode();
       } else {
         _this.setData({
-          text60Second: num + "S"
+          text60Second: num + "S后重发"
         })
       }
     }, 1000)

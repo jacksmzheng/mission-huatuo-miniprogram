@@ -18,7 +18,7 @@
   justify-content: space-around;
   margin: 30rpx 0;
   padding-bottom: 30rpx;
-  border-bottom: 1px violet dashed;
+  border-bottom: 1px #ccc solid;
 }
 .newdetail_content_author{
   font-size: 28rpx;
@@ -33,5 +33,6 @@
   font-size: 30rpx;
   color: #333333;
   text-indent:56rpx;
-  margin: 20rpx 0;
+  margin: 50rpx 0;
+  line-height: 30px;
 }

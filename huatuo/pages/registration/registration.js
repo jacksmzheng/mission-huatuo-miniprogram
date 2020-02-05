@@ -167,8 +167,7 @@ Page({
   //call api
   request(data) {
     var _this = this;
-    wx.showLoading({
-      title: 'Data Processing...' });
+    wx.showLoading({title: 'Data Processing...' });
     var host = app.api.isProdEnv ? app.api.prodUrl : app.api.devUrl;
     wx.request({
       url: host + '/api/register',
@@ -217,8 +216,7 @@ Page({
     // return;
     if (this.validate()) {
       
-      wx.showLoading({
-        title: 'Data Processing...' });
+      wx.showLoading({title: 'Data Processing...' });
       var host = app.api.isProdEnv ? app.api.prodUrl : app.api.devUrl;
       wx.request({
         url: host + '/api/sendSMSVerifyCode',

@@ -261,7 +261,7 @@ Page({
     wx.request({
       url: host + '/api/important-news',
       method: 'POST',
-      data: { openId: '' },
+      data: { openId: app.globalData.openId },
       header: {
         'content-type': 'application/json',
         'X-IS-DUMMY': false
@@ -270,8 +270,8 @@ Page({
         console.log('message success res :', res)
         if (res.statusCode == 200) {
           that.setData({
-            newsList: res.data.returnObject.importantNewsResponseList
-            // ['btnNews.count']: res.data.returnObject.unReadCount
+            newsList: res.data.returnObject.importantNewsResponseList,
+            ['btnNews.count']: res.data.returnObject.unReadCount
           })
         } else {
           util.showErrorMessage(res.statusCode, res)

@@ -1,4 +1,6 @@
 // pages/newdetail/newdetail.js
+const app = getApp();
+const util = require('../common/js/util.js');
 Page({
 
   /**
@@ -6,23 +8,59 @@ Page({
    */
   data: {
     newdetail:{
-      title:"抗疫鏖战 中央政治局常委会会议传递三重深意",
-      author:"汇丰银行（中国）有限公司",
-      time:"2020年2月4日",
-      paragraph:[
-        "相隔9天，中共中央政治局常委会再次召开会议研究疫情防控工作。如此密度，不记得可曾有过。上次开常委会时全国确诊病例是两千余例，9天之后已是两万余例。疫情之严峻，明摆着。而经过这9天，全面动员、全面部署、全面加强疫情防控工作的局面，已在全国形成。在党中央的集中统一领导下，举国上下，正凝聚起共同抗击疫情的磅礴力量，同时间赛跑，与病魔较量。",
-        "制度优势是我们打赢疫情防控阻击战的最大优势、最重要底牌、最坚实支撑。习近平总书记在总结前一阶段疫情防控工作时，主要就是在讲这个。9000万党员、14亿人民，虽面对巨大挑战、严峻局面，但始终有党的集中统一领导，有主心骨、有动员力，能集中力量办大事，能众志成城、团结奋战。这个状态在握，胜利终将属于我们。",
-        "习近平总书记讲到三个关联——“做好疫情防控工作，直接关系人民生命安全和身体健康，直接关系经济社会大局稳定，也事关我国对外开放”。比9天前多提到了后两个。说明随着局势进一步发展，要充分认识到，如果疫情防控工作做不好，不仅影响生命和健康，也会影响宝贵的稳定大局和开放局面。唯有做好，没有退路。",
-        "他强调现在“最关键的问题就是把落实工作抓实抓细”。说明党中央的相关决策部署已总体完成，当前关键在落实，一是“实”，二是“细”。想实就要细，不细就不实。他提出“尽快找差距、补短板”，说明疫情防控工作“有力开展”中，也暴露了一些差距和短板。不回避问题，问题所在，恰是着力点所在。"
-      ]
-    }
+      title: "",
+      author: "",
+      time: "",
+      id: 4,
+      paragraph: [],
+      priority:'',
+      enable:''
+    },
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options)
+    let that = this;
+    let host = app.api.isProdEnv ? app.api.prodUrl : app.api.devUrl;
+    wx.request({
+      url: host + '/api/news/detail',
+      method: 'POST',
+      data: {
+        "openId": app.globalData.openId,
+        "staffId": app.globalData.userInfo.staffId,
+        "newsId": options.id
+      },
+      header: {
+        'content-type': 'application/json',
+        'X-IS-DUMMY': false
+      },
+      success(res) {
+        console.log(res)
+        if (res.statusCode == 200) {
+          let paragraphs= res.data.content.split('<br />')
+          that.setData({
+            newdetail: {
+              title: res.data.title,
+              author: res.data.source,
+              time: res.data.date,
+              id: res.data.id,
+              paragraph: paragraphs,
+              priority: res.data.priority,
+              enable: res.data.enable
+            }
+          })
+        } else {
+          util.showErrorMessage(res.statusCode, res)
+          console.log('fail : ', res)
+        }
+      },
+      fail(res) {
+        util.showErrorMessage();
+        console.log(' fail : ', res)
+      },
+    });
   },
 
   /**

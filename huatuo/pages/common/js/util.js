@@ -1,10 +1,15 @@
 const { $Message } = require('../../dist/base/index');
 
 function handleError(message) {
-  $Message({
-    content: message || '请完善信息!',
-    type: 'error'
-  });
+  // $Message({
+  //   content: message || '请完善信息!',
+  //   type: 'error'
+  // });
+  wx.showToast({
+    title: message || '请完善信息!',
+    icon: 'none',
+    duration: 3000,
+  })
 }
 
 function showErrorMessage(code, res, message) {

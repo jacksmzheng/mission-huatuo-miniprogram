@@ -39,12 +39,14 @@ Page({
       success(res) {
         console.log(res)
         if (res.statusCode == 200) {
-          let paragraphs= res.data.content.split('<br />')
+          let paragraphs= res.data.content.split('<br />');
+          let d = new Date(res.data.date);
+          let times = d.getFullYear() + '-' + that.getDateValue(d.getMonth() + 1) + '-' + that.getDateValue(d.getDate()) + ' ' + that.getDateValue(d.getHours()) + ':' + that.getDateValue(d.getMinutes());
           that.setData({
             newdetail: {
               title: res.data.title,
               author: res.data.source,
-              time: res.data.date,
+              time: times,
               id: res.data.id,
               paragraph: paragraphs,
               priority: res.data.priority,
@@ -62,7 +64,9 @@ Page({
       },
     });
   },
-
+  getDateValue(t){
+    return t = t>9? t : '0'+t;
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

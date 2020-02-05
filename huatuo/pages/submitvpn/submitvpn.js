@@ -143,7 +143,7 @@ Page({
         name: 'VPN连接经常会断开 Always disconnect',
       }, {
         id: 3,
-        name: '其他，请填写第9题 Others, please fill in Question #8',
+        name: '其他，请填写第8题 Others, please fill in Question #8',
       }
       ],
       title: '7. 有什么症状 What is the symptom?*',
@@ -174,7 +174,7 @@ Page({
           name: '其他应用程序反应很慢 Other applications perform very slow',
       }, {
         id: 7,
-          name: "某些应用程序不能访问 Some application can't access",
+          name: "某些应用程序不能访问 Some applications can't access",
       }],
       title: '8. 使用VPN时有些程序反应慢 Poor performance of some applications when using VPN: (多选)',
       current: [],

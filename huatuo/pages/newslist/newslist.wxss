@@ -41,8 +41,8 @@
 
 .newslist_image {
   width: 20rpx;
-  position: relative;
-  top: -26rpx;
+  /* position: relative;
+  top: -26rpx; */
 }
 
 .nonews {

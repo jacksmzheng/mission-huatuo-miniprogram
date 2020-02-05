@@ -43,7 +43,7 @@
         <text class="register-form-label-button-en">Send verification code</text>
       </view>
       <view hidden="{{!show60Second}}" class="register-form-label-button">
-        <text class="register-form-label-button-ch">{{text60Second}}</text>
+        <text style="margin-top:3px;" class="register-form-label-button-ch">{{text60Second}}</text>
       </view>
     </view>
     <!-- <view class="">

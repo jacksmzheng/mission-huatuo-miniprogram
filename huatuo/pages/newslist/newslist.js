@@ -9,30 +9,30 @@ Page({
       {
         id:1,
         newTitle:"汇丰银行（中国）有限公司疫情防控期间网点营业安排调整通知",
-        newTime:'2020年2月2日 10:00',
+        newTime:'2020-02-02 10:00',
         important:true,
-        unread:false,
+        unread:true,
       },
       {
         id: 2,
         newTitle: "疫情防控期间网点营业安排调整通知",
-        newTime: '2020年2月3日 10:00',
+        newTime: '2020-02-03 10:00',
         important: true,
-        unread: true,
+        unread: false,
       },
       {
         id: 3,
         newTitle: "上海长海医院启用野战医疗帐篷避免交叉感染",
-        newTime: '2020年2月3日 18:00',
+        newTime: '2020-02-03 18:00',
         important: true,
         unread: false,
       }, 
       {
         id: 4,
         newTitle: "李兰娟院士发布重大成果 这两种药能抑制冠状病毒",
-        newTime: '2020年02月04日 17:22',
+        newTime: '2020-02-04 17:22',
         important: true,
-        unread: true,
+        unread: false,
       }
     ]
   },

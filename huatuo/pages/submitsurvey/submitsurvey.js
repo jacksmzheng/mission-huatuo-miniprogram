@@ -90,13 +90,13 @@ Page({
     quality: {
       items: [{
         id: 1,
-        name: '非常满意 Yes',
+        name: '非常满意 Highly Satisfactory',
       }, {
       id: 2,
-      name: '满意'
+          name: '满意 Satisfaction'
       }, {
         id: 3,
-        name: '一般'
+        name: '一般 Fair'
       }],
       title: '1. 你对我们产品质量的满意度评价如何 How is the quality of our product?*',
       current: '-',
@@ -107,13 +107,13 @@ Page({
     experience: {
       items: [{
         id: 1,
-        name: '非常满意 Yes',
+        name: '非常满意 Highly Satisfactory',
       }, {
         id: 2,
-        name: '满意'
+        name: '满意 Satisfaction'
       }, {
         id: 3,
-        name: '一般'
+        name: '一般 Fair'
       }],
       title: '2. 你对我们产品的总体体验的满意度评价如何 How is the experience of our product?*',
       current: '-',
@@ -124,10 +124,10 @@ Page({
     recommend: {
       items: [{
         id: 1,
-        name: '肯定会',
+        name: '肯定会 Yes',
       }, {
         id: 2,
-          name: '可能会'
+          name: '可能会 Probably'
       }],
       title: '3. 你在会向你的同事和朋友推荐我们的产品吗 Will you recommend our product to your colleagues or friends?*',
       current: '-',
@@ -164,7 +164,7 @@ Page({
   },
   //初始化数据
   initData: function () {
-    var navigateTitle = '华佗小程序用户调查 HUATUO APP User Survey';
+    var navigateTitle = '员工调研 Survey';
     this.setData({
       navigateTitle
     })

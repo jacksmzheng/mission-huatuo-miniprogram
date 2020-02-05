@@ -39,7 +39,7 @@
   /* text-align: center; */
   overflow: hidden;
   text-overflow: ellipsis;
-  /* white-space: nowrap; */
+  white-space: nowrap;
   font-size: 10pt;
   font-family: 'Open Sans';
   margin: 0 10rpx;

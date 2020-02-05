@@ -6,7 +6,7 @@ function handleError(message) {
   //   type: 'error'
   // });
   wx.showToast({
-    title: message || '请完善信息!',
+    title: message || 'Information Required!',
     icon: 'none',
     duration: 3000,
   })
@@ -27,10 +27,10 @@ function showErrorMessage(code, res, message) {
       res = msg;
       break;
     case 404:
-      res = "网络连接失败，请稍后重试！";
+      res = "Network Failed!";
       break;
     default:
-      res = "网络请求错误，请稍后重试！";
+      res = "Request Failed!";
       break;
   }
   wx.showToast({
@@ -41,9 +41,9 @@ function showErrorMessage(code, res, message) {
 }
 
 function genErrorMsg(res){
-  var errorMsg = "网络连接失败，请稍后重试！";
+  var errorMsg = "Network Failed!";
   if (res.statusCode == 404) {
-    errorMsg = "网络连接失败，请稍后重试！";
+    errorMsg = "Network Failed!";
   } else {
     if (res.data && res.data.errorInfo && res.data.errorInfo.message && res.data.errorInfo.message.key) {
       errorMsg = res.data.errorInfo.message.key;

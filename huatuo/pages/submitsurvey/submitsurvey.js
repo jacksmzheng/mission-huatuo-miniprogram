@@ -287,7 +287,7 @@ Page({
   },
   //call api
   request(data) {
-    wx.showLoading({ title: '数据处理中...' });
+    wx.showLoading({ title: 'Data Processing...' });
     wx.redirectTo({
       url: '/pages/successful/successful'
     })

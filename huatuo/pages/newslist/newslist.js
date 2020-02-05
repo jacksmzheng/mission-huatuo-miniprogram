@@ -63,6 +63,9 @@ Page({
       success(res) {
         console.log(res)
         if (res.statusCode == 200) {
+          // res.data.newsInfoList.map( item => {
+          //   item.date = item.date.substring(0,16);
+          // })
           that.setData({
             newsList : res.data.newsInfoList
           })

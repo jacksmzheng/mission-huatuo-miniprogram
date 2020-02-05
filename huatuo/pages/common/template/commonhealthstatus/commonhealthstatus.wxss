@@ -71,6 +71,6 @@
 .common-status-num{
   text-align: center;
   font-weight: bold;
-  font-size: 24pt;
+  font-size: 20pt;
   margin-left: 24rpx;
 }

@@ -464,7 +464,8 @@ Page({
       if(vpnDic[vpnReports[i].vpnType]){
         vpnStatus[0].vpn[i].name = vpnDic[vpnReports[i].vpnType]['en-hk']
         vpnStatus[0].vpn[i].cnname = vpnDic[vpnReports[i].vpnType]['zh-cn']
-        vpnStatus[0].vpn[i].count = vpnReports[i].count
+        // vpnStatus[0].vpn[i].count = vpnReports[i].count
+        vpnStatus[0].vpn[i].count = '999'
       }
     }
     return vpnStatus

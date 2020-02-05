@@ -177,6 +177,7 @@
   font-size: 10pt;
   display: flex;
   flex-direction: column;
+  width: 80px;
 }
 
 .common-vpn-status-desc .label{

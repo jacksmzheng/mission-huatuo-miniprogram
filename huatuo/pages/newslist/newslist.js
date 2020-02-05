@@ -1,17 +1,18 @@
 // pages/newslist/newslist.js
+const app = getApp();
+const util = require('../common/js/util.js');
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    newsList:[
-      {
-        id:1,
-        newTitle:"汇丰银行（中国）有限公司疫情防控期间网点营业安排调整通知",
-        newTime:'2020-02-02 10:00',
-        important:true,
-        unread:true,
+    newsList: [{
+        id: 1,
+        newTitle: "汇丰银行（中国）有限公司疫情防控期间网点营业安排调整通知",
+        newTime: '2020-02-02 10:00',
+        important: true,
+        unread: true,
       },
       {
         id: 2,
@@ -26,7 +27,7 @@ Page({
         newTime: '2020-02-03 18:00',
         important: true,
         unread: false,
-      }, 
+      },
       {
         id: 4,
         newTitle: "李兰娟院士发布重大成果 这两种药能抑制冠状病毒",
@@ -40,10 +41,44 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-
+//    id 是新闻的id
+//    title 是文章标题
+//    priority 1 - 重要 0-一般
+//    date 发布日期
+//    source 发布源
+//    a Y - 已读，其他-未读
+  onLoad: function(options) {
+    let that = this;
+    let host = app.api.isProdEnv ? app.api.prodUrl : app.api.devUrl;
+    wx.request({
+      url: host + '/api/news-info/lists',
+      method: 'POST',
+      data: {
+        "openId": app.globalData.openId,
+      },
+      header: {
+        'content-type': 'application/json',
+        'X-IS-DUMMY': false
+      },
+      success(res) {
+        console.log(res)
+        if (res.statusCode == 200) {
+          that.setData({
+            newsList : res.data.newsInfoList
+          })
+        } else {
+          util.showErrorMessage(res.statusCode, res)
+          console.log('fail : ', res)
+        }
+      },
+      fail(res) {
+        util.showErrorMessage();
+        console.log(' fail : ', res)
+      },
+    });
   },
-  getDatail:function(e){
+
+  getDatail: function(e) {
     let newId = e.currentTarget.dataset.id;
     wx.navigateTo({
       url: '/pages/newdetail/newdetail?id=' + newId,
@@ -54,49 +89,49 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   }
 })

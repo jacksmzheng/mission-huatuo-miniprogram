@@ -150,6 +150,39 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    wx.login({
+      success: res => {
+        let host = app.api.isProdEnv ? app.api.prodUrl : app.api.devUrl;
+        wx.request({
+          url: host + '/api/wechat-login',
+          method: 'POST',
+          data: {
+            "appId": app.globalData.appId,
+            "code": res.code
+          },
+          header: {
+            'content-type': 'application/json',
+            'X-IS-DUMMY': false
+          },
+          success(res) {
+            console.log(res)
+            if (res.statusCode == 200) {
+              app.globalData.userInfo = res.data.userInfo;
+              app.globalData.openId = res.data.session.openid;
+
+            } else {
+              util.showErrorMessage(res.statusCode, res)
+              console.log('fail : ', res)
+            }
+          },
+  
+          fail(res) {
+            util.showErrorMessage();
+            console.log('wx login fail res : ', res)
+          },
+        });
+      }
+    })
     this.refreshData();
   },
 

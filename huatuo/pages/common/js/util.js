@@ -6,7 +6,7 @@ function handleError(message) {
   //   type: 'error'
   // });
   wx.showToast({
-    title: message || 'Please complete your infomation!',
+    title: message || 'Information Required!',
     icon: 'none',
     duration: 3000,
   })

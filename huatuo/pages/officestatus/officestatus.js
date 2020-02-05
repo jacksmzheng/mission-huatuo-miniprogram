@@ -204,7 +204,8 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-   
+    this.refreshData();
+    wx.stopPullDownRefresh();
   },
 
   /**
@@ -296,7 +297,7 @@ Page({
         if (res.statusCode == 200) {
           that.setData({
             newsList: res.data.returnObject.importantNewsResponseList,
-            ['btnNews.count']: res.data.returnObject.unReadCount
+            //['btnNews.count']: res.data.returnObject.unReadCount
           })
         } else {
           util.showErrorMessage(res.statusCode, res)
@@ -490,6 +491,7 @@ Page({
   submitHelp: function(e) {
     wx.showToast({
       title: '页面开发中，敬请期待',
+      icon: 'none'
     })
   },
 

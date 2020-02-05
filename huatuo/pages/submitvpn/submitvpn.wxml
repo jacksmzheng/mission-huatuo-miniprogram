@@ -16,21 +16,21 @@
 
     <i-panel title="{{internetISP.title}}">
       <i-radio-group current="{{internetISP.current}}" bindchange="handleinternetISPChange">
-          <i-radio wx:for="{{internetISP.items}}" color="green" position="{{internetISP.position}}" wx:key="{{item.id}}" value="{{item.name}}">
+          <i-radio wx:for="{{internetISP.items}}" color="red" position="{{internetISP.position}}" wx:key="{{item.id}}" value="{{item.name}}">
           </i-radio>
       </i-radio-group>  
     </i-panel>
 
     <i-panel title="{{internetLink.title}}">
       <i-radio-group current="{{internetLink.current}}" bindchange="handleinternetLinkChange">
-          <i-radio wx:for="{{internetLink.items}}" color="green" position="{{internetLink.position}}" wx:key="{{item.id}}" value="{{item.name}}">
+          <i-radio wx:for="{{internetLink.items}}" color="red" position="{{internetLink.position}}" wx:key="{{item.id}}" value="{{item.name}}">
           </i-radio>
       </i-radio-group>  
     </i-panel>
 
     <i-panel title="{{bandWidth.title}}">
       <i-radio-group current="{{bandWidth.current}}" bindchange="handlebandWidthChange">
-          <i-radio wx:for="{{bandWidth.items}}" color="green" position="{{bandWidth.position}}" wx:key="{{item.id}}" value="{{item.name}}">
+          <i-radio wx:for="{{bandWidth.items}}" color="red" position="{{bandWidth.position}}" wx:key="{{item.id}}" value="{{item.name}}">
           </i-radio>
       </i-radio-group>  
     </i-panel>
@@ -40,7 +40,7 @@
     <i-panel title="{{adslModem.title}}">
       <i-radio-group current="{{adslModem.current}}" bindchange="handleadslModemChange">
           <block wx:for="{{adslModem.items}}" wx:key="{{index}}">
-            <i-radio position="{{adslModem.position}}" wx:key="{{item.id}}" color="green" value="{{item.name}}">
+            <i-radio position="{{adslModem.position}}" wx:key="{{item.id}}" color="red" value="{{item.name}}">
             </i-radio>
           </block>
           <view wx:if="{{adslModemFlag}}">
@@ -51,7 +51,7 @@
 
     <i-panel title="{{symptom.title}}">
       <i-radio-group current="{{symptom.current}}" bindchange="handlesymptomChange">
-          <i-radio wx:for="{{symptom.items}}" color="green" position="{{symptom.position}}" wx:key="{{item.id}}" value="{{item.name}}">
+          <i-radio wx:for="{{symptom.items}}" color="red" position="{{symptom.position}}" wx:key="{{item.id}}" value="{{item.name}}">
           </i-radio>
       </i-radio-group>  
     </i-panel>
@@ -59,7 +59,7 @@
     <i-panel title="{{performs.title}}">
       <i-checkbox-group current="{{performs.current}}" bindchange="handlePerformsChange">
           <block wx:for="{{performs.items}}" wx:key="{{index}}">
-            <i-checkbox position="{{performs.position}}" wx:key="{{item.id}}" color="green" value="{{item.name}}">
+            <i-checkbox position="{{performs.position}}" wx:key="{{item.id}}" color="red" value="{{item.name}}">
             </i-checkbox>
             <view wx:if="{{item.id == '6'}}">
               <textarea hidden="{{isHideOtherAppSlow}}" class="form-textarea" name="performs_other_content"></textarea>

@@ -432,10 +432,10 @@ Page({
     var others = this.getFieldValue(others, this.data.others.items);
 
     var data= {
-      staffId: staffId,
+      staffId: others == 2 ? staffId : others_id,
       mobileNum: mobile,
       department: department,
-      reporter: others == 2 ? staffId : others_id,
+      reporter: staffId,
       healthStatus: this.getFieldValue(status, this.data.status.items),
       other: status_content,
       city: city == '1' ? 'GZ' : 'XA',

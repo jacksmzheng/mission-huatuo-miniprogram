@@ -20,20 +20,20 @@
   display: flex;
   flex-direction: row;
   margin-top: 24rpx;
+  justify-content: center;
 }
 
 .common-status-tab-view{
   display: flex;
   flex-direction: column;
-  align-items: center;
-  padding: 0 32rpx;
-  width: 33%;
+  flex: 1 auto;
 }
 
 .common-status-tab{
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
 }
 
 .common-status-text-view{
@@ -42,17 +42,22 @@
   align-items: center;
 }
 
-.common-status-label{
+.common-status-build-label{
   font-family: Helvetica;
   font-size: 9pt;
   margin-left: 10rpx;
   color: #333333;
 }
 
-.common-status-text-view .common-status-label{
+.common-status-label{
   font-family: 'Open Sans';
   font-size: 13pt;
   color: #333333;
+}
+
+.common-status-tab .common-status-text-view .common-status-label{
+  margin-left: 0rpx;
+  font-size: 12pt;
 }
 
 .common-status-desc{
@@ -67,5 +72,5 @@
   text-align: center;
   font-weight: bold;
   font-size: 24pt;
-  margin-left: 32rpx;
+  margin-left: 24rpx;
 }

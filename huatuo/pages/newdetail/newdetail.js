@@ -40,8 +40,10 @@ Page({
         console.log(res)
         if (res.statusCode == 200) {
           let paragraphs= res.data.content.split('<br />');
-          let d = new Date(res.data.date);
-          let times = d.getFullYear() + '-' + that.getDateValue(d.getMonth() + 1) + '-' + that.getDateValue(d.getDate()) + ' ' + that.getDateValue(d.getHours()) + ':' + that.getDateValue(d.getMinutes());
+          // let d = new Date(res.data.date);
+          // let times = d.getFullYear() + '-' + that.getDateValue(d.getMonth() + 1) + '-' + that.getDateValue(d.getDate()) + ' ' + that.getDateValue(d.getHours()) + ':' + that.getDateValue(d.getMinutes());
+          let d = res.data.date.split('T');
+          let times = d[0] + " " + d[1].substring(0, 5);
           that.setData({
             newdetail: {
               title: res.data.title,

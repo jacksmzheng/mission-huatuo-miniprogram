@@ -3,8 +3,8 @@
   <view class="newdetail_content">
     <view class="newdetail_content_title">{{newdetail.title}}</view>
     <view class="newdetail_content_box">
-      <view class="newdetail_content_author">{{newdetail.author}}</view>
-      <view class="newdetail_content_time">{{newdetail.time}}</view>
+      <view class="newdetail_content_author">{{newdetail.author}} {{newdetail.time}}</view>
+      <!-- <view class="newdetail_content_time">{{newdetail.time}}</view> -->
     </view>
     <view class="newdetail_contain">
       <view class="newdetail_contain_paragraph" wx:for="{{newdetail.paragraph}}" wx:key="{{index}}">

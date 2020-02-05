@@ -167,7 +167,8 @@ Page({
   //call api
   request(data) {
     var _this = this;
-    wx.showLoading({ title: '数据处理中...' });
+    wx.showLoading({
+      title: 'Data Processing...' });
     var host = app.api.isProdEnv ? app.api.prodUrl : app.api.devUrl;
     wx.request({
       url: host + '/api/register',
@@ -216,7 +217,8 @@ Page({
     // return;
     if (this.validate()) {
       
-      wx.showLoading({ title: '数据处理中...' });
+      wx.showLoading({
+        title: 'Data Processing...' });
       var host = app.api.isProdEnv ? app.api.prodUrl : app.api.devUrl;
       wx.request({
         url: host + '/api/sendSMSVerifyCode',
@@ -268,15 +270,15 @@ Page({
     //   return false;
     // }
     if (!util.regStaffid(staffId)) {
-      util.handleError('请输入合法的员工编号！');
+      util.handleError('Invalid Staff ID!');
       return false;
     }
     if (!util.regMobileNum(mobile)) {
-      util.handleError('请输入合法的电话号码！');
+      util.handleError('Invalid Mobile No.!');
       return false;
     }
     if (type == 'registration' && !util.regVerifyCode(code)) {
-      util.handleError('请输入合法的验证码！');
+      util.handleError('Invalid Code!');
       return false;
     }
     return true;

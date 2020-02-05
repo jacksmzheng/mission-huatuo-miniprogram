@@ -244,7 +244,7 @@ Page({
 
   refreshData: function () {
     const that = this
-    wx.showLoading({ title: '数据加载中...' })
+    wx.showLoading({ title: 'Data Processing...' })
     that.requestDict()
     that.requestMessage()
     that.setData({
@@ -255,7 +255,7 @@ Page({
   },
 
   requestMessage: function(){
-    wx.showLoading({ title: '数据加载中...'})
+    wx.showLoading({ title: 'Data Processing...'})
     const that = this
     var host = app.api.isProdEnv ? app.api.prodUrl : app.api.devUrl;
     wx.request({
@@ -308,7 +308,7 @@ Page({
             buildingDic: res.data.building,
             vpnDic: res.data.vpn
           })
-          wx.showLoading({ title: '数据加载中...', })
+          wx.showLoading({ title: 'Data Processing...', })
           that.requestHealthStatus()
           that.requestVPNStatus()
         }else{

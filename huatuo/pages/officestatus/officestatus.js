@@ -270,8 +270,8 @@ Page({
         console.log('message success res :', res)
         if (res.statusCode == 200) {
           that.setData({
-            newsList: res.data.returnObject.importantNewsResponseList,
-            //['btnNews.count']: res.data.returnObject.unReadCount
+            newsList: res.data.returnObject.importantNewsResponseList
+            // ['btnNews.count']: res.data.returnObject.unReadCount
           })
         } else {
           util.showErrorMessage(res.statusCode, res)
@@ -438,8 +438,7 @@ Page({
       if(vpnDic[vpnReports[i].vpnType]){
         vpnStatus[0].vpn[i].name = vpnDic[vpnReports[i].vpnType]['en-hk']
         vpnStatus[0].vpn[i].cnname = vpnDic[vpnReports[i].vpnType]['zh-cn']
-        // vpnStatus[0].vpn[i].count = vpnReports[i].count
-        vpnStatus[0].vpn[i].count = '999'
+        vpnStatus[0].vpn[i].count = vpnReports[i].count
       }
     }
     return vpnStatus

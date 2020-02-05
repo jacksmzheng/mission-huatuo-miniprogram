@@ -196,7 +196,7 @@
 }
 
 .common-vpn-status-image{
-  width: 40rpx;
+  width: 32rpx;
 }
 
 .footer-view{

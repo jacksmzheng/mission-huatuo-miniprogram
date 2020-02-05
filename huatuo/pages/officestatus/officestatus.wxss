@@ -30,12 +30,12 @@
 }
 
 .swiper_container {
-  height: 45rpx;
+  height: 40rpx;
   width: 80%;
   border-right: #F3F3F3 solid 3rpx;
 }
 .swiper_item {
-  text-align: center;
+  /* text-align: center; */
   overflow: hidden;
   text-overflow: ellipsis;
   /* white-space: nowrap; */

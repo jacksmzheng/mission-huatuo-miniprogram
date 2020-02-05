@@ -13,7 +13,7 @@ Page({
       nameen:'Latest News',
       image: '/pages/common/resources/images/huotuo_latest_news.png',
       url: '/pages/newslist/newslist',
-      event: 'submitNews',
+      event: 'goNewsList',
       count: 0,
     },
     btnReport:{
@@ -37,7 +37,7 @@ Page({
       nameen: 'Help & Donation',
       image: '/pages/common/resources/images/huatuo_help_donation.png',
       url: '',
-      event: '' ,
+      event: 'submitHelp' ,
       count: 0
     },
     btnSurvey:{
@@ -123,20 +123,8 @@ Page({
       ],
     news: [
       { 
-        title: "汇丰银行（中国）有限公司疫情防控期间网点营业安排调整通知",
+        title: "",
         id: 1
-      },
-      { 
-        title: "疫情防控期间网点营业安排调整通知",
-        id: 2
-      },
-      { 
-        title: "上海长海医院启用野战医疗帐篷避免交叉感染",
-        id: 3
-      },
-      {
-        title: "李兰娟院士发布重大成果 这两种药能抑制冠状病毒",
-        id: 4
       }
       ]
   },
@@ -250,11 +238,47 @@ Page({
     const that = this
     wx.showLoading({ title: '数据加载中...' })
     that.requestDict()
+    that.requestMessage()
     that.setData({
       refreshEvent: setInterval(function () {
         that.requestDict()
       }, 5 * 60 * 1000),
     })
+  },
+
+  requestMessage: function(){
+    wx.showLoading({ title: '数据加载中...'})
+    const that = this
+    var host = app.api.isProdEnv ? app.api.prodUrl : app.api.devUrl;
+    wx.request({
+      url: host + '/api/important-news',
+      method: 'POST',
+      data: { openId: app.globalData.openId },
+      header: {
+        'content-type': 'application/json',
+        'X-IS-DUMMY': false
+      },
+      success(res) {
+        console.log('message success res :', res)
+        if (res.statusCode == 200) {
+          that.setData({
+            newsList: res.data.returnObject.importantNewsResponseList,
+            ['btnNews.count']: res.data.returnObject.unReadCount
+          })
+        } else {
+          util.showErrorMessage(res.statusCode, res)
+          console.log('message fail : ', res)
+        }
+
+      },
+      fail(res) {
+        util.showErrorMessage()
+        console.log('message fail res : ', res)
+      },
+      complete(res) {
+        wx.hideLoading()
+      }
+    });
   },
 
   requestDict:function() {
@@ -412,8 +436,12 @@ Page({
     return vpnStatus
   },
 
-  submitNews: function(e) {
-    this.wxLogon(e.currentTarget.dataset.url)
+  goNewsList: function(e){
+    this.wxLogon(e.currentTarget.dataset.url);
+  },
+
+  goNewsDetail: function(e) {
+    this.wxLogon(e.currentTarget.dataset.url);
   },
 
   submitHealth: function(e) {
@@ -426,7 +454,14 @@ Page({
     this.wxLogon(e.currentTarget.dataset.url);
   },
 
+  submitHelp: function(e) {
+    wx.showToast({
+      title: '页面开发中，敬请期待',
+    })
+  },
+
   sbumitSurvey: function (e){
-    this.wxLogon(e.currentTarget.dataset.url)
+    this.wxLogon(e.currentTarget.dataset.url);
   }
+
 })

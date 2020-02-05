@@ -287,7 +287,7 @@ Page({
     wx.request({
       url: host + '/api/important-news',
       method: 'POST',
-      data: { openId: app.globalData.openId },
+      data: { openId: '' },
       header: {
         'content-type': 'application/json',
         'X-IS-DUMMY': false

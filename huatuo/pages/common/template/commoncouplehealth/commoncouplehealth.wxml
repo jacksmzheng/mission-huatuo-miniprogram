@@ -5,7 +5,7 @@
     <view class="common-couple-half-view" style="border-right:#F3F3F3 solid 2rpx;">
       <view class="common-couple-label-view">
         <image class="common-couple-tag" src="/pages/common/resources/images/huotuo_location.png"></image>
-        <view class="common-couple-label">{{buildingName}}</view>
+        <view class="common-couple-build-label">{{buildingName}}</view>
       </view>
       <view class="common-couple-content">
         <view class="common-couple-tab-view">
@@ -41,7 +41,7 @@
     <view class="common-couple-half-view" style="margin-left:24rpx; display:{{num%2==0 &&buildingName1 && confirmed1 && suspect1 && fever1 ? 'flex' : 'none'}}">
       <view class="common-couple-label-view">
         <image class="common-couple-tag" src="/pages/common/resources/images/huotuo_location.png"></image>
-        <view class="common-couple-label">{{buildingName1}}</view>
+        <view class="common-couple-build-label">{{buildingName1}}</view>
       </view>
       <view class="common-couple-content">
         <view class="common-couple-tab-view">

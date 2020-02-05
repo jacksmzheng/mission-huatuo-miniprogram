@@ -2,7 +2,7 @@
   <view class='common-status-container-view'>
     <view class="common-status-label-view">
       <image class="common-status-tag" src="/pages/common/resources/images/huotuo_location.png"></image>
-      <view class="common-status-label">{{buildingName}}</view>
+      <view class="common-status-build-label">{{buildingName}}</view>
     </view>
     <view class="common-status-content">
       <view class="common-status-tab-view" style="border-right: #F3F3F3 solid 1rpx;">

@@ -74,3 +74,8 @@
   font-size: 24pt;
   margin-left: 24rpx;
 }
+
+.common-status-tab .common-status-text-view .common-status-label{
+  margin-left: 0rpx;
+  font-size: 12pt;
+}

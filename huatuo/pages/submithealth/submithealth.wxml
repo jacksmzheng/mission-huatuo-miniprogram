@@ -8,7 +8,7 @@
     <commoninput obj="{{mobile}}" bindinputEvent='{{mobile.bindInputName}}'/> -->
     <i-panel title="{{others.title}}">
       <i-radio-group current="{{others.current}}" bindchange="handleOthersChange">
-          <i-radio wx:for="{{others.items}}" color="green" position="{{others.position}}" wx:key="{{item.id}}" value="{{item.name}}">
+          <i-radio wx:for="{{others.items}}" color="red" position="{{others.position}}" wx:key="{{item.id}}" value="{{item.name}}">
           </i-radio>
       </i-radio-group>
     </i-panel>
@@ -28,11 +28,11 @@
         <i-checkbox-group current="{{visits.current}}" bindchange="handleVisitsChange">
           <block wx:for="{{visits.items}}" wx:key="{{index}}">
             <view wx:if="{{index == 0}}">
-              <i-checkbox position="{{visits.position}}" wx:key="{{item.id}}" color="green" value="{{item.name}}">
+              <i-checkbox position="{{visits.position}}" wx:key="{{item.id}}" color="red" value="{{item.name}}">
               </i-checkbox>
             </view>
              <view wx:if="{{index > 0}}" hidden="{{isHideOtherWorkPlace}}">
-              <i-checkbox position="{{visits.position}}" wx:key="{{item.id}}" color="green" value="{{item.name}}">
+              <i-checkbox position="{{visits.position}}" wx:key="{{item.id}}" color="red" value="{{item.name}}">
               </i-checkbox>
             </view>
           </block>
@@ -41,7 +41,7 @@
     <i-panel title="{{status.title}}">
       <i-radio-group current="{{status.current}}" bindchange="handleStatusChange">
           <block wx:for="{{status.items}}"  wx:key="{{index}}">
-            <i-radio position="{{status.position}}" wx:key="{{item.id}}" color="green" value="{{item.name}}">
+            <i-radio position="{{status.position}}" wx:key="{{item.id}}" color="red" value="{{item.name}}">
             </i-radio>
             <view wx:if="{{item.id == '5'}}">
               <textarea hidden="{{isHideOtherSymptom}}" class="form-textarea" name="status_content"></textarea>

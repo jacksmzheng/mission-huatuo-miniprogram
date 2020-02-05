@@ -12,7 +12,7 @@
   flex-direction: row;
   align-items: center;
   background-color: #FFFFFF;
-  padding: 15rpx 24rpx;
+  padding: 10rpx 24rpx;
   border-radius: 15rpx;
   width: 100%;
 }
@@ -174,7 +174,7 @@
 .common-vpn-status-desc{
   font-family: Helvetica;
   font-weight: normal;
-  font-size: 11pt;
+  font-size: 10pt;
   display: flex;
   flex-direction: column;
 }
@@ -184,19 +184,19 @@
 }
 .common-vpn-status-desc .desc{
   color: #AFAFAF;
-  font-size: 6pt;
+  font-size: 5pt;
 }
 
 .common-vpn-status-count{
-  margin: 0 24rpx;
+  margin: 0 16rpx;
   color: #DB0011;
   font-weight: bold;
-  font-size: 36pt;
+  font-size: 28pt;
   line-height: 72rpx;
 }
 
 .common-vpn-status-image{
-  width: 40rpx;
+  width: 32rpx;
 }
 
 .footer-view{

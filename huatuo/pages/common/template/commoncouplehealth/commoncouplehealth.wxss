@@ -72,6 +72,6 @@
 .common-couple-num{
   text-align: center;
   font-weight: bold;
-  font-size: 14pt;
   margin-left: 8rpx;
+  font-size: 10pt;
 }

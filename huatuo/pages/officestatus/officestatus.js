@@ -8,6 +8,7 @@ Page({
    */
   data: {
     prodVersion: app.globalData.prodVersion,
+    userInfo: app.globalData.userInfo,
     btnNews:{
       name:'新闻资讯',
       nameen:'Latest News',
@@ -150,40 +151,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    wx.login({
-      success: res => {
-        let host = app.api.isProdEnv ? app.api.prodUrl : app.api.devUrl;
-        wx.request({
-          url: host + '/api/wechat-login',
-          method: 'POST',
-          data: {
-            "appId": app.globalData.appId,
-            "code": res.code
-          },
-          header: {
-            'content-type': 'application/json',
-            'X-IS-DUMMY': false
-          },
-          success(res) {
-            console.log(res)
-            if (res.statusCode == 200) {
-              app.globalData.userInfo = res.data.userInfo;
-              app.globalData.openId = res.data.session.openid;
-
-            } else {
-              util.showErrorMessage(res.statusCode, res)
-              console.log('fail : ', res)
-            }
-          },
-  
-          fail(res) {
-            util.showErrorMessage();
-            console.log('wx login fail res : ', res)
-          },
-        });
-      }
-    })
-    this.refreshData();
+    this.wxLogon()
   },
 
   /**
@@ -204,7 +172,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    this.refreshData();
+    this.refreshData()
     wx.stopPullDownRefresh();
   },
 
@@ -222,9 +190,11 @@ Page({
 
   },
 
-  wxLogon:function(myurl){
+  wxLogon:function(){
     let that = this;
     if (null == app.globalData.userInfo || undefined == app.globalData.userInfo || "" == app.globalData.userInfo){
+      
+      console.log('wx logon : ', app.globalData.userInfo)
       wx.login({
         success: res => {
           let host = app.api.isProdEnv ? app.api.prodUrl : app.api.devUrl;
@@ -244,12 +214,13 @@ Page({
               if (res.statusCode == 200) {
                 app.globalData.userInfo = res.data.userInfo;
                 app.globalData.openId = res.data.session.openid;
-                if (null == res.data.userInfo || undefined == res.data.userInfo || '' == res.data.userInfo) {
-                  wx.redirectTo({
+                if (null == res.data.userInfo || undefined == res.data.userInfo || '' == res.data.userInfo)             {
+                  wx.reLaunch({
                     url: '/pages/registration/registration',
                   })
                 } else {
-                  util.goNext(myurl);
+                  that.setData({userInfo: app.globalData.userInfo})
+                  that.refreshData();
                 }
               } else {
                 util.showErrorMessage(res.statusCode,res)
@@ -264,7 +235,10 @@ Page({
         }
       })
     }else{
-      util.goNext(myurl);
+      this.setData({
+        userInfo: app.globalData.userInfo
+      })
+      that.refreshData();
     }
   },
 
@@ -296,8 +270,8 @@ Page({
         console.log('message success res :', res)
         if (res.statusCode == 200) {
           that.setData({
-            newsList: res.data.returnObject.importantNewsResponseList,
-            //['btnNews.count']: res.data.returnObject.unReadCount
+            newsList: res.data.returnObject.importantNewsResponseList
+            // ['btnNews.count']: res.data.returnObject.unReadCount
           })
         } else {
           util.showErrorMessage(res.statusCode, res)
@@ -471,21 +445,25 @@ Page({
   },
 
   goNewsList: function(e){
-    this.wxLogon(e.currentTarget.dataset.url);
+    // this.wxLogon(e.currentTarget.dataset.url);
+    util.goNext(e.currentTarget.dataset.url)
   },
 
   goNewsDetail: function(e) {
-    this.wxLogon(e.currentTarget.dataset.url);
+    // this.wxLogon(e.currentTarget.dataset.url);
+    util.goNext(e.currentTarget.dataset.url)
   },
 
   submitHealth: function(e) {
     console.log(e)
-    this.wxLogon(e.currentTarget.dataset.url);
+    // this.wxLogon(e.currentTarget.dataset.url);
+    util.goNext(e.currentTarget.dataset.url)
   },
 
   submitVPN: function(e) {
     console.log(e)
-    this.wxLogon(e.currentTarget.dataset.url);
+    // this.wxLogon(e.currentTarget.dataset.url);
+    util.goNext(e.currentTarget.dataset.url)
   },
 
   submitHelp: function(e) {
@@ -496,7 +474,8 @@ Page({
   },
 
   sbumitSurvey: function (e){
-    this.wxLogon(e.currentTarget.dataset.url);
+    // this.wxLogon(e.currentTarget.dataset.url);
+    util.goNext(e.currentTarget.dataset.url)
   }
 
 })

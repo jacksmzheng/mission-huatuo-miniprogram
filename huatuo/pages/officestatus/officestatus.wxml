@@ -2,117 +2,118 @@
 <import src="/pages/common/template/commonhealthstatus/commonhealthstatus.wxml"/>
 <import src="/pages/common/template/commoncouplehealth/commoncouplehealth.wxml"/>
 <import src="/pages/common/template/commonhomebtn/commonhomebtn.wxml"/>
-
-<image class="image" mode="widthFix" src="/pages/common/resources/images/huatuo_banner.jpg"/>
-<view class="button-container">
-    <template is="common-home-btn" data="{{ width: imageWidth, height: imageHeight, ...btnNews }}"/>
-    <template is="common-home-btn" data="{{ width: imageWidth, height: imageHeight, ...btnReport }}"/>
-    <template is="common-home-btn" data="{{ width: imageWidth, height: imageHeight, ...btnVPN }}"/>
-    <template wx:if="{{!prodVersion}}" is="common-home-btn" data="{{ width: imageWidth, height: imageHeight, ...btnHelp }}"/>
-    <template is="common-home-btn" data="{{ width: imageWidth, height: imageHeight, ...btnSurvey }}"/>
-</view>
-
-<view class="news-container-view">
-  <view class="news-view">
-    <image class="speak" src="/pages/common/resources/images/huatuo_speak.png"></image>
-
-    <swiper class="swiper_container" vertical="true" autoplay="true" circular="true" interval="2000">
-      <block wx:for="{{newsList}}" wx:key="index">
-        <!-- <navigator url="" open-type="navigate"> -->
-        <view data-url="/pages/newdetail/newdetail?id={{item.newsId}}" bindtap="goNewsList">
-          <swiper-item>
-            <view class="swiper_item">{{item.newsTitle}}</view>
-          </swiper-item>
-        </view>
-        <!-- </navigator> -->
-      </block>
-    </swiper>
-
-    <view class="more" bindtap="goNewsDetail" data-url="/pages/newslist/newslist">更多/More</view>
-    <image class="arrow" src="/pages/common/resources/images/huotuo_arrow.png"></image>
+<view wx:if="{{userInfo}}">
+  <image class="image" mode="widthFix" src="/pages/common/resources/images/huatuo_banner.jpg"/>
+  <view class="button-container">
+      <template is="common-home-btn" data="{{ width: imageWidth, height: imageHeight, ...btnNews }}"/>
+      <template is="common-home-btn" data="{{ width: imageWidth, height: imageHeight, ...btnReport }}"/>
+      <template is="common-home-btn" data="{{ width: imageWidth, height: imageHeight, ...btnVPN }}"/>
+      <template wx:if="{{!prodVersion}}" is="common-home-btn" data="{{ width: imageWidth, height: imageHeight, ...btnHelp }}"/>
+      <template is="common-home-btn" data="{{ width: imageWidth, height: imageHeight, ...btnSurvey }}"/>
   </view>
-</view>
 
-<view class="body">
-    <block wx:for="{{healthStatus}}" wx:key="index">
-      <view class="office-view">
-        <view class="office-area-view">
-          <view class="office-area-tag"> </view>
-          <view class="office-area">{{item.area}}</view>
-          <view class="office-desc">{{item.areaen}}</view>
-        </view>
+  <view class="news-container-view">
+    <view class="news-view">
+      <image class="speak" src="/pages/common/resources/images/huatuo_speak.png"></image>
 
-        <block wx:if="{{item.buildingReports.length>1}}">
-          <block wx:for="{{item.buildingReports}}" wx:key="index">
-            <block wx:if="{{item.num % 2 == 0}}">
-              <template is='common-couple-health' data="{{...item}}"></template>
+      <swiper class="swiper_container" vertical="true" autoplay="true" circular="true" interval="2000">
+        <block wx:for="{{newsList}}" wx:key="index">
+          <!-- <navigator url="" open-type="navigate"> -->
+          <view data-url="/pages/newdetail/newdetail?id={{item.newsId}}" bindtap="goNewsList">
+            <swiper-item>
+              <view class="swiper_item">{{item.newsTitle}}</view>
+            </swiper-item>
+          </view>
+          <!-- </navigator> -->
+        </block>
+      </swiper>
+
+      <view class="more" bindtap="goNewsDetail" data-url="/pages/newslist/newslist">更多/More</view>
+      <image class="arrow" src="/pages/common/resources/images/huotuo_arrow.png"></image>
+    </view>
+  </view>
+
+  <view class="body">
+      <block wx:for="{{healthStatus}}" wx:key="index">
+        <view class="office-view">
+          <view class="office-area-view">
+            <view class="office-area-tag"> </view>
+            <view class="office-area">{{item.area}}</view>
+            <view class="office-desc">{{item.areaen}}</view>
+          </view>
+
+          <block wx:if="{{item.buildingReports.length>1}}">
+            <block wx:for="{{item.buildingReports}}" wx:key="index">
+              <block wx:if="{{item.num % 2 == 0}}">
+                <template is='common-couple-health' data="{{...item}}"></template>
+              </block>
             </block>
           </block>
-        </block>
-        <block wx:else>
-            <template is='common-health-status' data="{{...item.buildingReports[0]}}"></template>
-        </block>
-      </view>
-
-    </block>
-
-  <view class="vpn-container-view page-section">
-    <view class="office-area-view">
-      <view class="office-area-tag"> </view>
-      <view class="office-area">VPN状态</view>
-      <view class="office-desc">VPN STATUS</view>
-    </view>
-    <view class="common-vpn-status-content">
-      <!-- VPN-HK -->
-      <view class="common-vpn-status-tab" style="border-right:#F3F3F3 solid 2rpx;">
-        <view class="common-vpn-status-desc">
-          <view class="label">{{vpnStatus[0].vpn[0].name}}</view>
-          <view class="desc">COUNT OF VPN PROBLEM</view>
+          <block wx:else>
+              <template is='common-health-status' data="{{...item.buildingReports[0]}}"></template>
+          </block>
         </view>
-        <block wx:if="{{vpnStatus[0].vpn[0].count >= 0 && vpnStatus[0].vpn[0].count < 10 }}" >
-          <view class="common-vpn-status-count color-green">{{vpnStatus[0].vpn[0].count}}</view>
-          <image class="common-vpn-status-image" mode="widthFix" src="/pages/common/resources/images/green.png" ></image>
-        </block>
-        <block wx:if="{{vpnStatus[0].vpn[0].count >= 10 && vpnStatus[0].vpn[0].count < 50 }}" >
-          <view class="common-vpn-status-count color-yellow">{{vpnStatus[0].vpn[0].count}}</view>
-          <image class="common-vpn-status-image" mode="widthFix" src="/pages/common/resources/images/yellow.png" ></image>
-        </block>
-        <block wx:if="{{vpnStatus[0].vpn[0].count >= 50 }}" >
-          <view class="common-vpn-status-count color-red">{{vpnStatus[0].vpn[0].count}}</view>
-          <image class="common-vpn-status-image" mode="widthFix" src="/pages/common/resources/images/red.png" ></image>
-        </block>
 
+      </block>
 
+    <view class="vpn-container-view page-section">
+      <view class="office-area-view">
+        <view class="office-area-tag"> </view>
+        <view class="office-area">VPN状态</view>
+        <view class="office-desc">VPN STATUS</view>
       </view>
+      <view class="common-vpn-status-content">
+        <!-- VPN-HK -->
+        <view class="common-vpn-status-tab" style="border-right:#F3F3F3 solid 2rpx;">
+          <view class="common-vpn-status-desc">
+            <view class="label">{{vpnStatus[0].vpn[0].name}}</view>
+            <view class="desc">COUNT OF VPN PROBLEM</view>
+          </view>
+          <block wx:if="{{vpnStatus[0].vpn[0].count >= 0 && vpnStatus[0].vpn[0].count < 10 }}" >
+            <view class="common-vpn-status-count color-green">{{vpnStatus[0].vpn[0].count}}</view>
+            <image class="common-vpn-status-image" mode="widthFix" src="/pages/common/resources/images/green.png" ></image>
+          </block>
+          <block wx:if="{{vpnStatus[0].vpn[0].count >= 10 && vpnStatus[0].vpn[0].count < 50 }}" >
+            <view class="common-vpn-status-count color-yellow">{{vpnStatus[0].vpn[0].count}}</view>
+            <image class="common-vpn-status-image" mode="widthFix" src="/pages/common/resources/images/yellow.png" ></image>
+          </block>
+          <block wx:if="{{vpnStatus[0].vpn[0].count >= 50 }}" >
+            <view class="common-vpn-status-count color-red">{{vpnStatus[0].vpn[0].count}}</view>
+            <image class="common-vpn-status-image" mode="widthFix" src="/pages/common/resources/images/red.png" ></image>
+          </block>
 
-      <!-- VPN-CN -->
-      <view class="common-vpn-status-tab">
-        <view class="common-vpn-status-desc">
-          <view class="label">{{vpnStatus[0].vpn[1].name}}</view>
-          <view class="desc">COUNT OF VPN PROBLEM</view>
+
         </view>
-        <block wx:if="{{vpnStatus[0].vpn[1].count >= 0 && vpnStatus[0].vpn[1].count < 10 }}" >
-          <view class="common-vpn-status-count color-green">{{vpnStatus[0].vpn[1].count}}</view>
-          <image class="common-vpn-status-image" mode="widthFix" src="/pages/common/resources/images/green.png" ></image>
-        </block>
-        <block wx:if="{{vpnStatus[0].vpn[1].count >= 10 && vpnStatus[0].vpn[1].count < 50 }}" >
-          <view class="common-vpn-status-count color-yellow">{{vpnStatus[0].vpn[1].count}}</view>
-          <image class="common-vpn-status-image" mode="widthFix" src="/pages/common/resources/images/yellow.png" ></image>
-        </block>
-        <block wx:if="{{vpnStatus[0].vpn[1].count >= 50 }}" >
-          <view class="common-vpn-status-count color-red">{{vpnStatus[0].vpn[1].count}}</view>
-          <image class="common-vpn-status-image" mode="widthFix" src="/pages/common/resources/images/red.png" ></image>
-        </block>
+
+        <!-- VPN-CN -->
+        <view class="common-vpn-status-tab">
+          <view class="common-vpn-status-desc">
+            <view class="label">{{vpnStatus[0].vpn[1].name}}</view>
+            <view class="desc">COUNT OF VPN PROBLEM</view>
+          </view>
+          <block wx:if="{{vpnStatus[0].vpn[1].count >= 0 && vpnStatus[0].vpn[1].count < 10 }}" >
+            <view class="common-vpn-status-count color-green">{{vpnStatus[0].vpn[1].count}}</view>
+            <image class="common-vpn-status-image" mode="widthFix" src="/pages/common/resources/images/green.png" ></image>
+          </block>
+          <block wx:if="{{vpnStatus[0].vpn[1].count >= 10 && vpnStatus[0].vpn[1].count < 50 }}" >
+            <view class="common-vpn-status-count color-yellow">{{vpnStatus[0].vpn[1].count}}</view>
+            <image class="common-vpn-status-image" mode="widthFix" src="/pages/common/resources/images/yellow.png" ></image>
+          </block>
+          <block wx:if="{{vpnStatus[0].vpn[1].count >= 50 }}" >
+            <view class="common-vpn-status-count color-red">{{vpnStatus[0].vpn[1].count}}</view>
+            <image class="common-vpn-status-image" mode="widthFix" src="/pages/common/resources/images/red.png" ></image>
+          </block>
+        </view>
+
       </view>
-
     </view>
-  </view>
 
-  <view class="footer-view">
-    <view class="footer-container-view">
-      <view style="color:#666666">Copyright@</view>
-      <view style="color:#21A60C;font-weight: bold;">HASE IT</view>
+    <view class="footer-view">
+      <view class="footer-container-view">
+        <view style="color:#666666">Copyright@</view>
+        <view style="color:#21A60C;font-weight: bold;">HASE IT</view>
+      </view>
     </view>
-  </view>
 
+  </view>
 </view>

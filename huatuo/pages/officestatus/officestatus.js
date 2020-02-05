@@ -171,7 +171,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-   
+    this.refreshData();   
   },
 
   /**
@@ -457,6 +457,7 @@ Page({
   submitHelp: function(e) {
     wx.showToast({
       title: '页面开发中，敬请期待',
+      icon: 'none'
     })
   },
 

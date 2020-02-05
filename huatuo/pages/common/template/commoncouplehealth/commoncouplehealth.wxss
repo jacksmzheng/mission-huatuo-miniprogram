@@ -73,6 +73,7 @@
 .common-couple-num{
   text-align: center;
   font-weight: bold;
-  font-size: 16pt;
-  margin: 0 16rpx;
+  font-size: 12pt;
+  /* margin: 0 16rpx; */
+  margin: 0 5rpx;
 }

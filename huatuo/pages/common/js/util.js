@@ -70,6 +70,11 @@ function goNext(url) {
   })
 }
 
+function showLoading(title) {
+  wx.showLoading({
+     title: title ||''
+  });
+}
 module.exports = {
   showErrorMessage,
   regStaffid,
@@ -77,5 +82,6 @@ module.exports = {
   regVerifyCode,
   genErrorMsg,
   handleError,
-  goNext
+  goNext,
+  showLoading
 }

@@ -33,7 +33,7 @@
 .newdetail_contain_paragraph{
   font-size: 30rpx;
   color: #333333;
-  text-indent:56rpx;
+  /* text-indent:56rpx; */
   margin: 50rpx 0;
   line-height: 30px;
 }

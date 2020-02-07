@@ -287,7 +287,7 @@ Page({
   },
   //call api
   request(data) {
-    wx.showLoading({ title: 'Data Processing...' });
+    util.showLoading();
     wx.redirectTo({
       url: '/pages/successful/successful'
     })

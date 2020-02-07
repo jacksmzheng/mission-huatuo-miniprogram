@@ -445,7 +445,7 @@ Page({
   },
   //call api
   request(data) {
-    wx.showLoading({ title: 'Data Processing...' });
+    util.showLoading();
     var host = app.api.isProdEnv ? app.api.prodUrl : app.api.devUrl;
     wx.request({
       url: host + '/api/health',

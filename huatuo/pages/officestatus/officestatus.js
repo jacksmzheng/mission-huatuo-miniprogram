@@ -278,7 +278,10 @@ Page({
     wx.request({
       url: host + '/api/important-news',
       method: 'POST',
-      data: { openId: app.globalData.openId },
+      data: { 
+        openId: app.globalData.openId,
+        appId: app.globalData.appId 
+        },
       header: {
         'content-type': 'application/json',
         'X-IS-DUMMY': false
@@ -462,24 +465,18 @@ Page({
   },
 
   goNewsList: function(e){
-    // this.wxLogon(e.currentTarget.dataset.url);
     util.goNext(e.currentTarget.dataset.url)
   },
 
   goNewsDetail: function(e) {
-    // this.wxLogon(e.currentTarget.dataset.url);
     util.goNext(e.currentTarget.dataset.url)
   },
 
   submitHealth: function(e) {
-    console.log(e)
-    // this.wxLogon(e.currentTarget.dataset.url);
     util.goNext(e.currentTarget.dataset.url)
   },
 
   submitVPN: function(e) {
-    console.log(e)
-    // this.wxLogon(e.currentTarget.dataset.url);
     util.goNext(e.currentTarget.dataset.url)
   },
 
@@ -491,7 +488,6 @@ Page({
   },
 
   sbumitSurvey: function (e){
-    // this.wxLogon(e.currentTarget.dataset.url);
     util.goNext(e.currentTarget.dataset.url)
   }
 

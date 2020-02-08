@@ -28,9 +28,10 @@ Page({
       url: host + '/api/news/detail',
       method: 'POST',
       data: {
-        "openId": app.globalData.openId,
-        "staffId": app.globalData.userInfo.staffId,
-        "newsId": options.id
+        openId: app.globalData.openId,
+        appId: app.globalData.appId,
+        staffId: app.globalData.userInfo.staffId,
+        newsId: options.id
       },
       header: {
         'content-type': 'application/json',

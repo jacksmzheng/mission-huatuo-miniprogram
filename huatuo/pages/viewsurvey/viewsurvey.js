@@ -8,138 +8,36 @@ Page({
    * 页面的初始数据
    */
   data: {
-    department: {
-      hasLabel: true,
-      hasWarning: false,
-      isMandatory: false,
-      isCRSRelated: false,
-      placeholder: '请输入 Please Enter',
-      maxlength: 200,
-      type: 'number',
-      label: '4. 你或你所报告同事的部门 What is the department of the reported colleague?',
-      bindInputName: 'inputEvent',
-      num: '1',
-      isDisabled: true,
-      content: 'Regional CIO - Canada',
-      disabledStyle: ''
-    },
-    city: {
-      hasLabel: true,
-      hasWarning: false,
-      isMandatory: false,
-      isCRSRelated: false,
-      placeholder: '请输入 Please Enter',
-      maxlength: 200,
-      type: 'number',
-      label: '5. 你或你所报告同事的办公城市 Where is the working city of the reported colleague:',
-      bindInputName: 'inputEvent',
-      num: '1',
-      isDisabled: true,
-      content: '西安 Xi\'an'
-    },
-    stafID: {
-      hasLabel: true,
-      hasWarning: false,
-      isMandatory: false,
-      isCRSRelated: false,
-      placeholder: '请输入 Please Enter',
-      maxlength: 200,
-      type: 'number',
-      label: '1. 你的员工编号 Your Staff ID:*',
-      bindInputName: 'inputEvent',
-      num: '1',
-      isDisabled: true,
-      content: '43794592'
-    },
-    mobile: {
-      hasLabel: true,
-      hasWarning: false,
-      isMandatory: false,
-      isCRSRelated: false,
-      maxlength: 200,
-      placeholder: '请输入 Please Enter',
-      type: 'number',
-      label: '2. 你的紧急联系电话 Your cell phone for emergency call:*',
-      confirmLabel: '2. 你的紧急联系电话 Your cell phone for emergency call:',
-      bindInputName: 'inputEvent',
-      warningLabel: 'Please Enter cell phone (请输入紧急联系电话)',
-      num: '2',
-      isDisabled: true,
-      content: '18088888888'
-    },
-    area: {
-      region: '请选择 Please Select',
-      label: '5. 你或你所报告同事的办公城市 Where is the working city of the reported colleague? *',
-    },
-    others: {
-      hasLabel: true,
-      hasWarning: false,
-      isMandatory: false,
-      isCRSRelated: false,
-      maxlength: 200,
-      placeholder: '请输入 Please Enter',
-      type: 'number',
-      label: '3. 你为其他同事报告吗 Are you reporting for other colleague?',
-      confirmLabel: '3. 你为其他同事报告吗 Are you reporting for other colleague?',
-      bindInputName: 'inputEvent',
-      warningLabel: 'Please Enter cell phone (请输入紧急联系电话)',
-      num: '2',
-      isDisabled: true,
-      content: '不是 No'
-    },
-    othersStaffId: {
-      hasLabel: true,
-      hasWarning: false,
-      isMandatory: true,
-      isCRSRelated: false,
-      type: 'number',
-      placeholder: '请输入 Please Enter',
-      maxlength: 200,
-      label: '你所报告同事的员工编号 The Staff ID of reported colleague:',
-      bindInputName: 'inputEvent',
-      warningLabel: 'Please Enter the staff ID (请输入员工编号)',
-      num: '3',
-      content: ''
-    },
-    status: {
-      hasLabel: true,
-      hasWarning: false,
-      isMandatory: false,
-      isCRSRelated: false,
-      maxlength: 200,
-      placeholder: '请输入 Please Enter',
-      type: 'number',
-      label: '7. 你或你所报告的同事目前的情况是 What is the current circumstance of the reported colleague?',
-      confirmLabel: '7. 你或你所报告的同事目前的情况是 What is the current circumstance of the reported colleague?',
-      bindInputName: 'inputEvent',
-      warningLabel: 'Please Enter',
-      num: '2',
-      isDisabled: true,
-      content: '居住楼或小区被有关部门限制出入 The building or residential estate lived in is being restricted.'
-    },
-    visits: {
-      hasLabel: true,
-      hasWarning: false,
-      isMandatory: false,
-      isCRSRelated: false,
-      maxlength: 200,
-      placeholder: '请输入 Please Enter',
-      type: 'number',
-      label: '6. 你或你所报告的同事14天之内去过的办公地点 Which office did the reported colleague visit in last 14 days?(多选)',
-      confirmLabel: '6. 你或你所报告的同事14天之内去过的办公地点 Which office did the reported colleague visit in last 14 days?(多选)',
-      bindInputName: 'inputEvent',
-      warningLabel: 'Please Enter',
-      num: '2',
-      isDisabled: true,
-      content: 'Xi\'an Centre'
-    }
+    surveyDetails: [
+      {
+        title: '1. 你的员工编号 Your Staff ID:*',
+        text: '43794592'
+      },
+      {
+        title: '2. 你的紧急联系电话 Your cell phone for emergency call:*',
+        text: '18088888888'
+      },
+      {
+        title: '3. 你对我们产品质量的满意度评价如何 How is the quality of our product?*',
+        text: '非常满意 Highly Satisfactory'
+      },
+      {
+        title: '4. 你对我们产品的总体体验的满意度评价如何 How is the experience of our product?*',
+        text: '非常满意 Highly Satisfactory非常满意 Highly Satisfactory非常满意 Highly Satisfactory非常满意 Highly Satisfactory'
+      },
+    ],
+    id: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    console.log(1);
+    this.setData({
+      id: options.id
+    })
+    this.getSurveyDetails();
   },
 
   /**
@@ -199,5 +97,43 @@ Page({
    */
   onShareAppMessage: function () {
 
+  }
+  ,
+  getSurveyDetails() {
+    util.showLoading();
+    const that = this
+    var host = app.api.isProdEnv ? app.api.prodUrl : app.api.devUrl;
+    wx.request({
+      url: host + '/api/surveyform/details',
+      method: 'POST',
+      data: {
+        staffId: app.globalData.userInfo.staffId,
+        appId: app.globalData.appId,
+        id: this.data.id
+      },
+      header: {
+        'content-type': 'application/json',
+        'X-IS-DUMMY': false
+      },
+      success(res) {
+        console.log('message success res :', res)
+        if (res.statusCode == 200) {
+          that.setData({
+            surveyDetails: newList
+          })
+        } else {
+          util.showErrorMessage(res.statusCode, res)
+          console.log('message fail : ', res)
+        }
+
+      },
+      fail(res) {
+        util.showErrorMessage()
+        console.log('message fail res : ', res)
+      },
+      complete(res) {
+        wx.hideLoading()
+      }
+    });
   }
 })

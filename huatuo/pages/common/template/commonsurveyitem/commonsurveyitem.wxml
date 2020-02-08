@@ -1,0 +1,12 @@
+<template name="common-survey-item">
+  <view bindtap="viewSurveyPage" data-type="{{type}}" data-id="{{id}}" class="survey-list">
+    <view class="survey-list-left">
+      <text class="survey-list-title">{{cnName}}</text>
+      <text class="survey-list-title">{{enName}}</text>
+      <text class="survey-list-time">{{time}}</text>
+    </view>
+    <view class="survey-list-right">
+      <image class="survey-list-right-image" src="/pages/common/resources/images/huotuo_arrow.png"></image>
+    </view>
+  </view>
+</template>

@@ -115,5 +115,9 @@
       </view>
     </view>
 
+    <!-- <view class="subscribe-button">
+      <image class="subscribe-button-image" mode="widthFix" src="/pages/common/resources/images/register_code.png"></image>
+    </view> -->
+
   </view>
 </view>

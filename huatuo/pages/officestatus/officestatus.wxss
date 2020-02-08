@@ -227,4 +227,13 @@
   color: #DB0011;
 }
 
+.subscribe-button {
+  position: fixed;
+  bottom: 50px;
+  right: 10px;
+}
 
+.subscribe-button-image {
+  width: 20px;
+  height: 20px;
+}

@@ -207,8 +207,6 @@ Page({
 
   wxLogon:function(){
     let that = this;
-    if (null == app.globalData.userInfo || undefined == app.globalData.userInfo || "" == app.globalData.userInfo){
-      
       console.log('wx logon : ', app.globalData.userInfo)
       wx.login({
         success: res => {
@@ -250,13 +248,6 @@ Page({
           });
         }
       })
-    }else{
-      this.setData({
-        userInfo: app.globalData.userInfo
-      })
-      that.refreshData();
-      //that.wxSubcirbe();
-    }
   },
 
   refreshData: function () {

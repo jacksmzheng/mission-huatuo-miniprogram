@@ -401,10 +401,10 @@ Page({
         util.handleError();
         return;
       } else if (!util.regStaffid(others_id)) {
-        util.handleError('请输入合法的员工编号！');
+        util.handleError('Invalid Staff ID!');
         return;
       } else if (staffId == others_id) {
-        util.handleError('你所报告同事的员工编号不能和自己的重复!');
+        util.handleError('Duplicate Staff ID!');
         return;
       }
       
@@ -445,7 +445,7 @@ Page({
   },
   //call api
   request(data) {
-    wx.showLoading({ title: '数据处理中...' });
+    util.showLoading();
     var host = app.api.isProdEnv ? app.api.prodUrl : app.api.devUrl;
     wx.request({
       url: host + '/api/health',

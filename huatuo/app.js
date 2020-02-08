@@ -7,7 +7,7 @@ App({
   },
   globalData: {
     appId: 'wx9812117be87d24d2',
-    prodVersion: false,
+    prodVersion: true,
     openId:'',
     userInfo: null
   },

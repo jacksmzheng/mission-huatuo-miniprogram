@@ -10,12 +10,13 @@
   font-size: 34rpx;
   font-weight: 700;
   color: #333333;
-  text-align: center;
+  text-align: left;
   margin: 30rpx 0;
 }
 .newdetail_content_box{
   display: flex;
-  justify-content: space-around;
+  /* justify-content: space-around; */
+  text-align: left;
   margin: 30rpx 0;
   padding-bottom: 30rpx;
   border-bottom: 1px #ccc solid;
@@ -32,7 +33,7 @@
 .newdetail_contain_paragraph{
   font-size: 30rpx;
   color: #333333;
-  text-indent:56rpx;
+  /* text-indent:56rpx; */
   margin: 50rpx 0;
   line-height: 30px;
 }

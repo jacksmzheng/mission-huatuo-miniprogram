@@ -151,7 +151,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.wxLogon()
+    this.wxLogon();
+    //this.wxSubcirbe();
   },
 
   /**
@@ -189,6 +190,20 @@ Page({
   onShareAppMessage: function () {
 
   },
+  //show subcribe dialog
+  wxSubcirbe: function() {
+    if (app.globalData.userInfo) {
+      wx.requestSubscribeMessage({
+        tmplIds: ['yPWLSERHcxwoLV8IARcSn_YcXtuq4Ld_lLeTwmPPcs4'],
+        success(res) {
+          console.log(res);
+        },
+        fail(res) {
+          console.log(res);
+        }
+      })
+    }
+  },
 
   wxLogon:function(){
     let that = this;
@@ -221,6 +236,7 @@ Page({
                 } else {
                   that.setData({userInfo: app.globalData.userInfo})
                   that.refreshData();
+                  //that.wxSubcirbe();
                 }
               } else {
                 util.showErrorMessage(res.statusCode,res)
@@ -239,12 +255,13 @@ Page({
         userInfo: app.globalData.userInfo
       })
       that.refreshData();
+      //that.wxSubcirbe();
     }
   },
 
   refreshData: function () {
     const that = this
-    wx.showLoading({ title: '数据加载中...' })
+    util.showLoading();
     that.requestDict()
     that.requestMessage()
     that.setData({
@@ -255,7 +272,7 @@ Page({
   },
 
   requestMessage: function(){
-    wx.showLoading({ title: '数据加载中...'})
+    util.showLoading();
     const that = this
     var host = app.api.isProdEnv ? app.api.prodUrl : app.api.devUrl;
     wx.request({
@@ -311,7 +328,7 @@ Page({
             buildingDic: res.data.building,
             vpnDic: res.data.vpn
           })
-          wx.showLoading({ title: '数据加载中...', })
+          util.showLoading();
           that.requestHealthStatus()
           that.requestVPNStatus()
         }else{

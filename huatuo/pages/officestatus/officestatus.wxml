@@ -3,7 +3,7 @@
 <import src="/pages/common/template/commoncouplehealth/commoncouplehealth.wxml"/>
 <import src="/pages/common/template/commonhomebtn/commonhomebtn.wxml"/>
 <view wx:if="{{userInfo}}">
-  <image class="image" mode="widthFix" src="/pages/common/resources/images/huatuo_banner.jpg"/>
+  <image bindtap="wxSubcirbe" class="image" mode="widthFix" src="/pages/common/resources/images/huatuo_banner.jpg"/>
   <view class="button-container">
       <template is="common-home-btn" data="{{ width: imageWidth, height: imageHeight, ...btnNews }}"/>
       <template is="common-home-btn" data="{{ width: imageWidth, height: imageHeight, ...btnReport }}"/>

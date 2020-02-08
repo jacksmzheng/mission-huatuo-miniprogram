@@ -55,6 +55,7 @@ Page({
       method: 'POST',
       data: {
         "openId": app.globalData.openId,
+        appId: app.globalData.appId,
       },
       header: {
         'content-type': 'application/json',

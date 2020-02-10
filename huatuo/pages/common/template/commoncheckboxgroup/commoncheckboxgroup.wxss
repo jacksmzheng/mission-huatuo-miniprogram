@@ -11,7 +11,7 @@
 .common-cg-container .check-box-text{
   font-size: 11pt;
   color: #666666;
-  margin-left: 32rpx;
+  margin-left: 16rpx;
   line-height: 40rpx;
 }
 

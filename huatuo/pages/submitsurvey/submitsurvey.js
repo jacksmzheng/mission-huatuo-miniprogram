@@ -13,7 +13,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.requestForm()
+    this.setData({formId: options.id})
+    this.requestForm(options.id)
   },
 
   /**
@@ -145,7 +146,7 @@ Page({
     return null;
   },
 
-  requestForm: function () {
+  requestForm: function (formId) {
     wx.showLoading({
       title: '提交中,请稍候...',
     })
@@ -157,8 +158,10 @@ Page({
       data: {
         openId: app.globalData.openId,
         appId: app.globalData.appId,
-        staffId: app.globalData.userInfo.staffId,
-        formId: "1"
+        // staffId: app.globalData.userInfo.staffId,
+        // formId: formId
+        staffId: '44053653',
+        formId: '1'
       },
       header: {
         'content-type': 'application/json',
@@ -209,10 +212,11 @@ Page({
         case '3':
         case '4':
           forms[i].bindInputName = 'inputEvent'
+          forms[i].placeholder = '请输入 Please Enter'
           break
       }
 
-      if (returnItem.question_type == '1' || returnItem.question_type == '2'){
+      if ((returnItem.question_type == '1' || returnItem.question_type == '2') && returnItem.answers ){
         forms[i].array = new Array(returnItem.answers.length)
         const answers = returnItem.answers
         for (let j = 0; j < answers.length; j++) {
@@ -238,7 +242,6 @@ Page({
 
   genSubmitData: function(){
     const forms = this.data.forms
-    // console.log('generate for data forms : ', forms)
     var answers = {}
     var completed = false
     for(let i=0; i<forms.length; i++){
@@ -252,16 +255,12 @@ Page({
     }
 
     const answer = {
-      // openId: app.globalData.openId,
-      // appId: app.globalData.appId,
-      // staffId: app.globalData.userInfo.staffId,
-      staffId: "44053653",
-      formId: "1",
+      staffId: app.globalData.userInfo.staffId,
+      formId: this.data.formId,
       answers: answers
     }
 
     return answer
-
   },
 
   submit: function() {

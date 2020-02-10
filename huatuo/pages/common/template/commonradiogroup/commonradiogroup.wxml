@@ -6,8 +6,7 @@
         <label wx:for="{{array}}" wx:key="index">
             <label class='weui-cell'>
                 <view class="weui-cell_hd">
-                  <radio value="{{item.value}}" checked="{{item.checked}}">
-                  </radio>
+                  <radio value="{{item.value}}" color="#DB0011" checked="{{item.checked}}"/>
                   <view class="weui-cell_bd radio-text" style='margin-right:10rpx;'>{{item.name}}</view>
                 </view>
                 <textarea  wx:if="{{item.checked && item.other}}"

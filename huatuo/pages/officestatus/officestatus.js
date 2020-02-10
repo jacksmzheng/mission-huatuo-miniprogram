@@ -7,7 +7,6 @@ Page({
    * 
    */
   data: {
-    prodVersion: app.globalData.prodVersion,
     userInfo: app.globalData.userInfo,
     btnNews:{
       name:'新闻资讯',

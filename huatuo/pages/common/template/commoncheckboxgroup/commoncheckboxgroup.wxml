@@ -8,7 +8,7 @@
         <label wx:for="{{array}}" wx:key="index">
           <label class='weui-cell'>
               <view class="weui-cell_hd">
-                <checkbox value="{{item.value}}" checked="{{item.checked}}">
+                <checkbox value="{{item.value}}" color="#DB0011" checked="{{item.checked}}">
                   <view class="weui-cell_bd check-box-text">{{item.name}}</view>
                 </checkbox>
               </view>

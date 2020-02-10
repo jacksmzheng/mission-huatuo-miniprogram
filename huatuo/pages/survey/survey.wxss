@@ -1,37 +1,10 @@
 /* pages/home/home.wxss */
-@import "/pages/common/template/commonpicker/commonpicker.wxss";
+@import "/pages/common/template/commonsurveyitem/commonsurveyitem.wxss";
 
 .survey-contain {
 
 }
-.survey-list {
-  display: flex;
-  flex-direction: row;
-  font-size: 10pt;
-  color: #666;
-  font-family: 'Open Sans';
-  padding: 15px 0;
-  margin: 10px 0;
-  /* box-shadow: 0px -20px 10px rgba(0,0,0,0.9); */
-  border-bottom: 2px #f3f3f3 solid;
-}
-.survey-list-left {
-  display: flex;
-  flex-direction: column;
-  flex: 1 auto;
-}
-.survey-list-time {
-  color: #afafaf;
-  font-size: 10pt;
-}
-.survey-list-right {
-  display: flex;
-  align-items: center;
-}
-.survey-list-right-image {
-  width: 10px;
-  height: 15px;
-}
+
 .survey-tab {
   display: flex;
   flex-direction: row;

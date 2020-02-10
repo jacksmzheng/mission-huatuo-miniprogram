@@ -8,6 +8,34 @@ Page({
    * 页面的初始数据
    */
   data: {
+    newList: [{
+      cnName: '华佗小程序用户调查',
+      enName: 'HUATUO APP User Survey.',
+      time: '2020-02-05 08:08',
+      id: '1',
+      type: 'new'
+    },
+      {
+        cnName: '华佗小程序用户调查',
+        enName: 'HUATUO APP User Survey.',
+        time: '2020-02-04 18:08',
+        id: '2',
+        type: 'new'
+      }],
+    oldList: [{
+      cnName: '华佗小程序用户调查',
+      enName: 'HUATUO APP User Survey.',
+      time: '2020-02-05 08:08',
+      id: '1',
+      type: 'old'
+    },
+      {
+        cnName: '华佗小程序用户调查',
+        enName: 'HUATUO APP User Survey.',
+        time: '2020-02-04 18:08',
+        id: '2',
+        type: 'old'
+      }],
     showNewSurvey: true,
     newStyle: 'survey-tab-button-selected',
     doneStyle: ''
@@ -17,7 +45,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    //this.getSurveyList();
   },
 
   /**
@@ -79,19 +107,6 @@ Page({
 
   },
 
-  // inputEvent: function (e_) {
-  //   const e = e_.detail.e ? e_.detail.e : e_
-  //   console.log('input event : ', e)
-  //   var num = e.currentTarget.dataset.num;
-  //   var field;
-  //   switch(num) {
-  //     case '1': field = 'stafID.content'; break;
-  //     case '2': field = 'mobile.content'; break;
-  //   }
-  //   this.setData({
-  //     [field]: e.detail.value
-  //   })
-  // },
   changeTab:function(e) {
     console.log(e);
     var id = e.target.id;
@@ -107,19 +122,84 @@ Page({
       ['staffID.content']: e.detail.value
     })
   },
-
-  viewSurveyNewPage: function(e) {
-    var id = e.target.id;
-    wx.navigateTo({
-      url: '/pages/submitsurvey/submitsurvey?id=' + id,
-    })
-  },
   //
-  viewSurveyDonePage: function (e) {
-    var id = e.target.id;
+  viewSurveyPage: function (e) {
+    var id = e.currentTarget.dataset.id;
+    var type = e.currentTarget.dataset.type;
+    var url = type == 'new' ? '/pages/submitsurvey/submitsurvey' : '/pages/viewsurvey/viewsurvey';
     wx.navigateTo({
-      url: '/pages/viewsurvey/viewsurvey?id=' + id,
-    })
+      url: url + "?id=" + id,
+    });
+  },
+
+  getSurveyList() {
+    util.showLoading();
+    const that = this
+    var host = app.api.isProdEnv ? app.api.prodUrl : app.api.devUrl;
+    wx.request({
+      url: host + '/api/surveyform/lists',
+      method: 'POST',
+      data: {
+        staffId: app.globalData.userInfo.staffId,
+        appId: app.globalData.appId
+      },
+      header: {
+        'content-type': 'application/json',
+        'X-IS-DUMMY': false
+      },
+      success(res) {
+        console.log('message success res :', res)
+        if (res.statusCode == 200) {
+          var newList = [
+              {
+                cnName: '华佗小程序用户调查',
+                enName: 'HUATUO APP User Survey.',
+                time: '2020-02-05 08:08',
+                id: '1',
+                type: 'new'
+              },
+              {
+                cnName: '华佗小程序用户调查',
+                enName: 'HUATUO APP User Survey.',
+                time: '2020-02-04 18:08',
+                id: '2',
+                type: 'new'
+              }
+            ];
+          var oldList = [
+            {
+              cnName: '华佗小程序用户调查',
+              enName: 'HUATUO APP User Survey.',
+              time: '2020-02-05 08:08',
+              id: '1',
+              type: 'old'
+            },
+            {
+              cnName: '华佗小程序用户调查',
+              enName: 'HUATUO APP User Survey.',
+              time: '2020-02-04 18:08',
+              id: '2',
+              type: 'old'
+            },
+          ];
+          that.setData({
+            newList : newList,
+            oldList : oldList
+          })
+        } else {
+          util.showErrorMessage(res.statusCode, res)
+          console.log('message fail : ', res)
+        }
+
+      },
+      fail(res) {
+        util.showErrorMessage()
+        console.log('message fail res : ', res)
+      },
+      complete(res) {
+        wx.hideLoading()
+      }
+    });
   }
 
 })

@@ -10,10 +10,13 @@
     "pages/survey/survey",
     "pages/submitsurvey/submitsurvey",
     "pages/viewsurvey/viewsurvey",
-    "pages/errors/errors"
+    "pages/errors/errors",
+    "pages/helpanddonation/helpanddonation",
+    "pages/helpanddonation/submithelp/submithelp",
+    "pages/helpanddonation/submitdonation/submitdonation"
   ],
   "window": {
-    "navigationBarBackgroundColor": "#FFF",
+    "navigationBarBackgroundColor": "#FFFFFF",
     "navigationBarTitleText": "HUATUO",
     "navigationBarTextStyle": "black"
   },

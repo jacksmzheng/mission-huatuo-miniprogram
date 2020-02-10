@@ -36,12 +36,28 @@
   font-weight: normal;
 }
 
+.form-textarea-content {
+  border: 1rpx solid #B2B2B2;
+  padding: 10rpx;
+  margin-top: 10rpx;
+  font-family: 'Open Sans';
+  color: #333333;
+  font-size: 11pt;
+  font-weight: normal;
+  height: 4em;
+  width: 660rpx;
+}
+
 .common-address-input .form-input-content {
   width: 100%;
 }
 
 input {
-  caret-color: #34A344;
+  caret-color: #DB0011;
+}
+
+textarea {
+  caret-color: #DB0011;
 }
 
 .form-input-view{

@@ -1,0 +1,27 @@
+<template name="common-checkboxgroup">
+  <view class='common-cg-container'>
+    <rich-text class='form-input-label' nodes='{{label}}'/>
+    <view class='form-sub-label'>{{subLabel}}</view>
+    <view class='form-input-desc'>{{desc}}</view>
+    <view class="weui-cells weui-cells_after-title">
+      <checkbox-group data-num='{{num}}'  bindchange="{{event}}">
+        <label wx:for="{{array}}" wx:key="index">
+          <label class='weui-cell'>
+              <view class="weui-cell_hd">
+                <checkbox value="{{item.value}}" checked="{{item.checked}}">
+                  <view class="weui-cell_bd check-box-text">{{item.name}}</view>
+                </checkbox>
+              </view>
+              <textarea wx:if="{{item.checked && item.other}}"
+                class="form-textarea-content" 
+                maxlength="{{item.length}}" 
+                style='border-color: "#B2B2B2"' 
+                data-num='{{item.num}}' 
+                  />
+          </label>
+
+        </label>
+      </checkbox-group>
+    </view>
+  </view>
+</template>

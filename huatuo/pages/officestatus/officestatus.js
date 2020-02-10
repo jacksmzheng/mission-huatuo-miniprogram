@@ -37,7 +37,7 @@ Page({
       name: '求助&捐赠',
       nameen: 'Help & Donation',
       image: '/pages/common/resources/images/huatuo_help_donation.png',
-      url: '',
+      url: '/pages/helpanddonation/helpanddonation',
       event: 'submitHelp' ,
       count: 0
     },
@@ -385,7 +385,7 @@ Page({
       url: host+ '/api/vpn/report',
       method: 'POST',
       data: {
-        "day": 0
+        "day": 1
       },
       header: {
         'content-type': 'application/json',
@@ -485,6 +485,7 @@ Page({
       title: '页面开发中，敬请期待',
       icon: 'none'
     })
+    // util.goNext(e.currentTarget.dataset.url)
   },
 
   sbumitSurvey: function (e){

@@ -1,0 +1,44 @@
+/* radio未选中时样式 */ 
+radio .wx-radio-input{ 
+  /* 自定义样式.... */
+  border-radius: 50%; 
+  border-color: #666666;
+  height: 40rpx; 
+  width: 40rpx;
+  justify-content: center;
+ }
+
+ /* radio选中时样式 */ 
+radio .wx-radio-input.wx-radio-input-checked::before{
+  /* 自定义样式.... */ 
+  border-radius: 50%; 
+  background-color: #00A865; 
+  font-size: 0;
+  padding: 18rpx;
+  border: 7rpx solid white;
+  text-align: center;
+  justify-content: center;
+}
+
+.common-rg-container .radio-text{
+  margin-left: 32rpx;
+  font-family: 'Open Sans';
+  font-weight: normal;
+  font-size: 11pt;
+  color: #666666;
+  line-height: 40rpx;
+}
+
+.common-rg-container .weui-cell{
+  margin: 16rpx 0 16rpx 10rpx;
+}
+
+.common-rg-container {
+  margin-bottom: 48rpx;
+}
+
+.common-rg-container .weui-cell_hd{
+  display: flex;
+  flex-direction: row;
+  align-items: center
+}

@@ -1,10 +1,8 @@
-/* pages/home/home.wxss */
-@import "/pages/common/template/commonpicker/commonpicker.wxss";
 
-textarea {
-  width: 675rpx;
-  height: 4em;
-}
+@import "/pages/common/components/commontextarea/commontextarea.wxss";
+@import "/pages/common/components/commoninput/commoninput.wxss";
+@import "/pages/common/template/commonradiogroup/commonradiogroup.wxss";
+@import "/pages/common/template/commoncheckboxgroup/commoncheckboxgroup.wxss";
 
 #default-btn {
   margin-left: 0rpx;
@@ -14,14 +12,17 @@ textarea {
   margin-right: 0rpx;
 }
 
-.form-textarea {
-  border: 1px #B2B2B2 solid;
-  margin: 10px 0;
-}
-
 .health-picker {
   font-family: 'Open Sans';
   color: #333333;
   font-size: 11pt;
   font-weight: normal;
+}
+
+.i-radio-title{
+  color: #666666;
+}
+
+.i-panel-title{
+  padding: 0
 }

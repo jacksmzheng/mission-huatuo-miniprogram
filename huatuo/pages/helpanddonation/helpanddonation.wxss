@@ -1,0 +1,9 @@
+
+.primary-btn {
+  width:100%;
+  background-color:#db0011;
+  font-weight:normal;
+  border-radius: 0px;
+  color: #FFFFFF;
+  margin: 32rpx;
+}

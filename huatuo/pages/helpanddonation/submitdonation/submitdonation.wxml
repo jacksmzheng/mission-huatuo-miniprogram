@@ -1,0 +1,41 @@
+<!--pages/submithelpdonation/submithelpdonation.wxml-->
+
+<import src="/pages/common/template/commonpicker/commonpicker.wxml" />
+
+<view class='page-section'>
+  <i-message id="message" />
+  <view class='top-separate-line'></view>
+
+  <form bindsubmit="submitHelp">
+    <!-- 1. staff ID -->
+    <commoninput obj="{{staffID}}" type="number" bindinputEvent='{{staffID.bindInputName}}' />
+    <!-- 2. your phone -->
+    <commoninput obj="{{yourPhone}}" type="number" bindinputEvent='{{yourPhone.bindInputName}}' />
+    <!-- 3. material help -->
+    <i-panel title="{{materialHelp.title}}">
+      <i-checkbox-group current="{{materialHelp.current}}" bindchange="handleMaterialHelpChange">
+        <block wx:for="{{materialHelp.items}}" wx:key="id">
+          <i-checkbox position="left" color="green" value="{{item.name}}"></i-checkbox>
+        </block>
+      </i-checkbox-group>
+    </i-panel>
+    <!-- 4. mask num -->
+    <template is='common-picker' data="{{...maskNum}}"></template>
+    <!-- 5. help address -->
+    <commoninput obj="{{helpAddr}}" bindinputEvent='{{helpAddr.bindInputName}}' />
+    <!-- 6. additional help -->
+    <i-panel title="6. 其他帮助">
+      <textarea class="form-textarea" name="textarea" bindinput="addHelpInput"></textarea>
+    </i-panel>
+    <!-- 7. help number -->
+    <i-panel title="7. 帮助热线">
+      <button class="help-num-btn" bindtap="callHelpNumber">{{helpNumber}}</button>
+    </i-panel>
+    <!-- 8. help center address -->
+    <i-panel title="8. 求助中心地址">
+      <view>{{helpCenterAddr}}</view>
+    </i-panel>
+
+    <button class="primary-btn submit-btn" type="primary" form-type="submit">提交</button>
+  </form>
+</view>

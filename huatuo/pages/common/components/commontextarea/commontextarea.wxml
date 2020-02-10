@@ -7,21 +7,19 @@
     style="display:{{obj.desc ? 'block' : 'none' }}">
     {{obj.desc}}
   </view>
-    <!-- style='border-color: {{ status == "1" ? "#DB0011" : "#B2B2B2"}}' -->
-  <input 
-    class="form-input-content" 
+    <!-- /*style='border-color: {{ status == "1" ? "#DB0011" : "#B2B2B2"}}' */ -->
+  <textarea
+    class="form-textarea-content" 
     maxlength="{{obj.maxlength ? obj.maxlength : 200}}" 
-    style="border-color:B2B2B2"
+    style='border-color: "#B2B2B2"' 
     data-num='{{obj.num}}' 
     bindinput="{{obj.bindInputName}}" 
     placeholder="{{obj.placeholder}}" 
-    type='{{obj.type}}' 
+    type='{{obj.type}}'
     cursor-spacing='150rpx' 
     disabled='{{obj.isDisabled}}' 
     bindfocus='focus' 
-    bindblur='blur' 
-    color=
-    />
+    bindblur='blur' />
   <view 
     class='warning-label' 
     style="display:{{obj.hasWarning ? 'block' : 'none' }};" >

@@ -1,0 +1,8 @@
+<view class="body">
+
+  <view class="page-section">
+    <button class="primary-btn" style="width:100%" data-url="{{help.url}}" bindtap="{{help.event}}">{{help.title}}</button>
+    <button class="primary-btn" style="width:100%" data-url="{{donation.url}}" bindtap="{{donation.event}}">{{donation.title}}</button>
+  </view>
+
+</view>

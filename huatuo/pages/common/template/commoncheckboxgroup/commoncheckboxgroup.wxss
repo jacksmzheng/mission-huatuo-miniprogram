@@ -1,0 +1,20 @@
+.common-cg-container .weui-cell{
+  margin: 16rpx 0 16rpx 10rpx;
+}
+
+.common-cg-container checkbox {
+  vertical-align: baseline;
+  align-items: unset;
+  box-align: unset;
+}
+
+.common-cg-container .check-box-text{
+  font-size: 11pt;
+  color: #666666;
+  margin-left: 16rpx;
+  line-height: 40rpx;
+}
+
+.common-cg-container {
+  margin-bottom: 48rpx;
+}

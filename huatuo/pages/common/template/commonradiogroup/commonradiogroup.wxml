@@ -1,0 +1,24 @@
+<template name="common-radiogroup">
+  <view class='common-rg-container'>
+    <rich-text class='form-input-label' nodes='{{label}}'/>
+    <view class="weui-cells weui-cells_after-title">
+      <radio-group data-num='{{num}}' bindchange="{{event}}" >
+        <label wx:for="{{array}}" wx:key="index">
+            <label class='weui-cell'>
+                <view class="weui-cell_hd">
+                  <radio value="{{item.value}}" color="#DB0011" checked="{{item.checked}}"/>
+                  <view class="weui-cell_bd radio-text" style='margin-right:10rpx;'>{{item.name}}</view>
+                </view>
+                <textarea  wx:if="{{item.checked && item.other}}"
+                  class="form-textarea-content" 
+                  maxlength="{{item.length}}" 
+                  style='border-color: "#B2B2B2"' 
+                  data-num='{{item.num}}' 
+                   />
+
+            </label>
+        </label>
+      </radio-group>
+    </view>
+  </view>
+</template>

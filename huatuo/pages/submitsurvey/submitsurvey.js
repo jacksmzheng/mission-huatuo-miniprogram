@@ -158,10 +158,10 @@ Page({
       data: {
         openId: app.globalData.openId,
         appId: app.globalData.appId,
-        // staffId: app.globalData.userInfo.staffId,
-        // formId: formId
-        staffId: '44053653',
-        formId: '1'
+        staffId: app.globalData.userInfo.staffId,
+        formId: formId
+        // staffId: '44053653',
+        // formId: '1'
       },
       header: {
         'content-type': 'application/json',

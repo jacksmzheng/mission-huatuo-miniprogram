@@ -8,6 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    /*
     newList: [{
       cnName: '华佗小程序用户调查',
       enName: 'HUATUO APP User Survey.',
@@ -36,6 +37,7 @@ Page({
         id: '2',
         type: 'old'
       }],
+    */
     showNewSurvey: true,
     newStyle: 'survey-tab-button-selected',
     doneStyle: ''
@@ -45,7 +47,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    //this.getSurveyList();
+    this.getSurveyList();
   },
 
   /**
@@ -150,6 +152,7 @@ Page({
       success(res) {
         console.log('message success res :', res)
         if (res.statusCode == 200) {
+          /*
           var newList = [
               {
                 cnName: '华佗小程序用户调查',
@@ -186,6 +189,8 @@ Page({
             newList : newList,
             oldList : oldList
           })
+          */
+          that.formatResData(res.data)
         } else {
           util.showErrorMessage(res.statusCode, res)
           console.log('message fail : ', res)
@@ -200,6 +205,38 @@ Page({
         wx.hideLoading()
       }
     });
+  },
+
+  formatResData: function(resData){
+
+    const unComplete = resData.returnObject.unComplete
+    const complete = resData.returnObject.complete
+
+    if (unComplete.length > 0){
+      var newList = new Array(unComplete.length)
+      for (let i = 0; i < unComplete.length; i++){
+        newList[i] = {}
+        newList[i].id = unComplete[i].formId
+        newList[i].cnName = unComplete[i].formNameCn
+        newList[i].enName = unComplete[i].formNameEn
+        newList[i].type = unComplete[i].status == '0' ? 'new' : 'old'
+        newList[i].time = unComplete[i].lastUpdateDateTime
+      }
+    }
+
+    if (complete.length > 0) {
+      var oldList = new Array(complete.length)
+      for (let i = 0; i < complete.length; i++) {
+        oldList[i] = {}
+        oldList[i].id = complete[i].formId
+        oldList[i].cnName = complete[i].formNameCn
+        oldList[i].enName = complete[i].formNameEn
+        oldList[i].type = complete[i].status == '0' ? 'new' : 'old'
+        oldList[i].time = complete[i].lastUpdateDateTime
+      }
+    }
+
+    this.setData({ newList, oldList })
   }
 
 })

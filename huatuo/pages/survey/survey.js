@@ -10,32 +10,32 @@ Page({
   data: {
     /*
     newList: [{
-      cnName: '华佗小程序用户调查',
-      enName: 'HUATUO APP User Survey.',
+      formNameCn: '华佗小程序用户调查',
+      formNameEn: 'HUATUO APP User Survey.',
       time: '2020-02-05 08:08',
-      id: '1',
-      type: 'new'
+      formId: '1',
+      status: '0'
     },
       {
-        cnName: '华佗小程序用户调查',
-        enName: 'HUATUO APP User Survey.',
-        time: '2020-02-04 18:08',
-        id: '2',
-        type: 'new'
+        formNameCn: '华佗小程序用户调查',
+        formNameEn: 'HUATUO APP User Survey.',
+        time: '2020-02-05 08:08',
+        formId: '2',
+        status: '0'
       }],
     oldList: [{
-      cnName: '华佗小程序用户调查',
-      enName: 'HUATUO APP User Survey.',
+      formNameCn: '华佗小程序用户调查',
+      formNameEn: 'HUATUO APP User Survey.',
       time: '2020-02-05 08:08',
-      id: '1',
-      type: 'old'
+      formId: '3',
+      status: '1'
     },
       {
-        cnName: '华佗小程序用户调查',
-        enName: 'HUATUO APP User Survey.',
-        time: '2020-02-04 18:08',
-        id: '2',
-        type: 'old'
+        formNameCn: '华佗小程序用户调查',
+        formNameEn: 'HUATUO APP User Survey.',
+        time: '2020-02-05 08:08',
+        formId: '4',
+        status: '1'
       }],
     */
     showNewSurvey: true,
@@ -128,7 +128,7 @@ Page({
   viewSurveyPage: function (e) {
     var id = e.currentTarget.dataset.id;
     var type = e.currentTarget.dataset.type;
-    var url = type == 'new' ? '/pages/submitsurvey/submitsurvey' : '/pages/viewsurvey/viewsurvey';
+    var url = type == '0' ? '/pages/submitsurvey/submitsurvey' : '/pages/viewsurvey/viewsurvey';
     wx.navigateTo({
       url: url + "?id=" + id,
     });
@@ -151,7 +151,7 @@ Page({
       },
       success(res) {
         console.log('message success res :', res)
-        if (res.statusCode == 200) {
+        if (res.statusCode == 200 && res.returnObject) {
           /*
           var newList = [
               {
@@ -186,8 +186,8 @@ Page({
             },
           ];
           that.setData({
-            newList : newList,
-            oldList : oldList
+            newList : res.returnObject.unComplete,
+            oldList: res.returnObject.complete
           })
           */
           that.formatResData(res.data)

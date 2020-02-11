@@ -23,6 +23,7 @@
         <input bindinput='getStaffidValue' maxlength="8" type="number" placeholder="请输入员工编号/Staff ID"></input>
       </view>
     </view>
+    <!-- 
     <view class="register-form-lable">
       <view class="register-form-label-icon">
         <image class="icon-image" style="width: 25px; height: 25px;" src="/pages/common/resources/images/register_mobileno.png"></image>
@@ -46,6 +47,7 @@
         <text style="margin-top:3px;" class="register-form-label-button-ch">{{text60Second}}</text>
       </view>
     </view>
+     -->
     <!-- <view class="">
       <rich-text class="form-input-label" style="display:block;">
         验证码 Verification code：*

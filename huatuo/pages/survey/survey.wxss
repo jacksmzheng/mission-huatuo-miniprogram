@@ -5,6 +5,13 @@
 
 }
 
+.suvey-norecord {
+  text-align: center;
+  margin: 25px 0;
+  font-size: 10pt;
+  color: #686868;
+}
+
 .survey-tab {
   display: flex;
   flex-direction: row;

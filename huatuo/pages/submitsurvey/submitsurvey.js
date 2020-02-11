@@ -197,7 +197,7 @@ Page({
       forms[i] = {}
       forms[i].num = i
       forms[i].id = returnItem.question_id
-      forms[i].label = returnItem.question_title_cn + " " + returnItem.question_title_en
+      forms[i].label = returnItem.question_no + ". " + returnItem.question_title_cn + " " + returnItem.question_title_en
       forms[i].questionNum = returnItem.question_no
       forms[i].component = returnItem.question_type
       // forms[i].mandatory = true
@@ -243,15 +243,12 @@ Page({
   genSubmitData: function(){
     const forms = this.data.forms
     var answers = {}
-    var completed = false
     for(let i=0; i<forms.length; i++){
       answers[forms[i].questionNum] = forms[i].content 
-      completed += forms[i].content
-    }
-
-    if(!completed){
-      util.handleError()
-      return false
+      if (!forms[i].content){
+        util.handleError()
+        return false
+      }
     }
 
     const answer = {
@@ -269,7 +266,10 @@ Page({
     })
     const that = this
     const reqData = that.genSubmitData()
-    if(!reqData){ return }
+    if(!reqData){ 
+      wx.hideLoading()
+      return 
+      }
     var host = app.api.isProdEnv ? app.api.prodUrl : app.api.devUrl;
     wx.request({
       url: host + '/api/survey/form/submit',

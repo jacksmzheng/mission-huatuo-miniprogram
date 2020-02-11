@@ -11,11 +11,17 @@
     <block wx:for="{{newList}}" wx:key="index">
      <template is="common-survey-item" data="{{index, ...item}}"/>
     </block>
+    <view wx:if="{{newList.length == 0}}" class="suvey-norecord">
+      <text>没有新的调查.</text>
+    </view>
   </view>
   <view hidden="{{showNewSurvey}}" class="survey-contain">
-  <block wx:for="{{oldList}}" wx:key="index">
+    <block wx:for="{{oldList}}" wx:key="index">
      <template is="common-survey-item" data="{{index, ...item}}"/>
     </block>
+    <view wx:if="{{oldList.length == 0}}" class="suvey-norecord">
+      <text>没有已完成的调查.</text>
+    </view>
   </view>
 </view>
 

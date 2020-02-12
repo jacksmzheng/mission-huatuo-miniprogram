@@ -146,27 +146,35 @@ Page({
       items: [{
         id: 1,
         name: 'None',
+        checked: false
       }, {
         id: 2,
-        name: 'TKH OT1'
+        name: 'TKH OT1',
+        checked: false
       }, {
         id: 3,
-        name: 'TKH OT2'
+        name: 'TKH OT2',
+        checked: false
       }, {
         id: 4,
-        name: 'Jiangwan Office (Wework)'
+        name: 'Jiangwan Office (Wework)',
+        checked: false
       }, {
         id: 5,
-        name: 'Pazhou ODC'
+        name: 'Pazhou ODC',
+        checked: false
       }, {
         id: 6,
-        name: 'Tancun ODC'
+        name: 'Tancun ODC',
+        checked: false
       }, {
         id: 7,
-        name: 'Renfeng ODC'
+        name: 'Renfeng ODC',
+        checked: false
       }, {
         id: 8,
-        name: 'Xi\'an Centre'
+        name: 'Xi\'an Centre',
+          checked: false
       }],
       title: '4. 你或你所报告的同事14天之内去过的办公地点 Which office did the reported colleague visit in last 14 days?(多选)*',
       current: [],
@@ -353,17 +361,26 @@ Page({
     })
   },
   //
-  handleVisitsChange({ detail = {} }) {
-    const index = this.data.visits.current.indexOf(detail.value);
-    var id = this.getFieldValue(detail.value, this.data.visits.items);
-    if(id == 1) {
-      this.setData({
-        isHideOtherWorkPlace: index == -1
-      })
+  handleVisitsChange(e) {
+    var id = e.detail.value;
+    if (id.indexOf("0") > -1) {
+      for (let i = 0; i < 8; i++) {
+        //this.data.visits.items[i]
+        this.setData({
+          ['visits.items' + i + 'checked'] : false
+        });
+      }
     }
-    index === -1 ? this.data.visits.current.push(detail.value) : this.data.visits.current.splice(index, 1);
+    // const index = this.data.visits.current.indexOf(detail.value);
+    // var id = this.getFieldValue(detail.value, this.data.visits.items);
+    // if(id == 1) {
+    //   this.setData({
+    //     isHideOtherWorkPlace: index == -1
+    //   })
+    // }
+    // index === -1 ? this.data.visits.current.push(detail.value) : this.data.visits.current.splice(index, 1);
     this.setData({
-      ['visits.current']: this.data.visits.current
+      ['visits.current']: id
     });
   },
 

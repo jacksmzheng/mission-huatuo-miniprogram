@@ -25,18 +25,19 @@
     </picker>
   </view> -->
   <i-panel title="{{visits.title}}">
-        <i-checkbox-group current="{{visits.current}}" bindchange="handleVisitsChange">
+        <checkbox-group current="{{visits.current}}" bindchange="handleVisitsChange">
           <block wx:for="{{visits.items}}" wx:key="{{index}}">
-            <view wx:if="{{index == 0}}">
-              <i-checkbox position="{{visits.position}}" wx:key="{{item.id}}" color="red" value="{{item.name}}">
-              </i-checkbox>
+            <view class="survey-checkbox">
+              <checkbox id="{{item.id}}" position="{{visits.position}}" wx:key="{{item.id}}" color="red" checked="{{item.checked}}" value="{{item.id}}">
+              <text>{{item.name}}</text>
+              </checkbox>
             </view>
-             <view wx:if="{{index > 0}}" hidden="{{isHideOtherWorkPlace}}">
+             <!-- <view wx:if="{{index > 0}}" hidden="{{isHideOtherWorkPlace}}">
               <i-checkbox position="{{visits.position}}" wx:key="{{item.id}}" color="red" value="{{item.name}}">
-              </i-checkbox>
-            </view>
+              </checkbox>
+            </view> -->
           </block>
-        </i-checkbox-group>
+        </checkbox-group>
     </i-panel>
     <i-panel title="{{status.title}}">
       <i-radio-group current="{{status.current}}" bindchange="handleStatusChange">

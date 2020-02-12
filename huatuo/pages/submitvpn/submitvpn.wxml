@@ -57,10 +57,13 @@
     </i-panel>
 
     <i-panel title="{{performs.title}}">
-      <i-checkbox-group current="{{performs.current}}" bindchange="handlePerformsChange">
+      <checkbox-group current="{{performs.current}}" bindchange="handlePerformsChange">
           <block wx:for="{{performs.items}}" wx:key="{{index}}">
-            <i-checkbox position="{{performs.position}}" wx:key="{{item.id}}" color="red" value="{{item.name}}">
-            </i-checkbox>
+            <view class="survey-checkbox">
+              <checkbox position="{{performs.position}}" wx:key="{{item.id}}" color="red" value="{{item.id}}">
+              <text>{{item.name}}</text>
+              </checkbox>
+            </view>
             <view wx:if="{{item.id == '6'}}">
               <textarea hidden="{{isHideOtherAppSlow}}" class="form-textarea" name="performs_other_content"></textarea>
             </view>
@@ -68,7 +71,7 @@
               <textarea hidden="{{isHideSomeAppSlow}}" class="form-textarea" name="performs_some_content"></textarea>
             </view>
           </block>
-      </i-checkbox-group>
+      </checkbox-group>
     </i-panel>
 
     <button class="primary-btn" style="width:100%;margin-bottom:48rpx;background-color:#db0011;font-weight:normal;border-radius: 0px;" type="primary" form-type="submit">提交</button>

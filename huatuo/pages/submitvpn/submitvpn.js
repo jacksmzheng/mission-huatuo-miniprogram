@@ -330,23 +330,24 @@ Page({
     });
   },
 
-  handlePerformsChange({ detail = {} }) {
-    const index = this.data.performs.current.indexOf(detail.value);
-    var id = this.getFieldValue(detail.value, this.data.performs.items);
+  handlePerformsChange(e) {
+    var id = e.detail.value;
+    // const index = this.data.performs.current.indexOf(detail.value);
+    // var id = this.getFieldValue(detail.value, this.data.performs.items);
     
-    if(id == 6) {
+    //if(id == 6) {
       this.setData({
-        isHideOtherAppSlow: index !== -1
+        isHideOtherAppSlow: id.indexOf("6") == -1
       })
-    }
-    if(id == 7) {
+    //}
+    //if(id == 7) {
       this.setData({
-        isHideSomeAppSlow: index !== -1
+        isHideSomeAppSlow: id.indexOf("7") == -1
       })
-    }
-    index === -1 ? this.data.performs.current.push(detail.value) : this.data.performs.current.splice(index, 1);
+    //}
+    // index === -1 ? this.data.performs.current.push(detail.value) : this.data.performs.current.splice(index, 1);
     this.setData({
-      ['performs.current']: this.data.performs.current
+      ['performs.current']: id
     });
   },
 
@@ -413,17 +414,17 @@ Page({
       util.handleError();
       return;
     }
-    var performsArr = [];
-    for(var i = 0; i < performs.length; i++) {
-      var v = this.getFieldValue(performs[i], this.data.performs.items);
-      performsArr.push(v);
-    }
-    // if (symptom_id == '3') {
-    //   if (performsArr.length == 0 || (performsArr.indexOf(6) > -1 && performs_other_content == '') || (performsArr.indexOf(7) > -1 && performs_some_content == '')) {
-    //     util.handleError();
-    //     return;
-    //   }
+    // var performsArr = [];
+    // for(var i = 0; i < performs.length; i++) {
+    //   var v = this.getFieldValue(performs[i], this.data.performs.items);
+    //   performsArr.push(v);
     // }
+    if (symptom_id == '3') {
+      if (performs.length == 0 || (performs.indexOf("6") > -1 && performs_other_content == '') || (performs.indexOf("7") > -1 && performs_some_content == '')) {
+        util.handleError();
+        return;
+      }
+    }
     // if (!util.regStaffid(staffId)) {
     //   util.handleError('请输入合法的员工编号！');
     //   return;
@@ -438,14 +439,14 @@ Page({
       "vpnType": vpnType, //hkVPN
       "hadRebootADSL": this.getFieldValue(hadRebootADSL, this.data.adslModem.items), // 1:yes, 2:no
       "symptom": this.getFieldValue(symptom, this.data.symptom.items), // cannotLogin, alwaysDisconnect, others
-      "outlookSlow": performsArr.indexOf(1) > -1 ? 1 : 0, // 0:no, 1:yes
-      "jabberSlow": performsArr.indexOf(2) > -1 ? 1 : 0, // 0:no, 1:yes
-      "sametimeSlow": performsArr.indexOf(3) > -1 ? 1 : 0, // 0:no, 1:yes
-      "videoConferenceSlow": performsArr.indexOf(4) > -1 ? 1 : 0, // 0:no, 1:yes
-      "sharepointSharedFolderSlow": performsArr.indexOf(5) > -1 ? 1 : 0, // 0:no, 1:yes
-      "hasOtherApplicationsSlow": performsArr.indexOf(6) > -1 ? 1 : 0, // 0:no, 1:yes
+      "outlookSlow": performs.indexOf("1") > -1 ? 1 : 0, // 0:no, 1:yes
+      "jabberSlow": performs.indexOf("2") > -1 ? 1 : 0, // 0:no, 1:yes
+      "sametimeSlow": performs.indexOf("3") > -1 ? 1 : 0, // 0:no, 1:yes
+      "videoConferenceSlow": performs.indexOf("4") > -1 ? 1 : 0, // 0:no, 1:yes
+      "sharepointSharedFolderSlow": performs.indexOf("5") > -1 ? 1 : 0, // 0:no, 1:yes
+      "hasOtherApplicationsSlow": performs.indexOf("6") > -1 ? 1 : 0, // 0:no, 1:yes
       "otherSlowApplications": performs_other_content, // wording
-      "hasSomeApplicationsCannotAccess": performsArr.indexOf(7) > -1 ? 1 : 0, // 0:no, 1:yes
+      "hasSomeApplicationsCannotAccess": performs.indexOf("7") > -1 ? 1 : 0, // 0:no, 1:yes
       "cannotAccessApplications": performs_some_content, // wording
       "reporterStaffId": staffId // staff id
     }

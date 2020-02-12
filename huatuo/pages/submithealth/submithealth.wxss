@@ -25,3 +25,19 @@ textarea {
   font-size: 11pt;
   font-weight: normal;
 }
+
+.survey-checkbox {
+  display: flex;
+  flex-direction: row;
+  margin: 15px 0;
+}
+
+.survey-checkbox checkbox {
+  flex: 30px auto;
+}
+
+.survey-checkbox text {
+  flex: 1 auto;
+  color: #666;
+  font-size: 11pt;
+}

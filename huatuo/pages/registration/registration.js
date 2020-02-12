@@ -151,15 +151,15 @@ Page({
   submitRegistrationForm(e) {
     console.log(e.detail.value);
     var staffId = this.data.staffID.content;
-    var mobile = this.data.mobile.content;
-    var code = this.data.code.content;
+    // var mobile = this.data.mobile.content;
+    // var code = this.data.code.content;
     if (this.validate('registration')) {
       var data = {
         "appId": app.globalData.appId,
         "openId": app.globalData.openId,
         "staffId": staffId,
-        "mobileNum": mobile,
-        "verifyCode": code
+        // "mobileNum": mobile,
+        // "verifyCode": code
       };
       this.request(data);
     }
@@ -170,7 +170,8 @@ Page({
     util.showLoading();
     var host = app.api.isProdEnv ? app.api.prodUrl : app.api.devUrl;
     wx.request({
-      url: host + '/api/register',
+      // url: host + '/api/register',
+      url: host + '/api/v2/register/mini-program',
       method: 'POST',
       data: data,
       header: {
@@ -178,19 +179,23 @@ Page({
       },
       success(res) {
         wx.hideLoading();
-        console.log(res.data);
+        console.log('register success res : ',res);
         if (res.statusCode == 200 && res.data) {
-          var code = res.data.code;
+          wx.redirectTo({
+            url: '/pages/officestatus/officestatus'
+          })
+          /*
+          var code = res.data.status;
           if (code == '200') {
             wx.redirectTo({
               url: '/pages/officestatus/officestatus'
             })
           } else {
-            _this.resetSendCode();
+            // _this.resetSendCode();
             util.showErrorMessage(400, res, res.data.msg);
-          }
+          }*/
         } else {
-          _this.resetSendCode();
+          // _this.resetSendCode();
           util.showErrorMessage(res.statusCode, res)
         }
       },
@@ -261,8 +266,8 @@ Page({
   //validation
   validate(type) {
     var staffId = this.data.staffID.content;
-    var mobile = this.data.mobile.content;
-    var code = this.data.code.content;
+    // var mobile = this.data.mobile.content;
+    // var code = this.data.code.content;
     // if (staffId == '' || mobile == '' || (type == 'registration' && code == '')) {
     //   util.handleError();
     //   return false;
@@ -271,14 +276,14 @@ Page({
       util.handleError('Invalid Staff ID!');
       return false;
     }
-    if (!util.regMobileNum(mobile)) {
-      util.handleError('Invalid Mobile No.!');
-      return false;
-    }
-    if (type == 'registration' && !util.regVerifyCode(code)) {
-      util.handleError('Invalid Code!');
-      return false;
-    }
+    // if (!util.regMobileNum(mobile)) {
+    //   util.handleError('Invalid Mobile No.!');
+    //   return false;
+    // }
+    // if (type == 'registration' && !util.regVerifyCode(code)) {
+    //   util.handleError('Invalid Code!');
+    //   return false;
+    // }
     return true;
   },
   //

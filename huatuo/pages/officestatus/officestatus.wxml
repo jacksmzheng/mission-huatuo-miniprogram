@@ -8,7 +8,7 @@
       <template is="common-home-btn" data="{{ width: imageWidth, height: imageHeight, ...btnNews }}"/>
       <template is="common-home-btn" data="{{ width: imageWidth, height: imageHeight, ...btnReport }}"/>
       <template is="common-home-btn" data="{{ width: imageWidth, height: imageHeight, ...btnVPN }}"/>
-      <template is="common-home-btn" data="{{ width: imageWidth, height: imageHeight, ...btnHelp }}"/>
+      <!-- <template is="common-home-btn" data="{{ width: imageWidth, height: imageHeight, ...btnHelp }}"/> -->
       <template is="common-home-btn" data="{{ width: imageWidth, height: imageHeight, ...btnSurvey }}"/>
   </view>
 

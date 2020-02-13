@@ -3,7 +3,7 @@
     <view class="survey-list-left">
       <text class="survey-list-title">{{formNameCn}}</text>
       <text class="survey-list-title">{{formNameEn}}</text>
-      <text class="survey-list-time">{{lastUpdateDateTime}}</text>
+      <text class="survey-list-time">{{pushedDatetime}}</text>
     </view>
     <view class="survey-list-right">
       <image class="survey-list-right-image" src="/pages/common/resources/images/huotuo_arrow.png"></image>

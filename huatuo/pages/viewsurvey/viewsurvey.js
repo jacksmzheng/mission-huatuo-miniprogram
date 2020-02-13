@@ -390,14 +390,15 @@ Page({
     util.showLoading();
     const that = this
     var host = app.api.isProdEnv ? app.api.prodUrl : app.api.devUrl;
+    var staffId = app.globalData.userInfo.staffId;
     wx.request({
-      url: host + '/api/surveyform/detail',
-      method: 'POST',
-      data: {
-        staffId: app.globalData.userInfo.staffId,
-        appId: app.globalData.appId,
-        formId: this.data.id
-      },
+      url: host + '/api/v2/survey/form/' + that.data.id + '/view/' + staffId,
+      method: 'GET',
+      // data: {
+      //   staffId: app.globalData.userInfo.staffId,
+      //   appId: app.globalData.appId,
+      //   formId: this.data.id
+      // },
       header: {
         'content-type': 'application/json',
         'X-IS-DUMMY': false
@@ -428,28 +429,28 @@ Page({
   },
   formatResData: function(resData){
 
-    const questions = resData.returnObject.questions
-    const answers = resData.returnObject.answers
+    const questions = resData.formStructure.questions;
+    const answers = resData.formData;
     var surveyDetails
     if(questions.length>0){
       surveyDetails = new Array(questions.length)
       for (let i = 0; i < questions.length; i++){
         surveyDetails[i] = {}
-        surveyDetails[i].title = questions[i].question_title_cn + " " + questions[i].question_title_en
-        switch (questions[i].question_type){
+        surveyDetails[i].title = questions[i].questionNo + ". " + questions[i].questionTitleCn + " " + questions[i].questionTitleEn
+        switch (questions[i].questionType){
           case '1':
           case '2':
-            const result = answers["answer" + questions[i].question_no].split(",")  // "6,5,4",
+            const result = answers["answer" + questions[i].questionNo].split(",")  // "6,5,4",
             surveyDetails[i].text = ''
             console.log('questions ' + i + " answers : ", questions[i].answers )
             console.log('result : ', result )
 
-            if (questions[i].answers && questions[i].answers.length > 0) {
-              for (let k = 0; k < questions[i].answers.length; k++) {
+            if (questions[i].questionItems && questions[i].questionItems.length > 0) {
+              for (let k = 0; k < questions[i].questionItems.length; k++) {
                 for (let j = 0; j < result.length; j++) {
-                  if (result[j] == questions[i].answers[k].item_no ) { 
+                  if (result[j] == questions[i].questionItems[k].itemNo ) { 
                     var dot = result.length > 1 && j != result.length - 1 ? '，' : ''
-                    surveyDetails[i].text += questions[i].answers[k].item_text_cn + " " + questions[i].answers[k].item_text_en + dot
+                    surveyDetails[i].text += questions[i].questionItems[k].itemTextCn + " " + questions[i].questionItems[k].itemTextEn + dot
 
                   }
                 }
@@ -458,7 +459,7 @@ Page({
           break;
           case '3':
           case '4':
-            surveyDetails[i].text = answers["answer" + questions[i].question_no]
+            surveyDetails[i].text = answers["answer" + questions[i].questionNo]
           break;
         }
       }

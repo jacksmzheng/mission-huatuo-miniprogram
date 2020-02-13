@@ -119,10 +119,10 @@ Page({
     status: {
       items: [{
         id: 1,
-        name: '由医疗机构或者疾控部门告知的确诊病毒性肺炎案例 Confirmed viral pneumonia as advised by hospital/authority',
+        name: '由医疗机构或者疾控部门告知的确诊新冠肺炎案例 Confirmed novel coronavirus  pneumonia as advised by hospital/authority',
       }, {
         id: 2,
-        name: '由医疗机构或者疾控部门告知的疑似病毒性肺炎案例 Suspected viral pneumonia as advised by hospital/authority'
+          name: '由医疗机构或者疾控部门告知的疑似新冠肺炎案例 Suspected novel coronavirus pneumonia as advised by hospital/authority'
       }, {
         id: 3,
         name: '由医疗机构或者疾控部门告知的密切接触 Close contact as advised by hospital/authority'

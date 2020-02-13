@@ -111,7 +111,7 @@ Page({
     const that = this
     var host = app.api.isProdEnv ? app.api.prodUrl : app.api.devUrl;
     wx.request({
-      url: host + '/api/surveyform/lists',
+      url: host + '/api/v2/survey/form',
       method: 'POST',
       data: {
         staffId: app.globalData.userInfo.staffId,
@@ -123,10 +123,20 @@ Page({
       },
       success(res) {
         console.log('message success res :', res)
-        if (res.statusCode == 200 && res.data.code == "200") {
+        if (res.statusCode == 200 && res.data) {
+          if(res.data.unComplete) {
+            res.data.unComplete.map(it => {
+              it.status = "0";
+            })
+          }
+          if(res.data.complete) {
+            res.data.complete.map(it => {
+              it.status = "1";
+            })
+          }
           that.setData({
-            newList: res.data.returnObject.unComplete || [],
-            oldList: res.data.returnObject.complete || []
+            newList: res.data.unComplete || [],
+            oldList: res.data.complete || []
           })
         } else {
           util.showErrorMessage(res.statusCode, res)

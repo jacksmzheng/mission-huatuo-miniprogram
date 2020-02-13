@@ -153,16 +153,16 @@ Page({
     const that = this
     var host = app.api.isProdEnv ? app.api.prodUrl : app.api.devUrl;
     wx.request({
-      url: host + '/api/survey/form',
-      method: 'POST',
-      data: {
-        openId: app.globalData.openId,
-        appId: app.globalData.appId,
-        staffId: app.globalData.userInfo.staffId,
-        formId: formId
-        // staffId: '44053653',
-        // formId: '1'
-      },
+      url: host + '/api/v2/survey/form/' + formId + '/new',
+      method: 'GET',
+      // data: {
+      //   openId: app.globalData.openId,
+      //   appId: app.globalData.appId,
+      //   staffId: app.globalData.userInfo.staffId,
+      //   formId: formId
+      //   // staffId: '44053653',
+      //   // formId: '1'
+      // },
       header: {
         'content-type': 'application/json',
         'X-IS-DUMMY': false
@@ -188,21 +188,24 @@ Page({
   },
 
   setFormData: function (responseData){
-    const returnObject = responseData.returnObject
-    const forms = new Array(responseData.length)
-
-    for( let i=0; i<returnObject.length; i++ ){
-      const returnItem = returnObject[i]
+    //const returnObject = responseData.returnObject
+    const returnObject = responseData.formStructure;
+    const questions = returnObject.questions || [];
+    //const forms = new Array(responseData.length)
+    const forms = new Array(questions.length)
+    for (let i = 0; i < questions.length; i++ ){
+      const returnItem = questions[i];
 
       forms[i] = {}
       forms[i].num = i
-      forms[i].id = returnItem.question_id
-      forms[i].label = returnItem.question_no + ". " + returnItem.question_title_cn + " " + returnItem.question_title_en
-      forms[i].questionNum = returnItem.question_no
-      forms[i].component = returnItem.question_type
+      //forms[i].id = returnItem.question_id
+      forms[i].id = returnItem.questionNo;
+      forms[i].label = returnItem.questionNo + ". " + returnItem.questionTitleCn + " " + returnItem.questionTitleEn
+      forms[i].questionNum = returnItem.questionNo
+      forms[i].component = returnItem.questionType
       // forms[i].mandatory = true
       // forms[i].fieldType = 'number'
-      switch (returnItem.question_type){
+      switch (returnItem.questionType){
         case '1':
           forms[i].event = 'radioChange'
           break;
@@ -216,18 +219,18 @@ Page({
           break
       }
 
-      if ((returnItem.question_type == '1' || returnItem.question_type == '2') && returnItem.answers ){
-        forms[i].array = new Array(returnItem.answers.length)
-        const answers = returnItem.answers
+      if ((returnItem.questionType == '1' || returnItem.questionType == '2') && returnItem.questionItems){
+        forms[i].array = new Array(returnItem.questionItems.length)
+        const answers = returnItem.questionItems
         for (let j = 0; j < answers.length; j++) {
           forms[i].array[j] = {}
           forms[i].array[j].value = j
-          forms[i].array[j].itemId = parseInt(answers[j].item_id)
-          forms[i].array[j].itemNum = answers[j].item_no
-          forms[i].array[j].name = answers[j].item_text_cn + " " + answers[j].item_text_en
-          forms[i].array[j].other = answers[j].need_sub_item
+          forms[i].array[j].itemId = parseInt(answers[j].itemNo)
+          forms[i].array[j].itemNum = answers[j].itemNo
+          forms[i].array[j].name = answers[j].itemTextCn + " " + answers[j].itemTextEn
+          forms[i].array[j].other = answers[j].needSubItem
           forms[i].array[j].checked = false
-          forms[i].array[j].type = answers[j].sub_item_rule
+          forms[i].array[j].type = answers[j].subItemRule
         }
       }
 
@@ -244,7 +247,7 @@ Page({
     const forms = this.data.forms
     var answers = {}
     for(let i=0; i<forms.length; i++){
-      answers[forms[i].questionNum] = forms[i].content 
+      answers['answer'+forms[i].questionNum] = forms[i].content 
       if (!forms[i].content){
         util.handleError()
         return false
@@ -252,7 +255,7 @@ Page({
     }
 
     const answer = {
-      staffId: app.globalData.userInfo.staffId,
+      //staffId: app.globalData.userInfo.staffId,
       formId: this.data.formId,
       answers: answers
     }
@@ -261,18 +264,20 @@ Page({
   },
 
   submit: function() {
-    wx.showLoading({
-      title: '数据加载中，请稍候...',
-    })
+    // wx.showLoading({
+    //   title: '数据加载中，请稍候...',
+    // })
     const that = this
     const reqData = that.genSubmitData()
     if(!reqData){ 
-      wx.hideLoading()
+      //wx.hideLoading()
       return 
       }
     var host = app.api.isProdEnv ? app.api.prodUrl : app.api.devUrl;
+    var staffId = app.globalData.userInfo.staffId;
+    util.showLoading();
     wx.request({
-      url: host + '/api/survey/form/submit',
+      url: host + '/api/v2/survey/form/' + that.data.formId + '/new/' + staffId,
       method: 'POST',
       data: reqData,
       header: {
